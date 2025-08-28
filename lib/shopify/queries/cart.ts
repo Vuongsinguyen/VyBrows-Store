@@ -1,16 +1,13 @@
-import { default as cart, default as cartFragment } from '../fragments/cart';
+import { getCart as getCartLocal } from '../index';
 
-// Hàm lấy dữ liệu giỏ hàng local
-export function getCart(cartId: string) {
-  // Có thể lọc theo cartId nếu có nhiều giỏ hàng
-  return cart;
+// Local wrapper for getting the cart. Kept for compatibility with code
+// that imports this module. Returns the app's local cart stored via
+// cookie logic in `lib/shopify/index.ts`.
+export async function getCart(cartId?: string) {
+  // cartId is ignored for local single-cart implementation
+  return await getCartLocal();
 }
 
-export const getCartQuery = /* GraphQL */ `
-  query getCart($cartId: ID!) {
-    cart(id: $cartId) {
-      ...cart
-    }
-  }
-  ${cartFragment}
-`;
+// Placeholder query string kept for any consumers that expect the
+// symbol, but it's not used for local data operations.
+export const getCartQuery = `# local cart - no GraphQL`;

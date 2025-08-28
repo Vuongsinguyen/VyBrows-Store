@@ -32,8 +32,10 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-function calculateItemCost(quantity: number, price: string): string {
-  return (Number(price) * quantity).toString();
+function calculateItemCost(quantity: number, price: string | number): string {
+  const n = typeof price === 'number' ? price : Number(price || 0);
+  const value = Number.isNaN(n) ? 0 : n;
+  return (value * (quantity || 0)).toString();
 }
 
 function updateCartItem(
@@ -46,11 +48,9 @@ function updateCartItem(
     updateType === 'plus' ? item.quantity + 1 : item.quantity - 1;
   if (newQuantity === 0) return null;
 
-  const singleItemAmount = Number(item.cost.totalAmount.amount) / item.quantity;
-  const newTotalAmount = calculateItemCost(
-    newQuantity,
-    singleItemAmount.toString()
-  );
+  const currentAmount = Number(item.cost?.totalAmount?.amount ?? 0);
+  const singleItemAmount = item.quantity ? currentAmount / item.quantity : currentAmount;
+  const newTotalAmount = calculateItemCost(newQuantity, singleItemAmount);
 
   return {
     ...item,
@@ -58,8 +58,8 @@ function updateCartItem(
     cost: {
       ...item.cost,
       totalAmount: {
-        ...item.cost.totalAmount,
-        amount: newTotalAmount
+        amount: newTotalAmount,
+        currencyCode: item.cost?.totalAmount?.currencyCode ?? 'USD'
       }
     }
   };
@@ -71,40 +71,42 @@ function createOrUpdateCartItem(
   product: Product
 ): CartItem {
   const quantity = existingItem ? existingItem.quantity + 1 : 1;
-  const totalAmount = calculateItemCost(quantity, variant.price.amount);
+  const priceVal = variant?.price?.amount ?? (variant as any)?.price ?? 0;
+  const currency = variant?.price?.currencyCode ?? 'USD';
+  const totalAmount = calculateItemCost(quantity, priceVal);
 
   return {
-    id: existingItem?.id,
+    id: existingItem?.id ?? `${product?.id ?? 'prod'}-${variant?.id ?? 'var'}`,
     quantity,
     cost: {
       totalAmount: {
         amount: totalAmount,
-        currencyCode: variant.price.currencyCode
+        currencyCode: currency
       }
     },
     merchandise: {
-      id: variant.id,
-      title: variant.title,
-      selectedOptions: variant.selectedOptions,
+      id: variant?.id ?? existingItem?.merchandise?.id ?? `${product?.id}-default`,
+      title: variant?.title ?? product?.title,
+      selectedOptions: variant?.selectedOptions ?? [],
       product: {
-        id: product.id,
-        handle: product.handle,
-        title: product.title,
-        featuredImage: product.featuredImage
+        id: product?.id ?? existingItem?.merchandise?.product?.id,
+        handle: product?.handle ?? existingItem?.merchandise?.product?.handle,
+        title: product?.title ?? existingItem?.merchandise?.product?.title,
+        featuredImage: product?.featuredImage ?? existingItem?.merchandise?.product?.featuredImage
       }
     }
-  };
+  } as CartItem;
 }
 
 function updateCartTotals(
   lines: CartItem[]
 ): Pick<Cart, 'totalQuantity' | 'cost'> {
-  const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = lines.reduce(
-    (sum, item) => sum + Number(item.cost.totalAmount.amount),
-    0
-  );
-  const currencyCode = lines[0]?.cost.totalAmount.currencyCode ?? 'USD';
+  const totalQuantity = lines.reduce((sum, item) => sum + (item.quantity ?? 0), 0);
+  const totalAmount = lines.reduce((sum, item) => {
+    const amt = Number(item.cost?.totalAmount?.amount ?? 0);
+    return sum + (Number.isNaN(amt) ? 0 : amt);
+  }, 0);
+  const currencyCode = lines[0]?.cost?.totalAmount?.currencyCode ?? 'USD';
 
   return {
     totalQuantity,
@@ -132,13 +134,14 @@ function createEmptyCart(): Cart {
 
 function cartReducer(state: Cart | undefined, action: CartAction): Cart {
   const currentCart = state || createEmptyCart();
+  const lines = currentCart.lines ?? [];
 
   switch (action.type) {
     case 'UPDATE_ITEM': {
       const { merchandiseId, updateType } = action.payload;
-      const updatedLines = currentCart.lines
+      const updatedLines = lines
         .map((item) =>
-          item.merchandise.id === merchandiseId
+          (item?.merchandise?.id ?? item?.id) === merchandiseId
             ? updateCartItem(item, updateType)
             : item
         )
@@ -150,8 +153,9 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
           lines: [],
           totalQuantity: 0,
           cost: {
-            ...currentCart.cost,
-            totalAmount: { ...currentCart.cost.totalAmount, amount: '0' }
+            subtotalAmount: { amount: '0', currencyCode: 'USD' },
+            totalAmount: { amount: '0', currencyCode: 'USD' },
+            totalTaxAmount: { amount: '0', currencyCode: 'USD' }
           }
         };
       }
@@ -164,9 +168,8 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
     }
     case 'ADD_ITEM': {
       const { variant, product } = action.payload;
-      const existingItem = currentCart.lines.find(
-        (item) => item.merchandise.id === variant.id
-      );
+      const matchId = variant?.id ?? `${product?.id}-default`;
+      const existingItem = lines.find((item) => (item?.merchandise?.id ?? item?.id) === matchId);
       const updatedItem = createOrUpdateCartItem(
         existingItem,
         variant,
@@ -174,10 +177,10 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
       );
 
       const updatedLines = existingItem
-        ? currentCart.lines.map((item) =>
-            item.merchandise.id === variant.id ? updatedItem : item
+        ? lines.map((item) =>
+            (item?.merchandise?.id ?? item?.id) === matchId ? updatedItem : item
           )
-        : [...currentCart.lines, updatedItem];
+        : [...lines, updatedItem];
 
       return {
         ...currentCart,
