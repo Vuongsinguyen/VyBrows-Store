@@ -10,10 +10,12 @@ import { useCart } from './cart-context';
 
 function SubmitButton({
   availableForSale,
-  selectedVariantId
+  selectedVariantId,
+  onClick
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
+  onClick?: () => void;
 }) {
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
@@ -37,18 +39,20 @@ function SubmitButton({
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
         </div>
-        Add To Cart
-      </button>
+          Add To Cart
+        </button>
     );
   }
 
   return (
-    <button
-      aria-label="Add to cart"
-      className={clsx(buttonClasses, {
-        'hover:opacity-90': true
-      })}
-    >
+      <button
+        type="submit"
+        aria-label="Add to cart"
+        onClick={onClick}
+        className={clsx(buttonClasses, {
+          'hover:opacity-90': true
+        })}
+      >
       <div className="absolute left-0 ml-4">
         <PlusIcon className="h-5" />
       </div>
@@ -70,21 +74,20 @@ export function AddToCart({ product }: { product: Product }) {
   );
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
-  const addItemAction = formAction.bind(null, selectedVariantId);
   const finalVariant = variants.find(
     (variant) => variant.id === selectedVariantId
   )!;
 
   return (
-    <form
-      action={async () => {
-        addCartItem(finalVariant, product);
-        addItemAction();
-      }}
-    >
+    // Provide the bound form action directly so Next can invoke the server action
+    // The optimistic update is triggered via the button's onClick handler.
+    <form action={formAction}>
+      {/* send selectedVariantId as form field so server action receives it */}
+      <input type="hidden" name="selectedVariantId" value={selectedVariantId || ''} />
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
+        onClick={() => addCartItem(finalVariant, product)}
       />
       <p aria-live="polite" className="sr-only" role="status">
         {message}

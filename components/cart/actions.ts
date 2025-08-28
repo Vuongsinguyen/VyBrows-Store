@@ -12,10 +12,24 @@ import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function addItem(
-  prevState: any,
-  selectedVariantId: string | undefined
-) {
+export async function addItem(prevStateOrFormData: any, selectedVariantIdMaybe?: string) {
+  // Support being invoked either as (prevState, selectedVariantId)
+  // or as a form action where Next passes a FormData object.
+  let selectedVariantId: string | undefined;
+
+  // Detect FormData (server action when used as <form action={addItem}> passes FormData)
+  if (typeof (globalThis as any).FormData !== 'undefined' && prevStateOrFormData instanceof (globalThis as any).FormData) {
+    const fd = prevStateOrFormData as FormData;
+    const v = fd.get('selectedVariantId');
+    selectedVariantId = typeof v === 'string' ? v : undefined;
+  } else if (prevStateOrFormData && typeof prevStateOrFormData.get === 'function') {
+    // Fallback for environments where FormData global isn't available
+    const v = prevStateOrFormData.get('selectedVariantId');
+    selectedVariantId = typeof v === 'string' ? v : undefined;
+  } else {
+    selectedVariantId = selectedVariantIdMaybe;
+  }
+
   if (!selectedVariantId) {
     return 'Error adding item to cart';
   }
@@ -36,9 +50,8 @@ export async function removeItem(prevState: any, merchandiseId: string) {
       return 'Error fetching cart';
     }
 
-    const lineItem = cart.lines.find(
-      (line) => line.merchandise.id === merchandiseId
-    );
+  const lines = cart.lines ?? [];
+  const lineItem = lines.find((line) => (line.merchandise?.id ?? line.id) === merchandiseId);
 
     if (lineItem && lineItem.id) {
       await removeFromCart([lineItem.id]);
@@ -67,9 +80,8 @@ export async function updateItemQuantity(
       return 'Error fetching cart';
     }
 
-    const lineItem = cart.lines.find(
-      (line) => line.merchandise.id === merchandiseId
-    );
+  const lines = cart.lines ?? [];
+  const lineItem = lines.find((line) => (line.merchandise?.id ?? line.id) === merchandiseId);
 
     if (lineItem && lineItem.id) {
       if (quantity === 0) {
@@ -96,8 +108,11 @@ export async function updateItemQuantity(
 }
 
 export async function redirectToCheckout() {
-  let cart = await getCart();
-  redirect(cart!.checkoutUrl);
+  const cart = await getCart();
+  if (!cart || !cart.checkoutUrl) {
+    return;
+  }
+  redirect(cart.checkoutUrl);
 }
 
 export async function createCartAndSetCookie() {
