@@ -9,7 +9,7 @@ import { useFormStatus } from 'react-dom';
 import { createCartAndSetCookie, redirectToCheckout } from './actions';
 import { useCart } from './cart-context';
 import { DeleteItemButton } from './delete-item-button';
-import { EditItemQuantityButton } from './edit-item-quantity-button';
+import EditItemQuantityButton from './edit-item-quantity-button';
 import OpenCart from './open-cart';
 
 type MerchandiseSearchParams = {

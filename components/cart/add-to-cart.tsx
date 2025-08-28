@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { addItem } from 'components/cart/actions';
 import { useProduct } from 'components/product/product-context';
 import { Product, ProductVariant } from 'lib/shopify/types';
-import { startTransition, useActionState } from 'react';
+import { startTransition } from 'react';
 import { useCart } from './cart-context';
 
 function SubmitButton({
@@ -46,7 +46,7 @@ function SubmitButton({
 
   return (
       <button
-        type="submit"
+  type={onClick ? 'button' : 'submit'}
         aria-label="Add to cart"
         onClick={onClick}
         className={clsx(buttonClasses, {
@@ -65,7 +65,7 @@ export function AddToCart({ product }: { product: Product }) {
   const { variants, availableForSale } = product;
   const { addCartItem } = useCart();
   const { state } = useProduct();
-  const [message, formAction] = useActionState(addItem, null);
+  const formAction = addItem;
 
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every(
@@ -79,19 +79,21 @@ export function AddToCart({ product }: { product: Product }) {
   )!;
 
   return (
-    // Provide the bound form action directly so Next can invoke the server action
+    // Provide the server action directly so Next can invoke it on submit.
     // The optimistic update is triggered via the button's onClick handler.
-    <form action={formAction}>
+    <form action={formAction as any}>
       {/* send selectedVariantId as form field so server action receives it */}
       <input type="hidden" name="selectedVariantId" value={selectedVariantId || ''} />
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
-        onClick={() => startTransition(() => addCartItem(finalVariant, product))}
+        onClick={() =>
+          startTransition(() => {
+            addCartItem(finalVariant, product);
+          })
+        }
       />
-      <p aria-live="polite" className="sr-only" role="status">
-        {message}
-      </p>
+      {/* message omitted: using direct action binding */}
     </form>
   );
 }

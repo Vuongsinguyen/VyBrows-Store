@@ -116,7 +116,8 @@ export async function redirectToCheckout() {
   if (cart.checkoutUrl) {
     redirect(cart.checkoutUrl);
   } else {
-    redirect('/checkout');
+    // Redirect to the first local checkout step (information)
+    redirect('/checkout/information');
   }
 }
 

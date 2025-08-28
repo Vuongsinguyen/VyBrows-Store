@@ -18,30 +18,23 @@ export function DeleteItemButton({
   const merchandiseId = item?.merchandise?.id ?? item?.id;
   const removeItemAction = merchandiseId ? formAction.bind(null, merchandiseId) : undefined;
 
+  const handleClick = () => {
+    if (!merchandiseId) return;
+  optimisticUpdate(merchandiseId, 'delete');
+  };
+
   return (
-    <>
-      <form
-        action={async () => {
-          if (!merchandiseId || !removeItemAction) return;
-          optimisticUpdate(merchandiseId, 'delete');
-          removeItemAction();
-        }}
-      >
-        <button
-          type="submit"
-          aria-label="Remove cart item"
-          disabled={!merchandiseId}
-          className={clsx('flex h-[24px] w-[24px] items-center justify-center rounded-full', {
-            'bg-neutral-500': merchandiseId,
-            'bg-neutral-300 cursor-not-allowed opacity-60': !merchandiseId
-          })}
-        >
-          <XMarkIcon className="mx-[1px] h-4 w-4 text-white dark:text-black" />
-        </button>
-      </form>
-      <p aria-live="polite" className="sr-only" role="status">
-        {message}
-      </p>
-    </>
+    <button
+      type="button"
+      aria-label="Remove cart item"
+      disabled={!merchandiseId}
+      onClick={handleClick}
+      className={clsx('flex h-[24px] w-[24px] items-center justify-center rounded-full', {
+        'bg-neutral-500': merchandiseId,
+        'bg-neutral-300 cursor-not-allowed opacity-60': !merchandiseId
+      })}
+    >
+      <XMarkIcon className="mx-[1px] h-4 w-4 text-white dark:text-black" />
+    </button>
   );
 }
