@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import FooterMenu from 'components/layout/footer-menu';
 import LogoSquare from 'components/logo-square';
-import { getMenu } from 'lib/shopify';
+import { Menu } from 'lib/shopify/types';
 import { Suspense } from 'react';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
@@ -11,7 +11,13 @@ export default async function Footer() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse rounded-sm bg-neutral-200 dark:bg-neutral-700';
-  const menu = await getMenu('next-js-frontend-footer-menu');
+  // Use local menu instead of Shopify API
+  const menu: Menu[] = [
+    { title: 'Home', path: '/' },
+    { title: 'Search', path: '/search' },
+    { title: 'About', path: '/about' },
+    { title: 'Contact', path: '/contact' }
+  ];
   const copyrightName = COMPANY_NAME || SITE_NAME || '';
 
   return (

@@ -1,7 +1,8 @@
 import { GridTileImage } from 'components/grid/tile';
-import { getCollectionProducts } from 'lib/shopify';
+import fs from 'fs';
 import type { Product } from 'lib/shopify/types';
 import Link from 'next/link';
+import path from 'path';
 
 function ThreeItemGridItem({
   item,
@@ -42,8 +43,15 @@ function ThreeItemGridItem({
 }
 
 export async function ThreeItemGrid() {
-  // Collections that start with `hidden-*` are hidden from the search page.
-  const homepageItems = await getCollectionProducts('hidden-homepage-featured-items');
+  // Load products from local JSON file
+  const productsPath = path.join(process.cwd(), 'data', 'products.json');
+  const productsData = fs.readFileSync(productsPath, 'utf8');
+  const allProducts: Product[] = JSON.parse(productsData);
+
+  // Filter products with 'hidden-homepage-featured-items' tag
+  const homepageItems = allProducts.filter(product =>
+    product.tags?.includes('hidden-homepage-featured-items')
+  );
 
   if (!homepageItems[0] || !homepageItems[1] || !homepageItems[2]) return null;
 

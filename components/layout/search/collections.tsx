@@ -1,11 +1,33 @@
 import clsx from 'clsx';
+import fs from 'fs';
+import type { Product } from 'lib/shopify/types';
+import path from 'path';
 import { Suspense } from 'react';
-
-import { getCollections } from 'lib/shopify';
 import FilterList from './filter';
 
 async function CollectionList() {
-  const collections = await getCollections();
+  // Load products from local JSON file and extract unique tags as collections
+  const productsPath = path.join(process.cwd(), 'data', 'products.json');
+  const productsData = fs.readFileSync(productsPath, 'utf8');
+  const products: Product[] = JSON.parse(productsData);
+
+  // Extract unique tags that don't start with 'hidden-'
+  const allTags = new Set<string>();
+  products.forEach(product => {
+    product.tags?.forEach(tag => {
+      if (!tag.startsWith('hidden-')) {
+        allTags.add(tag);
+      }
+    });
+  });
+
+  // Convert tags to collection format
+  const collections = Array.from(allTags).map(tag => ({
+    title: tag.charAt(0).toUpperCase() + tag.slice(1).replace(/-/g, ' '),
+    path: `/search?q=${encodeURIComponent(tag)}`,
+    updatedAt: new Date().toISOString()
+  }));
+
   return <FilterList list={collections} title="Collections" />;
 }
 

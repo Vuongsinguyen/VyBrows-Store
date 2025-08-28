@@ -1,10 +1,19 @@
-import { getCollectionProducts } from 'lib/shopify';
+import fs from 'fs';
+import type { Product } from 'lib/shopify/types';
 import Link from 'next/link';
+import path from 'path';
 import { GridTileImage } from './grid/tile';
 
 export async function Carousel() {
-  // Collections that start with `hidden-*` are hidden from the search page.
-  const products = await getCollectionProducts('hidden-homepage-carousel');
+  // Load products from local JSON file
+  const productsPath = path.join(process.cwd(), 'data', 'products.json');
+  const productsData = fs.readFileSync(productsPath, 'utf8');
+  const allProducts: Product[] = JSON.parse(productsData);
+
+  // Filter products with 'hidden-homepage-carousel' tag
+  const products = allProducts.filter(product =>
+    product.tags?.includes('hidden-homepage-carousel')
+  );
 
   if (!products?.length) return null;
 

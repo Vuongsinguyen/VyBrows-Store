@@ -2,9 +2,7 @@
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { removeItem } from 'components/cart/actions';
 import type { CartItem } from 'lib/shopify/types';
-import { useActionState } from 'react';
 
 export function DeleteItemButton({
   item,
@@ -13,14 +11,17 @@ export function DeleteItemButton({
   item: CartItem;
   optimisticUpdate: any;
 }) {
-  const [message, formAction] = useActionState(removeItem, null);
   // defensive: merchandise may be undefined, fall back to item.id
   const merchandiseId = item?.merchandise?.id ?? item?.id;
-  const removeItemAction = merchandiseId ? formAction.bind(null, merchandiseId) : undefined;
 
   const handleClick = () => {
-    if (!merchandiseId) return;
-  optimisticUpdate(merchandiseId, 'delete');
+    if (!merchandiseId) {
+      console.log('DeleteItemButton: No merchandiseId, cannot delete');
+      return;
+    }
+    console.log('DeleteItemButton: Deleting item with merchandiseId:', merchandiseId);
+    optimisticUpdate(merchandiseId, 'delete'); // Xử lý local, cập nhật state giỏ hàng
+    console.log('DeleteItemButton: Item deleted locally');
   };
 
   return (

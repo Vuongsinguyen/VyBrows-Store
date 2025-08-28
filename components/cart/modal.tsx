@@ -3,10 +3,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import LoadingDots from 'components/loading-dots';
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { useFormStatus } from 'react-dom';
-import { createCartAndSetCookie, redirectToCheckout } from './actions';
 import { useCart } from './cart-context';
 import { DeleteItemButton } from './delete-item-button';
 import EditItemQuantityButton from './edit-item-quantity-button';
@@ -25,11 +22,10 @@ export default function CartModal() {
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
 
+  // Remove createCartAndSetCookie call since we're using local state
   useEffect(() => {
-    if (!cart) {
-      createCartAndSetCookie();
-    }
-  }, [cart]);
+    // Cart is now managed locally, no need to create cart from server
+  }, []);
 
   useEffect(() => {
     if (
@@ -79,7 +75,7 @@ export default function CartModal() {
                 </button>
               </div>
 
-              {!cart || cart.items.length === 0 ? (
+              {!cart || !cart.items || cart.items.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">
@@ -132,10 +128,15 @@ export default function CartModal() {
                       </li>
                     ))}
                   </ul>
-                  {/* Không còn thông tin cost/tax, có thể render tổng quantity hoặc tổng giá nếu có logic riêng */}
-                  <form action={redirectToCheckout}>
-                    <CheckoutButton />
-                  </form>
+                  {/* Local checkout - just show a message for now */}
+                  <div className="border-t border-neutral-200 pt-4 dark:border-neutral-700">
+                    <button
+                      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                      onClick={() => alert('Checkout functionality would be implemented here')}
+                    >
+                      Proceed to Checkout
+                    </button>
+                  </div>
                 </div>
               )}
             </Dialog.Panel>
@@ -156,19 +157,5 @@ function CloseCart({ className }: { className?: string }) {
         )}
       />
     </div>
-  );
-}
-
-function CheckoutButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-      type="submit"
-      disabled={pending}
-    >
-      {pending ? <LoadingDots className="bg-white" /> : 'Proceed to Checkout'}
-    </button>
   );
 }
