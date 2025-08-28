@@ -121,10 +121,11 @@ function updateCartTotals(
 
 function createEmptyCart(): Cart {
   return {
-    id: undefined,
-    checkoutUrl: '',
-    totalQuantity: 0,
-    lines: [],
+  id: undefined,
+  checkoutUrl: '',
+  totalQuantity: 0,
+  lines: [],
+  items: [],
     cost: {
       subtotalAmount: { amount: '0', currencyCode: 'USD' },
       totalAmount: { amount: '0', currencyCode: 'USD' },
@@ -152,6 +153,7 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
         return {
           ...currentCart,
           lines: [],
+          items: [],
           totalQuantity: 0,
           cost: {
             subtotalAmount: { amount: '0', currencyCode: 'USD' },
@@ -164,7 +166,8 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
       return {
         ...currentCart,
         ...updateCartTotals(updatedLines),
-        lines: updatedLines
+        lines: updatedLines,
+        items: updatedLines
       };
     }
     case 'ADD_ITEM': {
@@ -186,7 +189,8 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
       return {
         ...currentCart,
         ...updateCartTotals(updatedLines),
-        lines: updatedLines
+        lines: updatedLines,
+        items: updatedLines
       };
     }
     default:

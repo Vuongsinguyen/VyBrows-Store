@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { addItem } from 'components/cart/actions';
 import { useProduct } from 'components/product/product-context';
 import { Product, ProductVariant } from 'lib/shopify/types';
-import { useActionState } from 'react';
+import { startTransition, useActionState } from 'react';
 import { useCart } from './cart-context';
 
 function SubmitButton({
@@ -87,7 +87,7 @@ export function AddToCart({ product }: { product: Product }) {
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
-        onClick={() => addCartItem(finalVariant, product)}
+        onClick={() => startTransition(() => addCartItem(finalVariant, product))}
       />
       <p aria-live="polite" className="sr-only" role="status">
         {message}

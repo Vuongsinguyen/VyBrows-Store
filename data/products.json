@@ -8,7 +8,7 @@
     "price": 19.99,
     "images": [
       {
-        "url": "/images/product001.png",
+        "url": "/images/product-cover-1.avif",
         "altText": "product001",
         "width": 800,
         "height": 800
@@ -27,8 +27,8 @@
       "hidden-homepage-carousel"
     ],
     "featuredImage": {
-      "url": "/images/product001.png",
-      "altText": "Lipstick Red",
+      "url": "/images/product-cover-1.avif",
+      "altText": "product001",
       "width": 800,
       "height": 800
     },

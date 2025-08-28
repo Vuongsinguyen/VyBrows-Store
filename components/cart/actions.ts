@@ -109,13 +109,27 @@ export async function updateItemQuantity(
 
 export async function redirectToCheckout() {
   const cart = await getCart();
-  if (!cart || !cart.checkoutUrl) {
-    return;
+  if (!cart) return;
+
+  // If a checkout URL exists on the cart use it, otherwise fall back
+  // to a local, in-repo checkout page so we never call out to Shopify.
+  if (cart.checkoutUrl) {
+    redirect(cart.checkoutUrl);
+  } else {
+    redirect('/checkout');
   }
-  redirect(cart.checkoutUrl);
 }
 
 export async function createCartAndSetCookie() {
   let cart = await createCart();
-  (await cookies()).set('cartId', cart.id!);
+
+  // Ensure basic cart shape and id for local usage
+  if (!cart.id) cart.id = `local-${Date.now()}`;
+  if (!cart.items) cart.items = [];
+  if (!cart.lines) cart.lines = [];
+
+  const cookieStore = await cookies();
+  // Persist the whole cart under the 'cart' cookie so getCart() can read it
+  cookieStore.set('cart', JSON.stringify(cart));
+  return cart;
 }
