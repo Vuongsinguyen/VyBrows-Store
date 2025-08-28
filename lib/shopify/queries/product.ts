@@ -1,18 +1,18 @@
-import product from '../fragments/product';
+import {
+  getProduct as getProductLocal,
+  getProductRecommendations as getProductRecommendationsLocal,
+  getProducts as getProductsLocal
+} from '../index';
 
-// Hàm lấy một sản phẩm theo handle
+// Forwarding wrappers to local implementations that read `data/products.json`.
 export function getProduct(handle: string) {
-  // Có thể lọc theo handle nếu có nhiều sản phẩm
-  return product;
+  return getProductLocal(handle);
 }
 
-// Hàm lấy tất cả sản phẩm
-export function getProducts() {
-  return [product];
+export function getProducts(options?: any) {
+  return getProductsLocal(options);
 }
 
-// Hàm lấy sản phẩm gợi ý (recommendations)
 export function getProductRecommendations(productId: string) {
-  // Có thể lọc theo productId nếu có nhiều sản phẩm
-  return [product];
+  return getProductRecommendationsLocal(productId);
 }

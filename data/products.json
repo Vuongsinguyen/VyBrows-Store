@@ -2,14 +2,14 @@
   {
     "id": "1",
     "handle": "lipstick-red",
-    "title": "Lipstick Red",
+    "title": "Product001",
     "description": "High quality red lipstick",
     "descriptionHtml": "<p>High quality red lipstick with long-lasting formula</p>",
     "price": 19.99,
     "images": [
       {
         "url": "/images/product001.png",
-        "altText": "Lipstick Red",
+        "altText": "product001",
         "width": 800,
         "height": 800
       },

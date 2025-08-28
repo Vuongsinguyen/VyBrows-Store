@@ -210,13 +210,14 @@ export async function updateCart(
 export async function getProducts(options?: {
   sortKey?: string;
   reverse?: boolean;
-  query?: string;
+  query?: string | string[];
 }): Promise<Product[]> {
   let products = loadProducts();
 
   // Filter by search query
   if (options?.query) {
-    const query = options.query.toLowerCase();
+    const q = Array.isArray(options.query) ? options.query[0] : options.query;
+    const query = (q ?? '').toLowerCase();
     products = products.filter(product =>
       product.title.toLowerCase().includes(query) ||
       product.description.toLowerCase().includes(query) ||
@@ -280,11 +281,19 @@ export async function getProductByHandleOrId(identifier: string): Promise<Produc
 }
 
 // ---------- COLLECTIONS (tags) ----------
-export async function getCollections(): Promise<string[]> {
+export async function getCollections(): Promise<{ title: string; path: string; updatedAt: string }[]> {
   const products = loadProducts()
   const tags = new Set<string>()
   products.forEach((p) => p.tags?.forEach((t) => tags.add(t)))
-  return Array.from(tags)
+  const tagsArray = Array.from(tags)
+
+  // Map simple tag strings to objects used by the UI (title + path).
+  // We include updatedAt so callers like sitemap can use it.
+  return tagsArray.map((tag) => ({
+    title: tag,
+    path: `/search?tag=${encodeURIComponent(tag)}`,
+    updatedAt: new Date().toISOString()
+  }))
 }
 
 export async function getCollectionProducts(tag: string): Promise<Product[]> {

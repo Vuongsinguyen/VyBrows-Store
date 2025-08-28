@@ -62,6 +62,15 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
   );
 }
 
-export function FilterItem({ item }: { item: ListItem }) {
+export function FilterItem({ item }: { item: ListItem | string }) {
+  // Defensive: the UI previously received plain strings (e.g. tags).
+  // Guard against using the `in` operator on primitives which throws a TypeError.
+  if (typeof item === 'string') {
+    // Render string items as path-like entries (link to search by tag)
+    const pathItem: PathFilterItem = { title: item, path: `/search?tag=${encodeURIComponent(item)}` };
+    return <PathFilterItem item={pathItem} />;
+  }
+
+  // Now safe to use 'path' in item because item is an object.
   return 'path' in item ? <PathFilterItem item={item} /> : <SortFilterItem item={item} />;
 }

@@ -19,7 +19,14 @@ export function getCollection(handle: string) {
 
 // Hàm lấy tất cả collections
 export function getCollections() {
-  return [collection];
+  // Return collection objects compatible with the UI (title, path, updatedAt)
+  return [
+    {
+      title: collection.title,
+      path: `/search?collection=${encodeURIComponent(collection.handle)}`,
+      updatedAt: collection.updatedAt
+    }
+  ];
 }
 
 // Hàm lấy sản phẩm của một collection
