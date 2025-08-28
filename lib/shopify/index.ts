@@ -62,8 +62,57 @@ export async function updateCart(
 }
 
 // ---------- PRODUCTS ----------
-export async function getProducts(): Promise<Product[]> {
-  return loadProducts()
+export async function getProducts(options?: {
+  sortKey?: string;
+  reverse?: boolean;
+  query?: string;
+}): Promise<Product[]> {
+  let products = loadProducts();
+
+  // Filter by search query
+  if (options?.query) {
+    const query = options.query.toLowerCase();
+    products = products.filter(product =>
+      product.title.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query) ||
+      product.tags?.some(tag => tag.toLowerCase().includes(query))
+    );
+  }
+
+  // Sort products
+  if (options?.sortKey) {
+    products.sort((a, b) => {
+      let aValue: any, bValue: any;
+
+      switch (options.sortKey) {
+        case 'TITLE':
+        case 'RELEVANCE':
+          aValue = a.title;
+          bValue = b.title;
+          break;
+        case 'PRICE':
+          aValue = a.price;
+          bValue = b.price;
+          break;
+        case 'CREATED_AT':
+        case 'BEST_SELLING':
+          // For demo, sort by id (newer products have higher id)
+          aValue = parseInt(a.id);
+          bValue = parseInt(b.id);
+          break;
+        default:
+          aValue = a.title;
+          bValue = b.title;
+      }
+
+      if (options.reverse) {
+        return aValue < bValue ? 1 : -1;
+      }
+      return aValue > bValue ? 1 : -1;
+    });
+  }
+
+  return products;
 }
 
 export async function getProduct(handle: string): Promise<Product | undefined> {
@@ -100,9 +149,8 @@ export async function getPage(handle: string): Promise<any> {
 export async function getMenu(handle?: string): Promise<Menu[]> {
   // Return local menu data
   return [
-    { title: 'Home', path: '/' },
-    { title: 'Products', path: '/search' },
-    { title: 'Collections', path: '/search' }
+    { title: 'All', path: '/search' },
+    { title: 'Category', path: '/search' }
   ]
 }
 

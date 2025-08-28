@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#8792fc"/>
+  <text x="400" y="380" font-family="Arial" font-size="72" fill="black" text-anchor="middle">Product 30</text>
+  <text x="400" y="420" font-family="Arial" font-size="36" fill="black" text-anchor="middle">Placeholder</text>
+</svg>

@@ -31,7 +31,7 @@ export const product = {
     ]
   },
   featuredImage: {
-    url: '/images/sp1.jpg',
+    url: '/images/product001.png',
     altText: 'Sản phẩm 1',
     width: 600,
     height: 600
@@ -40,7 +40,7 @@ export const product = {
     edges: [
       {
         node: {
-          url: '/images/sp1.jpg',
+          url: '/images/product001.png',
           altText: 'Sản phẩm 1',
           width: 600,
           height: 600

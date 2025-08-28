@@ -7,22 +7,53 @@
     "descriptionHtml": "<p>High quality red lipstick with long-lasting formula</p>",
     "price": 19.99,
     "images": [
-      { "url": "/images/product001.png", "altText": "Lipstick Red", "width": 800, "height": 800 },
-      { "url": "/images/product001-2.png", "altText": "Lipstick Red Alternative", "width": 800, "height": 800 }
+      {
+        "url": "/images/product001.png",
+        "altText": "Lipstick Red",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product001-2.png",
+        "altText": "Lipstick Red Alternative",
+        "width": 800,
+        "height": 800
+      }
     ],
-    "tags": ["lipstick", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
-    "featuredImage": { "url": "/images/product001.png", "altText": "Lipstick Red", "width": 800, "height": 800 },
-    "seo": { "title": "Lipstick Red - Premium Quality", "description": "High quality red lipstick with long-lasting formula" },
+    "tags": [
+      "lipstick",
+      "makeup",
+      "hidden-homepage-featured-items",
+      "hidden-homepage-carousel"
+    ],
+    "featuredImage": {
+      "url": "/images/product001.png",
+      "altText": "Lipstick Red",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Lipstick Red - Premium Quality",
+      "description": "High quality red lipstick with long-lasting formula"
+    },
     "availableForSale": true,
     "priceRange": {
-      "minVariantPrice": { "amount": "19.99", "currencyCode": "USD" },
-      "maxVariantPrice": { "amount": "19.99", "currencyCode": "USD" }
+      "minVariantPrice": {
+        "amount": "19.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "19.99",
+        "currencyCode": "USD"
+      }
     },
     "options": [
       {
         "id": "color",
         "name": "Color",
-        "values": ["Red"]
+        "values": [
+          "Red"
+        ]
       }
     ],
     "variants": [
@@ -31,9 +62,15 @@
         "title": "Red",
         "availableForSale": true,
         "selectedOptions": [
-          { "name": "Color", "value": "Red" }
+          {
+            "name": "Color",
+            "value": "Red"
+          }
         ],
-        "price": { "amount": "19.99", "currencyCode": "USD" }
+        "price": {
+          "amount": "19.99",
+          "currencyCode": "USD"
+        }
       }
     ]
   },
@@ -45,21 +82,47 @@
     "descriptionHtml": "<p>Waterproof black eyeliner for precise application</p>",
     "price": 9.99,
     "images": [
-      { "url": "/images/product002.jpg", "altText": "Eyeliner Black", "width": 800, "height": 800 }
+      {
+        "url": "/images/product002.png",
+        "altText": "Eyeliner Black",
+        "width": 800,
+        "height": 800
+      }
     ],
-    "tags": ["eyeliner", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
-    "featuredImage": { "url": "/images/product002.jpg", "altText": "Eyeliner Black", "width": 800, "height": 800 },
-    "seo": { "title": "Eyeliner Black - Waterproof Formula", "description": "Waterproof black eyeliner for precise application" },
+    "tags": [
+      "eyeliner",
+      "makeup",
+      "hidden-homepage-featured-items",
+      "hidden-homepage-carousel"
+    ],
+    "featuredImage": {
+      "url": "/images/product002.png",
+      "altText": "Eyeliner Black",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Eyeliner Black - Waterproof Formula",
+      "description": "Waterproof black eyeliner for precise application"
+    },
     "availableForSale": true,
     "priceRange": {
-      "minVariantPrice": { "amount": "9.99", "currencyCode": "USD" },
-      "maxVariantPrice": { "amount": "9.99", "currencyCode": "USD" }
+      "minVariantPrice": {
+        "amount": "9.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "9.99",
+        "currencyCode": "USD"
+      }
     },
     "options": [
       {
         "id": "color",
         "name": "Color",
-        "values": ["Black"]
+        "values": [
+          "Black"
+        ]
       }
     ],
     "variants": [
@@ -68,9 +131,15 @@
         "title": "Black",
         "availableForSale": true,
         "selectedOptions": [
-          { "name": "Color", "value": "Black" }
+          {
+            "name": "Color",
+            "value": "Black"
+          }
         ],
-        "price": { "amount": "9.99", "currencyCode": "USD" }
+        "price": {
+          "amount": "9.99",
+          "currencyCode": "USD"
+        }
       }
     ]
   },
@@ -82,21 +151,47 @@
     "descriptionHtml": "<p>Mascara giúp dày mi với công thức dưỡng mi</p>",
     "price": 15.99,
     "images": [
-      { "url": "/images/mascara-volume.jpg", "altText": "Mascara Volume", "width": 800, "height": 800 }
+      {
+        "url": "/images/mascara-volume.png",
+        "altText": "Mascara Volume",
+        "width": 800,
+        "height": 800
+      }
     ],
-    "tags": ["mascara", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
-    "featuredImage": { "url": "/images/mascara-volume.jpg", "altText": "Mascara Volume", "width": 800, "height": 800 },
-    "seo": { "title": "Mascara Volume - Dày Mi Tự Nhiên", "description": "Mascara giúp dày mi với công thức dưỡng mi" },
+    "tags": [
+      "mascara",
+      "makeup",
+      "hidden-homepage-featured-items",
+      "hidden-homepage-carousel"
+    ],
+    "featuredImage": {
+      "url": "/images/mascara-volume.png",
+      "altText": "Mascara Volume",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Mascara Volume - Dày Mi Tự Nhiên",
+      "description": "Mascara giúp dày mi với công thức dưỡng mi"
+    },
     "availableForSale": true,
     "priceRange": {
-      "minVariantPrice": { "amount": "15.99", "currencyCode": "USD" },
-      "maxVariantPrice": { "amount": "15.99", "currencyCode": "USD" }
+      "minVariantPrice": {
+        "amount": "15.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "15.99",
+        "currencyCode": "USD"
+      }
     },
     "options": [
       {
         "id": "type",
         "name": "Type",
-        "values": ["Volume"]
+        "values": [
+          "Volume"
+        ]
       }
     ],
     "variants": [
@@ -105,9 +200,15 @@
         "title": "Volume",
         "availableForSale": true,
         "selectedOptions": [
-          { "name": "Type", "value": "Volume" }
+          {
+            "name": "Type",
+            "value": "Volume"
+          }
         ],
-        "price": { "amount": "15.99", "currencyCode": "USD" }
+        "price": {
+          "amount": "15.99",
+          "currencyCode": "USD"
+        }
       }
     ]
   },
@@ -119,21 +220,45 @@
     "descriptionHtml": "<p>Kem nền sáng da cho làn da tự nhiên</p>",
     "price": 25.99,
     "images": [
-      { "url": "/images/foundation-light.jpg", "altText": "Foundation Light", "width": 800, "height": 800 }
+      {
+        "url": "/images/foundation-light.png",
+        "altText": "Foundation Light",
+        "width": 800,
+        "height": 800
+      }
     ],
-    "tags": ["foundation", "makeup"],
-    "featuredImage": { "url": "/images/foundation-light.jpg", "altText": "Foundation Light", "width": 800, "height": 800 },
-    "seo": { "title": "Foundation Light - Kem Nền Sáng Da", "description": "Kem nền sáng da cho làn da tự nhiên" },
+    "tags": [
+      "foundation",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/foundation-light.png",
+      "altText": "Foundation Light",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Foundation Light - Kem Nền Sáng Da",
+      "description": "Kem nền sáng da cho làn da tự nhiên"
+    },
     "availableForSale": true,
     "priceRange": {
-      "minVariantPrice": { "amount": "25.99", "currencyCode": "USD" },
-      "maxVariantPrice": { "amount": "25.99", "currencyCode": "USD" }
+      "minVariantPrice": {
+        "amount": "25.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "25.99",
+        "currencyCode": "USD"
+      }
     },
     "options": [
       {
         "id": "shade",
         "name": "Shade",
-        "values": ["Light"]
+        "values": [
+          "Light"
+        ]
       }
     ],
     "variants": [
@@ -142,9 +267,15 @@
         "title": "Light",
         "availableForSale": true,
         "selectedOptions": [
-          { "name": "Shade", "value": "Light" }
+          {
+            "name": "Shade",
+            "value": "Light"
+          }
         ],
-        "price": { "amount": "25.99", "currencyCode": "USD" }
+        "price": {
+          "amount": "25.99",
+          "currencyCode": "USD"
+        }
       }
     ]
   },
@@ -156,21 +287,45 @@
     "descriptionHtml": "<p>Phấn má hồng tự nhiên cho má ửng hồng</p>",
     "price": 12.99,
     "images": [
-      { "url": "/images/blush-pink.jpg", "altText": "Blush Pink", "width": 800, "height": 800 }
+      {
+        "url": "/images/blush-pink.png",
+        "altText": "Blush Pink",
+        "width": 800,
+        "height": 800
+      }
     ],
-    "tags": ["blush", "makeup"],
-    "featuredImage": { "url": "/images/blush-pink.jpg", "altText": "Blush Pink", "width": 800, "height": 800 },
-    "seo": { "title": "Blush Pink - Phấn Má Hồng Tự Nhiên", "description": "Phấn má hồng tự nhiên cho má ửng hồng" },
+    "tags": [
+      "blush",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/blush-pink.png",
+      "altText": "Blush Pink",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Blush Pink - Phấn Má Hồng Tự Nhiên",
+      "description": "Phấn má hồng tự nhiên cho má ửng hồng"
+    },
     "availableForSale": true,
     "priceRange": {
-      "minVariantPrice": { "amount": "12.99", "currencyCode": "USD" },
-      "maxVariantPrice": { "amount": "12.99", "currencyCode": "USD" }
+      "minVariantPrice": {
+        "amount": "12.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "12.99",
+        "currencyCode": "USD"
+      }
     },
     "options": [
       {
         "id": "color",
         "name": "Color",
-        "values": ["Pink"]
+        "values": [
+          "Pink"
+        ]
       }
     ],
     "variants": [
@@ -179,242 +334,2127 @@
         "title": "Pink",
         "availableForSale": true,
         "selectedOptions": [
-          { "name": "Color", "value": "Pink" }
+          {
+            "name": "Color",
+            "value": "Pink"
+          }
         ],
-        "price": { "amount": "12.99", "currencyCode": "USD" }
+        "price": {
+          "amount": "12.99",
+          "currencyCode": "USD"
+        }
       }
     ]
   },
   {
     "id": "6",
+    "handle": "concealer-fair",
     "title": "Concealer Fair",
     "description": "Che khuyết điểm tông sáng",
+    "descriptionHtml": "<p>Che khuyết điểm tông sáng cho làn da hoàn hảo</p>",
     "price": 14.99,
-    "images": ["/images/concealer-fair.jpg"],
-    "tags": ["concealer", "makeup"]
+    "images": [
+      {
+        "url": "/images/concealer-fair.png",
+        "altText": "Concealer Fair",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "concealer",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/concealer-fair.png",
+      "altText": "Concealer Fair",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Concealer Fair - Che Khuyết Điểm",
+      "description": "Che khuyết điểm tông sáng cho làn da hoàn hảo"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "14.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "14.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "shade",
+        "name": "Shade",
+        "values": [
+          "Fair"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-6",
+        "title": "Fair",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Shade",
+            "value": "Fair"
+          }
+        ],
+        "price": {
+          "amount": "14.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "7",
+    "handle": "highlighter-glow",
     "title": "Highlighter Glow",
     "description": "Phấn bắt sáng tự nhiên",
+    "descriptionHtml": "<p>Phấn bắt sáng tự nhiên cho làn da rạng rỡ</p>",
     "price": 16.99,
-    "images": ["/images/highlighter-glow.jpg"],
-    "tags": ["highlighter", "makeup"]
+    "images": [
+      {
+        "url": "/images/product007.svg",
+        "altText": "Highlighter Glow",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product007-2.svg",
+        "altText": "Highlighter Glow Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "highlighter",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/product007.svg",
+      "altText": "Highlighter Glow",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Highlighter Glow - Phấn Bắt Sáng",
+      "description": "Phấn bắt sáng tự nhiên cho làn da rạng rỡ"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "16.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "16.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "finish",
+        "name": "Finish",
+        "values": [
+          "Glow"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-7",
+        "title": "Glow",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Finish",
+            "value": "Glow"
+          }
+        ],
+        "price": {
+          "amount": "16.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "8",
+    "handle": "bronzer-sun",
     "title": "Bronzer Sun",
     "description": "Phấn tạo khối màu nâu đồng",
+    "descriptionHtml": "<p>Phấn tạo khối màu nâu đồng cho khuôn mặt</p>",
     "price": 17.99,
-    "images": ["/images/bronzer-sun.jpg"],
-    "tags": ["bronzer", "makeup"]
+    "images": [
+      {
+        "url": "/images/product008.svg",
+        "altText": "Bronzer Sun",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product008-2.svg",
+        "altText": "Bronzer Sun Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "bronzer",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/product008.svg",
+      "altText": "Bronzer Sun",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Bronzer Sun - Phấn Tạo Khối",
+      "description": "Phấn tạo khối màu nâu đồng cho khuôn mặt"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "17.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "17.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "shade",
+        "name": "Shade",
+        "values": [
+          "Sun"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-8",
+        "title": "Sun",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Shade",
+            "value": "Sun"
+          }
+        ],
+        "price": {
+          "amount": "17.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "9",
+    "handle": "lip-gloss-shine",
     "title": "Lip Gloss Shine",
     "description": "Son bóng dưỡng ẩm",
+    "descriptionHtml": "<p>Son bóng dưỡng ẩm cho đôi môi căng mịn</p>",
     "price": 11.99,
-    "images": ["/images/lip-gloss-shine.jpg"],
-    "tags": ["lipgloss", "makeup"]
+    "images": [
+      {
+        "url": "/images/product009.svg",
+        "altText": "Lip Gloss Shine",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product009-2.svg",
+        "altText": "Lip Gloss Shine Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "lipgloss",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/product009.svg",
+      "altText": "Lip Gloss Shine",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Lip Gloss Shine - Son Bóng Dưỡng",
+      "description": "Son bóng dưỡng ẩm cho đôi môi căng mịn"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "11.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "11.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "finish",
+        "name": "Finish",
+        "values": [
+          "Shine"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-9",
+        "title": "Shine",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Finish",
+            "value": "Shine"
+          }
+        ],
+        "price": {
+          "amount": "11.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "10",
+    "handle": "brow-pencil-brown",
     "title": "Brow Pencil Brown",
     "description": "Chì kẻ mày màu nâu",
+    "descriptionHtml": "<p>Chì kẻ mày màu nâu tự nhiên</p>",
     "price": 10.99,
-    "images": ["/images/brow-pencil-brown.jpg"],
-    "tags": ["brow", "makeup"]
+    "images": [
+      {
+        "url": "/images/product010.svg",
+        "altText": "Brow Pencil Brown",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product010-2.svg",
+        "altText": "Brow Pencil Brown Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "brow",
+      "makeup"
+    ],
+    "featuredImage": {
+      "url": "/images/product010.svg",
+      "altText": "Brow Pencil Brown",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Brow Pencil Brown - Chì Kẻ Mày",
+      "description": "Chì kẻ mày màu nâu tự nhiên"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "10.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "10.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "color",
+        "name": "Color",
+        "values": [
+          "Brown"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-10",
+        "title": "Brown",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Color",
+            "value": "Brown"
+          }
+        ],
+        "price": {
+          "amount": "10.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "11",
     "title": "Setting Spray",
     "description": "Xịt giữ lớp trang điểm lâu trôi",
     "price": 13.99,
-    "images": ["/images/setting-spray.jpg"],
-    "tags": ["setting", "makeup"]
+    "images": [
+      {
+        "url": "/images/product011.svg",
+        "altText": "Setting Spray",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product011-2.svg",
+        "altText": "Setting Spray Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "setting",
+      "makeup"
+    ],
+    "handle": "setting-spray",
+    "descriptionHtml": "<p>Xịt giữ lớp trang điểm lâu trôi</p>",
+    "featuredImage": {
+      "url": "/images/product011.svg",
+      "altText": "Setting Spray",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Setting Spray",
+      "description": "Xịt giữ lớp trang điểm lâu trôi"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "13.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "13.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Spray"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-11",
+        "title": "Spray",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Spray"
+          }
+        ],
+        "price": {
+          "amount": "13.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "12",
     "title": "Primer Smooth",
     "description": "Kem lót mịn da",
     "price": 18.99,
-    "images": ["/images/primer-smooth.jpg"],
-    "tags": ["primer", "makeup"]
+    "images": [
+      {
+        "url": "/images/product012.svg",
+        "altText": "Primer Smooth",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product012-2.svg",
+        "altText": "Primer Smooth Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "primer",
+      "makeup"
+    ],
+    "handle": "primer-smooth",
+    "descriptionHtml": "<p>Kem lót mịn da</p>",
+    "featuredImage": {
+      "url": "/images/product012.svg",
+      "altText": "Primer Smooth",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Primer Smooth",
+      "description": "Kem lót mịn da"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "18.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "18.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Smooth"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-12",
+        "title": "Smooth",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Smooth"
+          }
+        ],
+        "price": {
+          "amount": "18.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "13",
     "title": "Contour Stick",
     "description": "Thanh tạo khối dễ dùng",
     "price": 15.49,
-    "images": ["/images/contour-stick.jpg"],
-    "tags": ["contour", "makeup"]
+    "images": [
+      {
+        "url": "/images/product013.svg",
+        "altText": "Contour Stick",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product013-2.svg",
+        "altText": "Contour Stick Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "contour",
+      "makeup"
+    ],
+    "handle": "contour-stick",
+    "descriptionHtml": "<p>Thanh tạo khối dễ dùng</p>",
+    "featuredImage": {
+      "url": "/images/product013.svg",
+      "altText": "Contour Stick",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Contour Stick",
+      "description": "Thanh tạo khối dễ dùng"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "15.49",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "15.49",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Stick"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-13",
+        "title": "Stick",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Stick"
+          }
+        ],
+        "price": {
+          "amount": "15.49",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "14",
     "title": "Lip Balm",
     "description": "Son dưỡng môi thiên nhiên",
     "price": 8.99,
-    "images": ["/images/lip-balm.jpg"],
-    "tags": ["lipbalm", "makeup"]
+    "images": [
+      {
+        "url": "/images/product014.svg",
+        "altText": "Lip Balm",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product014-2.svg",
+        "altText": "Lip Balm Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "lipbalm",
+      "makeup"
+    ],
+    "handle": "lip-balm",
+    "descriptionHtml": "<p>Son dưỡng môi thiên nhiên</p>",
+    "featuredImage": {
+      "url": "/images/product014.svg",
+      "altText": "Lip Balm",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Lip Balm",
+      "description": "Son dưỡng môi thiên nhiên"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "8.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "8.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Balm"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-14",
+        "title": "Balm",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Balm"
+          }
+        ],
+        "price": {
+          "amount": "8.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "15",
     "title": "Eye Shadow Palette",
     "description": "Bảng màu mắt đa sắc",
     "price": 29.99,
-    "images": ["/images/eye-shadow-palette.jpg"],
-    "tags": ["eyeshadow", "makeup"]
+    "images": [
+      {
+        "url": "/images/product015.svg",
+        "altText": "Eye Shadow Palette",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product015-2.svg",
+        "altText": "Eye Shadow Palette Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "eyeshadow",
+      "makeup"
+    ],
+    "handle": "eye-shadow-palette",
+    "descriptionHtml": "<p>Bảng màu mắt đa sắc</p>",
+    "featuredImage": {
+      "url": "/images/product015.svg",
+      "altText": "Eye Shadow Palette",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Eye Shadow Palette",
+      "description": "Bảng màu mắt đa sắc"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "29.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "29.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Palette"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-15",
+        "title": "Palette",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Palette"
+          }
+        ],
+        "price": {
+          "amount": "29.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "16",
     "title": "Makeup Remover",
     "description": "Nước tẩy trang dịu nhẹ",
     "price": 13.49,
-    "images": ["/images/makeup-remover.jpg"],
-    "tags": ["remover", "makeup"]
+    "images": [
+      {
+        "url": "/images/product016.svg",
+        "altText": "Makeup Remover",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product016-2.svg",
+        "altText": "Makeup Remover Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "remover",
+      "makeup"
+    ],
+    "handle": "makeup-remover",
+    "descriptionHtml": "<p>Nước tẩy trang dịu nhẹ</p>",
+    "featuredImage": {
+      "url": "/images/product016.svg",
+      "altText": "Makeup Remover",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Makeup Remover",
+      "description": "Nước tẩy trang dịu nhẹ"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "13.49",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "13.49",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Remover"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-16",
+        "title": "Remover",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Remover"
+          }
+        ],
+        "price": {
+          "amount": "13.49",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "17",
     "title": "Eyelash Curler",
     "description": "Kẹp mi cong tự nhiên",
     "price": 7.99,
-    "images": ["/images/eyelash-curler.jpg"],
-    "tags": ["eyelash", "makeup"]
+    "images": [
+      {
+        "url": "/images/product017.svg",
+        "altText": "Eyelash Curler",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product017-2.svg",
+        "altText": "Eyelash Curler Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "eyelash",
+      "makeup"
+    ],
+    "handle": "eyelash-curler",
+    "descriptionHtml": "<p>Kẹp mi cong tự nhiên</p>",
+    "featuredImage": {
+      "url": "/images/product017.svg",
+      "altText": "Eyelash Curler",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Eyelash Curler",
+      "description": "Kẹp mi cong tự nhiên"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "7.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "7.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Curler"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-17",
+        "title": "Curler",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Curler"
+          }
+        ],
+        "price": {
+          "amount": "7.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "18",
     "title": "Face Powder",
     "description": "Phấn phủ kiểm dầu",
     "price": 15.99,
-    "images": ["/images/face-powder.jpg"],
-    "tags": ["powder", "makeup"]
+    "images": [
+      {
+        "url": "/images/product018.svg",
+        "altText": "Face Powder",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product018-2.svg",
+        "altText": "Face Powder Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "powder",
+      "makeup"
+    ],
+    "handle": "face-powder",
+    "descriptionHtml": "<p>Phấn phủ kiểm dầu</p>",
+    "featuredImage": {
+      "url": "/images/product018.svg",
+      "altText": "Face Powder",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Face Powder",
+      "description": "Phấn phủ kiểm dầu"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "15.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "15.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Powder"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-18",
+        "title": "Powder",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Powder"
+          }
+        ],
+        "price": {
+          "amount": "15.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "19",
     "title": "Lip Tint",
     "description": "Son tint lâu trôi",
     "price": 12.49,
-    "images": ["/images/lip-tint.jpg"],
-    "tags": ["liptint", "makeup"]
+    "images": [
+      {
+        "url": "/images/product019.svg",
+        "altText": "Lip Tint",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product019-2.svg",
+        "altText": "Lip Tint Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "liptint",
+      "makeup"
+    ],
+    "handle": "lip-tint",
+    "descriptionHtml": "<p>Son tint lâu trôi</p>",
+    "featuredImage": {
+      "url": "/images/product019.svg",
+      "altText": "Lip Tint",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Lip Tint",
+      "description": "Son tint lâu trôi"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "12.49",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "12.49",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Tint"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-19",
+        "title": "Tint",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Tint"
+          }
+        ],
+        "price": {
+          "amount": "12.49",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "20",
     "title": "BB Cream",
     "description": "Kem nền BB đa năng",
     "price": 21.99,
-    "images": ["/images/bb-cream.jpg"],
-    "tags": ["bbcream", "makeup"]
+    "images": [
+      {
+        "url": "/images/product020.svg",
+        "altText": "BB Cream",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product020-2.svg",
+        "altText": "BB Cream Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "bbcream",
+      "makeup"
+    ],
+    "handle": "bb-cream",
+    "descriptionHtml": "<p>Kem nền BB đa năng</p>",
+    "featuredImage": {
+      "url": "/images/product020.svg",
+      "altText": "BB Cream",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "BB Cream",
+      "description": "Kem nền BB đa năng"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "21.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "21.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Cream"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-20",
+        "title": "Cream",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Cream"
+          }
+        ],
+        "price": {
+          "amount": "21.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "21",
     "title": "CC Cream",
     "description": "Kem nền CC hiệu chỉnh màu",
     "price": 22.99,
-    "images": ["/images/cc-cream.jpg"],
-    "tags": ["cccream", "makeup"]
+    "images": [
+      {
+        "url": "/images/product021.svg",
+        "altText": "CC Cream",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product021-2.svg",
+        "altText": "CC Cream Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "cccream",
+      "makeup"
+    ],
+    "handle": "cc-cream",
+    "descriptionHtml": "<p>Kem nền CC hiệu chỉnh màu</p>",
+    "featuredImage": {
+      "url": "/images/product021.svg",
+      "altText": "CC Cream",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "CC Cream",
+      "description": "Kem nền CC hiệu chỉnh màu"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "22.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "22.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Cream"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-21",
+        "title": "Cream",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Cream"
+          }
+        ],
+        "price": {
+          "amount": "22.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "22",
     "title": "Lip Liner",
     "description": "Chì viền môi chống lem",
     "price": 9.49,
-    "images": ["/images/lip-liner.jpg"],
-    "tags": ["lipliner", "makeup"]
+    "images": [
+      {
+        "url": "/images/product022.svg",
+        "altText": "Lip Liner",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product022-2.svg",
+        "altText": "Lip Liner Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "lipliner",
+      "makeup"
+    ],
+    "handle": "lip-liner",
+    "descriptionHtml": "<p>Chì viền môi chống lem</p>",
+    "featuredImage": {
+      "url": "/images/product022.svg",
+      "altText": "Lip Liner",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Lip Liner",
+      "description": "Chì viền môi chống lem"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "9.49",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "9.49",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Liner"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-22",
+        "title": "Liner",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Liner"
+          }
+        ],
+        "price": {
+          "amount": "9.49",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "23",
     "title": "Makeup Sponge",
     "description": "Mút tán nền mềm mại",
     "price": 6.99,
-    "images": ["/images/makeup-sponge.jpg"],
-    "tags": ["sponge", "makeup"]
+    "images": [
+      {
+        "url": "/images/product023.svg",
+        "altText": "Makeup Sponge",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product023-2.svg",
+        "altText": "Makeup Sponge Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "sponge",
+      "makeup"
+    ],
+    "handle": "makeup-sponge",
+    "descriptionHtml": "<p>Mút tán nền mềm mại</p>",
+    "featuredImage": {
+      "url": "/images/product023.svg",
+      "altText": "Makeup Sponge",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Makeup Sponge",
+      "description": "Mút tán nền mềm mại"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "6.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "6.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": [
+          "Sponge"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-23",
+        "title": "Sponge",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Type",
+            "value": "Sponge"
+          }
+        ],
+        "price": {
+          "amount": "6.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "24",
     "title": "Face Serum",
     "description": "Serum dưỡng da căng bóng",
     "price": 24.99,
-    "images": ["/images/face-serum.jpg"],
-    "tags": ["serum", "skincare"]
+    "images": [
+      {
+        "url": "/images/product024.svg",
+        "altText": "Face Serum",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product024-2.svg",
+        "altText": "Face Serum Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "serum",
+      "skincare"
+    ],
+    "handle": "face-serum",
+    "descriptionHtml": "<p>Serum dưỡng da căng bóng</p>",
+    "featuredImage": {
+      "url": "/images/product024.svg",
+      "altText": "Face Serum",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Face Serum",
+      "description": "Serum dưỡng da căng bóng"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "24.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "24.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Serum"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-24",
+        "title": "Serum",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Serum"
+          }
+        ],
+        "price": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "25",
     "title": "Moisturizer Cream",
     "description": "Kem dưỡng ẩm da mặt",
     "price": 19.49,
-    "images": ["/images/moisturizer-cream.jpg"],
-    "tags": ["moisturizer", "skincare"]
+    "images": [
+      {
+        "url": "/images/product025.svg",
+        "altText": "Moisturizer Cream",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product025-2.svg",
+        "altText": "Moisturizer Cream Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "moisturizer",
+      "skincare"
+    ],
+    "handle": "moisturizer-cream",
+    "descriptionHtml": "<p>Kem dưỡng ẩm da mặt</p>",
+    "featuredImage": {
+      "url": "/images/product025.svg",
+      "altText": "Moisturizer Cream",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Moisturizer Cream",
+      "description": "Kem dưỡng ẩm da mặt"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "19.49",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "19.49",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Cream"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-25",
+        "title": "Cream",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Cream"
+          }
+        ],
+        "price": {
+          "amount": "19.49",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "26",
     "title": "Sunscreen SPF50",
     "description": "Kem chống nắng SPF50",
     "price": 17.99,
-    "images": ["/images/sunscreen-spf50.jpg"],
-    "tags": ["sunscreen", "skincare"]
+    "images": [
+      {
+        "url": "/images/product026.svg",
+        "altText": "Sunscreen SPF50",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product026-2.svg",
+        "altText": "Sunscreen SPF50 Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "sunscreen",
+      "skincare"
+    ],
+    "handle": "sunscreen-spf50",
+    "descriptionHtml": "<p>Kem chống nắng SPF50</p>",
+    "featuredImage": {
+      "url": "/images/product026.svg",
+      "altText": "Sunscreen SPF50",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Sunscreen SPF50",
+      "description": "Kem chống nắng SPF50"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "17.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "17.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "SPF50"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-26",
+        "title": "SPF50",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "SPF50"
+          }
+        ],
+        "price": {
+          "amount": "17.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "27",
     "title": "Cleansing Foam",
     "description": "Sữa rửa mặt tạo bọt dịu nhẹ",
     "price": 13.99,
-    "images": ["/images/cleansing-foam.jpg"],
-    "tags": ["cleanser", "skincare"]
+    "images": [
+      {
+        "url": "/images/product027.svg",
+        "altText": "Cleansing Foam",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product027-2.svg",
+        "altText": "Cleansing Foam Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "cleanser",
+      "skincare"
+    ],
+    "handle": "cleansing-foam",
+    "descriptionHtml": "<p>Sữa rửa mặt tạo bọt dịu nhẹ</p>",
+    "featuredImage": {
+      "url": "/images/product027.svg",
+      "altText": "Cleansing Foam",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Cleansing Foam",
+      "description": "Sữa rửa mặt tạo bọt dịu nhẹ"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "13.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "13.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Foam"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-27",
+        "title": "Foam",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Foam"
+          }
+        ],
+        "price": {
+          "amount": "13.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "28",
     "title": "Toner Fresh",
     "description": "Nước cân bằng da tươi mát",
     "price": 14.99,
-    "images": ["/images/toner-fresh.jpg"],
-    "tags": ["toner", "skincare"]
+    "images": [
+      {
+        "url": "/images/product028.svg",
+        "altText": "Toner Fresh",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product028-2.svg",
+        "altText": "Toner Fresh Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "toner",
+      "skincare"
+    ],
+    "handle": "toner-fresh",
+    "descriptionHtml": "<p>Nước cân bằng da tươi mát</p>",
+    "featuredImage": {
+      "url": "/images/product028.svg",
+      "altText": "Toner Fresh",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Toner Fresh",
+      "description": "Nước cân bằng da tươi mát"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "14.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "14.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Fresh"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-28",
+        "title": "Fresh",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Fresh"
+          }
+        ],
+        "price": {
+          "amount": "14.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "29",
     "title": "Sheet Mask",
     "description": "Mặt nạ giấy dưỡng ẩm",
     "price": 4.99,
-    "images": ["/images/sheet-mask.jpg"],
-    "tags": ["mask", "skincare"]
+    "images": [
+      {
+        "url": "/images/product029.svg",
+        "altText": "Sheet Mask",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product029-2.svg",
+        "altText": "Sheet Mask Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "mask",
+      "skincare"
+    ],
+    "handle": "sheet-mask",
+    "descriptionHtml": "<p>Mặt nạ giấy dưỡng ẩm</p>",
+    "featuredImage": {
+      "url": "/images/product029.svg",
+      "altText": "Sheet Mask",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Sheet Mask",
+      "description": "Mặt nạ giấy dưỡng ẩm"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "4.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "4.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Mask"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-29",
+        "title": "Mask",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Mask"
+          }
+        ],
+        "price": {
+          "amount": "4.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "30",
     "title": "Body Lotion",
     "description": "Sữa dưỡng thể mềm mịn",
     "price": 16.99,
-    "images": ["/images/body-lotion.jpg"],
-    "tags": ["bodylotion", "skincare"]
+    "images": [
+      {
+        "url": "/images/product030.svg",
+        "altText": "Body Lotion",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product030-2.svg",
+        "altText": "Body Lotion Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "bodylotion",
+      "skincare"
+    ],
+    "handle": "body-lotion",
+    "descriptionHtml": "<p>Sữa dưỡng thể mềm mịn</p>",
+    "featuredImage": {
+      "url": "/images/product030.svg",
+      "altText": "Body Lotion",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Body Lotion",
+      "description": "Sữa dưỡng thể mềm mịn"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "16.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "16.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Lotion"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-30",
+        "title": "Lotion",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Lotion"
+          }
+        ],
+        "price": {
+          "amount": "16.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "31",
     "title": "Hand Cream",
     "description": "Kem dưỡng da tay hương thơm nhẹ",
     "price": 7.99,
-    "images": ["/images/hand-cream.jpg"],
-    "tags": ["handcream", "skincare"]
+    "images": [
+      {
+        "url": "/images/product031.svg",
+        "altText": "Hand Cream",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product031-2.svg",
+        "altText": "Hand Cream Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "handcream",
+      "skincare"
+    ],
+    "handle": "hand-cream",
+    "descriptionHtml": "<p>Kem dưỡng da tay hương thơm nhẹ</p>",
+    "featuredImage": {
+      "url": "/images/product031.svg",
+      "altText": "Hand Cream",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Hand Cream",
+      "description": "Kem dưỡng da tay hương thơm nhẹ"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "7.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "7.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Cream"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-31",
+        "title": "Cream",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Cream"
+          }
+        ],
+        "price": {
+          "amount": "7.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "32",
     "title": "Foot Mask",
     "description": "Mặt nạ dưỡng da chân",
     "price": 5.99,
-    "images": ["/images/foot-mask.jpg"],
-    "tags": ["footmask", "skincare"]
+    "images": [
+      {
+        "url": "/images/product032.svg",
+        "altText": "Foot Mask",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product032-2.svg",
+        "altText": "Foot Mask Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "footmask",
+      "skincare"
+    ],
+    "handle": "foot-mask",
+    "descriptionHtml": "<p>Mặt nạ dưỡng da chân</p>",
+    "featuredImage": {
+      "url": "/images/product032.svg",
+      "altText": "Foot Mask",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Foot Mask",
+      "description": "Mặt nạ dưỡng da chân"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "5.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "5.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Mask"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-32",
+        "title": "Mask",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Mask"
+          }
+        ],
+        "price": {
+          "amount": "5.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "33",
     "title": "Hair Serum",
     "description": "Serum dưỡng tóc bóng mượt",
     "price": 18.99,
-    "images": ["/images/hair-serum.jpg"],
-    "tags": ["hairserum", "haircare"]
+    "images": [
+      {
+        "url": "/images/product033.svg",
+        "altText": "Hair Serum",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product033-2.svg",
+        "altText": "Hair Serum Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "hairserum",
+      "haircare"
+    ],
+    "handle": "hair-serum",
+    "descriptionHtml": "<p>Serum dưỡng tóc bóng mượt</p>",
+    "featuredImage": {
+      "url": "/images/product033.svg",
+      "altText": "Hair Serum",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Hair Serum",
+      "description": "Serum dưỡng tóc bóng mượt"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "18.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "18.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Serum"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-33",
+        "title": "Serum",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Serum"
+          }
+        ],
+        "price": {
+          "amount": "18.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   },
   {
     "id": "34",
     "title": "Shampoo Fresh",
     "description": "Dầu gội sạch da đầu",
     "price": 15.99,
-    "images": ["/images/shampoo-fresh.jpg"],
-    "tags": ["shampoo", "haircare"]
+    "images": [
+      {
+        "url": "/images/product034.svg",
+        "altText": "Shampoo Fresh",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product034-2.svg",
+        "altText": "Shampoo Fresh Alternative",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "tags": [
+      "shampoo",
+      "haircare"
+    ],
+    "handle": "shampoo-fresh",
+    "descriptionHtml": "<p>Dầu gội sạch da đầu</p>",
+    "featuredImage": {
+      "url": "/images/product034.svg",
+      "altText": "Shampoo Fresh",
+      "width": 800,
+      "height": 800
+    },
+    "seo": {
+      "title": "Shampoo Fresh",
+      "description": "Dầu gội sạch da đầu"
+    },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": {
+        "amount": "15.99",
+        "currencyCode": "USD"
+      },
+      "maxVariantPrice": {
+        "amount": "15.99",
+        "currencyCode": "USD"
+      }
+    },
+    "options": [
+      {
+        "id": "variant",
+        "name": "Variant",
+        "values": [
+          "Fresh"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-34",
+        "title": "Fresh",
+        "availableForSale": true,
+        "selectedOptions": [
+          {
+            "name": "Variant",
+            "value": "Fresh"
+          }
+        ],
+        "price": {
+          "amount": "15.99",
+          "currencyCode": "USD"
+        }
+      }
+    ]
   }
 ]
