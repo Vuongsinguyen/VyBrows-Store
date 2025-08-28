@@ -4,10 +4,10 @@
     "title": "Lipstick Red",
     "description": "High quality red lipstick",
     "price": 19.99,
-    "images": ["/images/lipstick-red-1.jpg", "/images/lipstick-red-2.jpg"],
+    "images": ["/images/product001.png", "/images/product001-2.png"],
     "tags": ["lipstick", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
     "handle": "lipstick-red",
-    "featuredImage": { "url": "/images/lipstick-red-1.jpg", "altText": "Lipstick Red" },
+    "featuredImage": { "url": "/images/product001.png", "altText": "Lipstick Red" },
     "priceRange": { "maxVariantPrice": { "amount": "19.99", "currencyCode": "USD" } }
   },
   {
