@@ -7,7 +7,7 @@ import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
+import { getProductByHandleOrId, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -16,16 +16,16 @@ export async function generateMetadata(props: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const product = await getProduct(params.handle);
+  const product = await getProductByHandleOrId(params.handle);
 
   if (!product) return notFound();
 
   const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  const indexable = !product.tags?.includes(HIDDEN_PRODUCT_TAG);
 
   return {
-    title: product.seo.title || product.title,
-    description: product.seo.description || product.description,
+    title: product.seo?.title || product.title,
+    description: product.seo?.description || product.description,
     robots: {
       index: indexable,
       follow: indexable,
@@ -51,7 +51,7 @@ export async function generateMetadata(props: {
 
 export default async function ProductPage(props: { params: Promise<{ handle: string }> }) {
   const params = await props.params;
-  const product = await getProduct(params.handle);
+  const product = await getProductByHandleOrId(params.handle);
 
   if (!product) return notFound();
 
@@ -60,7 +60,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
     '@type': 'Product',
     name: product.title,
     description: product.description,
-    image: product.featuredImage.url,
+    image: product.featuredImage?.url || '/images/product001.png',
     offers: {
       '@type': 'AggregateOffer',
       availability: product.availableForSale
@@ -136,7 +136,7 @@ async function RelatedProducts({ id }: { id: string }) {
                   amount: product.priceRange.maxVariantPrice.amount,
                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
                 }}
-                src={product.featuredImage?.url}
+                src={product.featuredImage?.url || '/images/product001.png'}
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
               />

@@ -9,7 +9,16 @@ export type Edge<T> = {
 };
 
 export type Cart = {
-  items: CartItem[];
+  id?: string;
+  checkoutUrl?: string;
+  totalQuantity?: number;
+  lines?: CartItem[];
+  items?: CartItem[]; // For backward compatibility
+  cost?: {
+    subtotalAmount: Money;
+    totalAmount: Money;
+    totalTaxAmount: Money;
+  };
 };
 
 export type CartProduct = {
@@ -20,8 +29,29 @@ export type CartProduct = {
 };
 
 export type CartItem = {
+  id?: string;
   productId: string;
   quantity: number;
+  cost?: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  merchandise?: {
+    id: string;
+    title: string;
+    selectedOptions: Array<{
+      name: string;
+      value: string;
+    }>;
+    product: {
+      id: string;
+      handle: string;
+      title: string;
+      featuredImage: Image;
+    };
+  };
 };
 
 export type Collection = {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#96CEB4"/>
+  <text x="400" y="380" font-family="Arial" font-size="72" fill="white" text-anchor="middle">Product 004</text>
+  <text x="400" y="420" font-family="Arial" font-size="36" fill="white" text-anchor="middle">Foundation Alt</text>
+</svg>

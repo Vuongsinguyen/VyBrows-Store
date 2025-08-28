@@ -7,11 +7,7 @@ export default {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.shopify.com',
-        pathname: '/s/files/**'
-      }
+      // Local images - no remote patterns needed for local development
     ]
   }
 };
