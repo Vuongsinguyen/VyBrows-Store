@@ -17,10 +17,12 @@ export default function CartModal() {
   const { cart, updateCartItem } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   // Tính tổng số lượng sản phẩm trong giỏ
-  const totalQuantity = cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  const totalQuantity = cart?.totalQuantity || 0;
   const quantityRef = useRef(totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
+  console.log('CartModal: totalQuantity:', totalQuantity);
 
   // Remove createCartAndSetCookie call since we're using local state
   useEffect(() => {

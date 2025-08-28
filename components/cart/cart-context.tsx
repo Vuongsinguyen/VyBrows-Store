@@ -8,11 +8,11 @@ import type {
 } from 'lib/types';
 import React, {
   createContext,
-  startTransition,
   use,
+  useCallback,
   useContext,
   useMemo,
-  useOptimistic
+  useState
 } from 'react';
 
 type UpdateType = 'plus' | 'minus' | 'delete';
@@ -172,13 +172,20 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
     }
     case 'ADD_ITEM': {
       const { variant, product } = action.payload;
+      console.log('CartContext: Processing ADD_ITEM action:', { variant, product });
+
       const matchId = variant?.id ?? `${product?.id}-default`;
+      console.log('CartContext: matchId:', matchId);
+
       const existingItem = lines.find((item) => (item?.merchandise?.id ?? item?.id) === matchId);
+      console.log('CartContext: existingItem:', existingItem);
+
       const updatedItem = createOrUpdateCartItem(
         existingItem,
         variant,
         product
       );
+      console.log('CartContext: updatedItem:', updatedItem);
 
       const updatedLines = existingItem
         ? lines.map((item) =>
@@ -186,12 +193,17 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
           )
         : [...lines, updatedItem];
 
-      return {
+      console.log('CartContext: updatedLines:', updatedLines);
+
+      const newCart = {
         ...currentCart,
         ...updateCartTotals(updatedLines),
         lines: updatedLines,
         items: updatedLines
       };
+
+      console.log('CartContext: newCart:', newCart);
+      return newCart;
     }
     default:
       return currentCart;
@@ -219,34 +231,87 @@ export function useCart() {
   }
 
   const initialCart = use(context.cartPromise);
-  const [optimisticCart, updateOptimisticCart] = useOptimistic(
-    initialCart,
-    cartReducer
-  );
+  const [cart, setCart] = useState<Cart>(initialCart || createEmptyCart());
 
-  const updateCartItem = (merchandiseId: string, updateType: UpdateType) => {
-    // Wrap optimistic update in a transition to avoid React warning
-    startTransition(() => {
-      updateOptimisticCart({
-        type: 'UPDATE_ITEM',
-        payload: { merchandiseId, updateType }
-      });
-    });
-  };
+  const updateCartItemCallback = useCallback((merchandiseId: string, updateType: UpdateType) => {
+    setCart(currentCart => {
+      const lines = currentCart.lines ?? [];
+      const updatedLines = lines
+        .map((item) =>
+          (item?.merchandise?.id ?? item?.id) === merchandiseId
+            ? updateCartItem(item, updateType)
+            : item
+        )
+        .filter(Boolean) as CartItem[];
 
-  const addCartItem = (variant: ProductVariant, product: Product) => {
-    // Wrap optimistic add in a transition
-    startTransition(() => {
-      updateOptimisticCart({ type: 'ADD_ITEM', payload: { variant, product } });
+      if (updatedLines.length === 0) {
+        return {
+          ...currentCart,
+          lines: [],
+          items: [],
+          totalQuantity: 0,
+          cost: {
+            subtotalAmount: { amount: '0', currencyCode: 'USD' },
+            totalAmount: { amount: '0', currencyCode: 'USD' },
+            totalTaxAmount: { amount: '0', currencyCode: 'USD' }
+          }
+        };
+      }
+
+      return {
+        ...currentCart,
+        ...updateCartTotals(updatedLines),
+        lines: updatedLines,
+        items: updatedLines
+      };
     });
-  };
+  }, []);
+
+  const addCartItem = useCallback((variant: ProductVariant, product: Product) => {
+    console.log('CartContext: addCartItem called');
+    setCart(currentCart => {
+      const lines = currentCart.lines ?? [];
+      console.log('CartContext: current lines count:', lines.length);
+
+      const matchId = variant?.id ?? `${product?.id}-default`;
+      console.log('CartContext: matchId:', matchId);
+
+      const existingItem = lines.find((item) => (item?.merchandise?.id ?? item?.id) === matchId);
+      console.log('CartContext: existingItem found:', !!existingItem);
+
+      const updatedItem = createOrUpdateCartItem(
+        existingItem,
+        variant,
+        product
+      );
+      console.log('CartContext: updatedItem quantity:', updatedItem.quantity);
+
+      const updatedLines = existingItem
+        ? lines.map((item) =>
+            (item?.merchandise?.id ?? item?.id) === matchId ? updatedItem : item
+          )
+        : [...lines, updatedItem];
+
+      console.log('CartContext: updatedLines count:', updatedLines.length);
+
+      const newCart = {
+        ...currentCart,
+        ...updateCartTotals(updatedLines),
+        lines: updatedLines,
+        items: updatedLines
+      };
+
+      console.log('CartContext: newCart totalQuantity:', newCart.totalQuantity);
+      return newCart;
+    });
+  }, []);
 
   return useMemo(
     () => ({
-      cart: optimisticCart,
-      updateCartItem,
+      cart,
+      updateCartItem: updateCartItemCallback,
       addCartItem
     }),
-    [optimisticCart]
+    [cart, updateCartItemCallback, addCartItem]
   );
 }

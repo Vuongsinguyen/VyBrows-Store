@@ -51,9 +51,12 @@ function SubmitButton({
       aria-label="Add to cart"
       onClick={(e) => {
         console.log('SubmitButton: onClick triggered from button click');
+        console.log('SubmitButton: Event object:', e);
         e.preventDefault(); // Ngăn form submit nếu có
         if (onClick) {
+          console.log('SubmitButton: Calling onClick function');
           onClick();
+          console.log('SubmitButton: onClick function called successfully');
         } else {
           console.error('SubmitButton: onClick prop is undefined');
         }
@@ -98,7 +101,7 @@ export function AddToCart({ product }: { product: Product }) {
       return;
     }
     try {
-      console.log('AddToCart: Calling addCartItem with:', selectedVariant, product);
+      console.log('AddToCart: Calling addCartItem');
       addCartItem(selectedVariant, product);
       console.log('AddToCart: addCartItem called successfully');
     } catch (error) {
