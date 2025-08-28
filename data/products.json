@@ -5,7 +5,10 @@
     "description": "High quality red lipstick",
     "price": 19.99,
     "images": ["/images/lipstick-red-1.jpg", "/images/lipstick-red-2.jpg"],
-    "tags": ["lipstick", "makeup"]
+    "tags": ["lipstick", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
+    "handle": "lipstick-red",
+    "featuredImage": { "url": "/images/lipstick-red-1.jpg", "altText": "Lipstick Red" },
+    "priceRange": { "maxVariantPrice": { "amount": "19.99", "currencyCode": "USD" } }
   },
   {
     "id": "2",
@@ -13,6 +16,268 @@
     "description": "Waterproof black eyeliner",
     "price": 9.99,
     "images": ["/images/eyeliner-black.jpg"],
-    "tags": ["eyeliner", "makeup"]
+    "tags": ["eyeliner", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
+    "handle": "eyeliner-black",
+    "featuredImage": { "url": "/images/eyeliner-black.jpg", "altText": "Eyeliner Black" },
+    "priceRange": { "maxVariantPrice": { "amount": "9.99", "currencyCode": "USD" } }
+  },
+  {
+    "id": "3",
+    "title": "Mascara Volume",
+    "description": "Mascara giúp dày mi",
+    "price": 15.99,
+    "images": ["/images/mascara-volume.jpg"],
+    "tags": ["mascara", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
+    "handle": "mascara-volume",
+    "featuredImage": { "url": "/images/mascara-volume.jpg", "altText": "Mascara Volume" },
+    "priceRange": { "maxVariantPrice": { "amount": "15.99", "currencyCode": "USD" } }
+  },
+  {
+    "id": "4",
+    "title": "Foundation Light",
+    "description": "Kem nền sáng da",
+    "price": 25.99,
+    "images": ["/images/foundation-light.jpg"],
+    "tags": ["foundation", "makeup"]
+  },
+  {
+    "id": "5",
+    "title": "Blush Pink",
+    "description": "Phấn má hồng tự nhiên",
+    "price": 12.99,
+    "images": ["/images/blush-pink.jpg"],
+    "tags": ["blush", "makeup"]
+  },
+  {
+    "id": "6",
+    "title": "Concealer Fair",
+    "description": "Che khuyết điểm tông sáng",
+    "price": 14.99,
+    "images": ["/images/concealer-fair.jpg"],
+    "tags": ["concealer", "makeup"]
+  },
+  {
+    "id": "7",
+    "title": "Highlighter Glow",
+    "description": "Phấn bắt sáng tự nhiên",
+    "price": 16.99,
+    "images": ["/images/highlighter-glow.jpg"],
+    "tags": ["highlighter", "makeup"]
+  },
+  {
+    "id": "8",
+    "title": "Bronzer Sun",
+    "description": "Phấn tạo khối màu nâu đồng",
+    "price": 17.99,
+    "images": ["/images/bronzer-sun.jpg"],
+    "tags": ["bronzer", "makeup"]
+  },
+  {
+    "id": "9",
+    "title": "Lip Gloss Shine",
+    "description": "Son bóng dưỡng ẩm",
+    "price": 11.99,
+    "images": ["/images/lip-gloss-shine.jpg"],
+    "tags": ["lipgloss", "makeup"]
+  },
+  {
+    "id": "10",
+    "title": "Brow Pencil Brown",
+    "description": "Chì kẻ mày màu nâu",
+    "price": 10.99,
+    "images": ["/images/brow-pencil-brown.jpg"],
+    "tags": ["brow", "makeup"]
+  },
+  {
+    "id": "11",
+    "title": "Setting Spray",
+    "description": "Xịt giữ lớp trang điểm lâu trôi",
+    "price": 13.99,
+    "images": ["/images/setting-spray.jpg"],
+    "tags": ["setting", "makeup"]
+  },
+  {
+    "id": "12",
+    "title": "Primer Smooth",
+    "description": "Kem lót mịn da",
+    "price": 18.99,
+    "images": ["/images/primer-smooth.jpg"],
+    "tags": ["primer", "makeup"]
+  },
+  {
+    "id": "13",
+    "title": "Contour Stick",
+    "description": "Thanh tạo khối dễ dùng",
+    "price": 15.49,
+    "images": ["/images/contour-stick.jpg"],
+    "tags": ["contour", "makeup"]
+  },
+  {
+    "id": "14",
+    "title": "Lip Balm",
+    "description": "Son dưỡng môi thiên nhiên",
+    "price": 8.99,
+    "images": ["/images/lip-balm.jpg"],
+    "tags": ["lipbalm", "makeup"]
+  },
+  {
+    "id": "15",
+    "title": "Eye Shadow Palette",
+    "description": "Bảng màu mắt đa sắc",
+    "price": 29.99,
+    "images": ["/images/eye-shadow-palette.jpg"],
+    "tags": ["eyeshadow", "makeup"]
+  },
+  {
+    "id": "16",
+    "title": "Makeup Remover",
+    "description": "Nước tẩy trang dịu nhẹ",
+    "price": 13.49,
+    "images": ["/images/makeup-remover.jpg"],
+    "tags": ["remover", "makeup"]
+  },
+  {
+    "id": "17",
+    "title": "Eyelash Curler",
+    "description": "Kẹp mi cong tự nhiên",
+    "price": 7.99,
+    "images": ["/images/eyelash-curler.jpg"],
+    "tags": ["eyelash", "makeup"]
+  },
+  {
+    "id": "18",
+    "title": "Face Powder",
+    "description": "Phấn phủ kiểm dầu",
+    "price": 15.99,
+    "images": ["/images/face-powder.jpg"],
+    "tags": ["powder", "makeup"]
+  },
+  {
+    "id": "19",
+    "title": "Lip Tint",
+    "description": "Son tint lâu trôi",
+    "price": 12.49,
+    "images": ["/images/lip-tint.jpg"],
+    "tags": ["liptint", "makeup"]
+  },
+  {
+    "id": "20",
+    "title": "BB Cream",
+    "description": "Kem nền BB đa năng",
+    "price": 21.99,
+    "images": ["/images/bb-cream.jpg"],
+    "tags": ["bbcream", "makeup"]
+  },
+  {
+    "id": "21",
+    "title": "CC Cream",
+    "description": "Kem nền CC hiệu chỉnh màu",
+    "price": 22.99,
+    "images": ["/images/cc-cream.jpg"],
+    "tags": ["cccream", "makeup"]
+  },
+  {
+    "id": "22",
+    "title": "Lip Liner",
+    "description": "Chì viền môi chống lem",
+    "price": 9.49,
+    "images": ["/images/lip-liner.jpg"],
+    "tags": ["lipliner", "makeup"]
+  },
+  {
+    "id": "23",
+    "title": "Makeup Sponge",
+    "description": "Mút tán nền mềm mại",
+    "price": 6.99,
+    "images": ["/images/makeup-sponge.jpg"],
+    "tags": ["sponge", "makeup"]
+  },
+  {
+    "id": "24",
+    "title": "Face Serum",
+    "description": "Serum dưỡng da căng bóng",
+    "price": 24.99,
+    "images": ["/images/face-serum.jpg"],
+    "tags": ["serum", "skincare"]
+  },
+  {
+    "id": "25",
+    "title": "Moisturizer Cream",
+    "description": "Kem dưỡng ẩm da mặt",
+    "price": 19.49,
+    "images": ["/images/moisturizer-cream.jpg"],
+    "tags": ["moisturizer", "skincare"]
+  },
+  {
+    "id": "26",
+    "title": "Sunscreen SPF50",
+    "description": "Kem chống nắng SPF50",
+    "price": 17.99,
+    "images": ["/images/sunscreen-spf50.jpg"],
+    "tags": ["sunscreen", "skincare"]
+  },
+  {
+    "id": "27",
+    "title": "Cleansing Foam",
+    "description": "Sữa rửa mặt tạo bọt dịu nhẹ",
+    "price": 13.99,
+    "images": ["/images/cleansing-foam.jpg"],
+    "tags": ["cleanser", "skincare"]
+  },
+  {
+    "id": "28",
+    "title": "Toner Fresh",
+    "description": "Nước cân bằng da tươi mát",
+    "price": 14.99,
+    "images": ["/images/toner-fresh.jpg"],
+    "tags": ["toner", "skincare"]
+  },
+  {
+    "id": "29",
+    "title": "Sheet Mask",
+    "description": "Mặt nạ giấy dưỡng ẩm",
+    "price": 4.99,
+    "images": ["/images/sheet-mask.jpg"],
+    "tags": ["mask", "skincare"]
+  },
+  {
+    "id": "30",
+    "title": "Body Lotion",
+    "description": "Sữa dưỡng thể mềm mịn",
+    "price": 16.99,
+    "images": ["/images/body-lotion.jpg"],
+    "tags": ["bodylotion", "skincare"]
+  },
+  {
+    "id": "31",
+    "title": "Hand Cream",
+    "description": "Kem dưỡng da tay hương thơm nhẹ",
+    "price": 7.99,
+    "images": ["/images/hand-cream.jpg"],
+    "tags": ["handcream", "skincare"]
+  },
+  {
+    "id": "32",
+    "title": "Foot Mask",
+    "description": "Mặt nạ dưỡng da chân",
+    "price": 5.99,
+    "images": ["/images/foot-mask.jpg"],
+    "tags": ["footmask", "skincare"]
+  },
+  {
+    "id": "33",
+    "title": "Hair Serum",
+    "description": "Serum dưỡng tóc bóng mượt",
+    "price": 18.99,
+    "images": ["/images/hair-serum.jpg"],
+    "tags": ["hairserum", "haircare"]
+  },
+  {
+    "id": "34",
+    "title": "Shampoo Fresh",
+    "description": "Dầu gội sạch da đầu",
+    "price": 15.99,
+    "images": ["/images/shampoo-fresh.jpg"],
+    "tags": ["shampoo", "haircare"]
   }
 ]

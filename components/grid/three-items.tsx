@@ -18,11 +18,11 @@ function ThreeItemGridItem({
     >
       <Link
         className="relative block aspect-square h-full w-full"
-        href={`/product/${item.handle}`}
+        href={"/product/" + item.id}
         prefetch={true}
       >
         <GridTileImage
-          src={item.featuredImage.url}
+          src={item.images && item.images.length > 0 ? item.images[0] : ''}
           fill
           sizes={
             size === 'full' ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw'
@@ -31,9 +31,9 @@ function ThreeItemGridItem({
           alt={item.title}
           label={{
             position: size === 'full' ? 'center' : 'bottom',
-            title: item.title as string,
-            amount: item.priceRange.maxVariantPrice.amount,
-            currencyCode: item.priceRange.maxVariantPrice.currencyCode
+            title: item.title,
+            amount: item.price.toString(),
+            currencyCode: 'USD'
           }}
         />
       </Link>
@@ -43,9 +43,7 @@ function ThreeItemGridItem({
 
 export async function ThreeItemGrid() {
   // Collections that start with `hidden-*` are hidden from the search page.
-  const homepageItems = await getCollectionProducts({
-    collection: 'hidden-homepage-featured-items'
-  });
+  const homepageItems = await getCollectionProducts('hidden-homepage-featured-items');
 
   if (!homepageItems[0] || !homepageItems[1] || !homepageItems[2]) return null;
 
