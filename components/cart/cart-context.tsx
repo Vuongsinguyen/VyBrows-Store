@@ -8,27 +8,20 @@ import type {
 } from 'lib/types';
 import React, {
   createContext,
-  use,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState
 } from 'react';
 
 type UpdateType = 'plus' | 'minus' | 'delete';
 
-type CartAction =
-  | {
-      type: 'UPDATE_ITEM';
-      payload: { merchandiseId: string; updateType: UpdateType };
-    }
-  | {
-      type: 'ADD_ITEM';
-      payload: { variant: ProductVariant; product: Product };
-    };
-
 type CartContextType = {
-  cartPromise: Promise<Cart | undefined>;
+  cart: Cart;
+  updateCartItem: (merchandiseId: string, updateType: UpdateType) => void;
+  addCartItem: (variant: ProductVariant, product: Product) => void;
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -121,11 +114,11 @@ function updateCartTotals(
 
 function createEmptyCart(): Cart {
   return {
-  id: undefined,
-  checkoutUrl: '',
-  totalQuantity: 0,
-  lines: [],
-  items: [],
+    id: undefined,
+    checkoutUrl: '',
+    totalQuantity: 0,
+    lines: [],
+    items: [],
     cost: {
       subtotalAmount: { amount: '0', currencyCode: 'USD' },
       totalAmount: { amount: '0', currencyCode: 'USD' },
@@ -134,104 +127,30 @@ function createEmptyCart(): Cart {
   };
 }
 
-function cartReducer(state: Cart | undefined, action: CartAction): Cart {
-  const currentCart = state || createEmptyCart();
-  const lines = currentCart.lines ?? [];
-
-  switch (action.type) {
-    case 'UPDATE_ITEM': {
-      const { merchandiseId, updateType } = action.payload;
-      const updatedLines = lines
-        .map((item) =>
-          (item?.merchandise?.id ?? item?.id) === merchandiseId
-            ? updateCartItem(item, updateType)
-            : item
-        )
-        .filter(Boolean) as CartItem[];
-
-      if (updatedLines.length === 0) {
-        return {
-          ...currentCart,
-          lines: [],
-          items: [],
-          totalQuantity: 0,
-          cost: {
-            subtotalAmount: { amount: '0', currencyCode: 'USD' },
-            totalAmount: { amount: '0', currencyCode: 'USD' },
-            totalTaxAmount: { amount: '0', currencyCode: 'USD' }
-          }
-        };
+export function CartProvider({ children }: { children: React.ReactNode }) {
+  const [cart, setCart] = useState<Cart>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const savedCart = localStorage.getItem('cart');
+        return savedCart ? JSON.parse(savedCart) : createEmptyCart();
+      } catch (error) {
+        console.error('Error loading cart from localStorage:', error);
+        return createEmptyCart();
       }
-
-      return {
-        ...currentCart,
-        ...updateCartTotals(updatedLines),
-        lines: updatedLines,
-        items: updatedLines
-      };
     }
-    case 'ADD_ITEM': {
-      const { variant, product } = action.payload;
-      console.log('CartContext: Processing ADD_ITEM action:', { variant, product });
+    return createEmptyCart();
+  });
 
-      const matchId = variant?.id ?? `${product?.id}-default`;
-      console.log('CartContext: matchId:', matchId);
-
-      const existingItem = lines.find((item) => (item?.merchandise?.id ?? item?.id) === matchId);
-      console.log('CartContext: existingItem:', existingItem);
-
-      const updatedItem = createOrUpdateCartItem(
-        existingItem,
-        variant,
-        product
-      );
-      console.log('CartContext: updatedItem:', updatedItem);
-
-      const updatedLines = existingItem
-        ? lines.map((item) =>
-            (item?.merchandise?.id ?? item?.id) === matchId ? updatedItem : item
-          )
-        : [...lines, updatedItem];
-
-      console.log('CartContext: updatedLines:', updatedLines);
-
-      const newCart = {
-        ...currentCart,
-        ...updateCartTotals(updatedLines),
-        lines: updatedLines,
-        items: updatedLines
-      };
-
-      console.log('CartContext: newCart:', newCart);
-      return newCart;
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('cart', JSON.stringify(cart));
+      } catch (error) {
+        console.error('Error saving cart to localStorage:', error);
+      }
     }
-    default:
-      return currentCart;
-  }
-}
-
-export function CartProvider({
-  children,
-  cartPromise
-}: {
-  children: React.ReactNode;
-  cartPromise: Promise<Cart | undefined>;
-}) {
-  return (
-    <CartContext.Provider value={{ cartPromise }}>
-      {children}
-    </CartContext.Provider>
-  );
-}
-
-export function useCart() {
-  const context = useContext(CartContext);
-  if (context === undefined) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-
-  const initialCart = use(context.cartPromise);
-  const [cart, setCart] = useState<Cart>(initialCart || createEmptyCart());
+  }, [cart]);
 
   const updateCartItemCallback = useCallback((merchandiseId: string, updateType: UpdateType) => {
     setCart(currentCart => {
@@ -245,17 +164,7 @@ export function useCart() {
         .filter(Boolean) as CartItem[];
 
       if (updatedLines.length === 0) {
-        return {
-          ...currentCart,
-          lines: [],
-          items: [],
-          totalQuantity: 0,
-          cost: {
-            subtotalAmount: { amount: '0', currencyCode: 'USD' },
-            totalAmount: { amount: '0', currencyCode: 'USD' },
-            totalTaxAmount: { amount: '0', currencyCode: 'USD' }
-          }
-        };
+        return createEmptyCart();
       }
 
       return {
@@ -268,23 +177,11 @@ export function useCart() {
   }, []);
 
   const addCartItem = useCallback((variant: ProductVariant, product: Product) => {
-    console.log('CartContext: addCartItem called');
     setCart(currentCart => {
       const lines = currentCart.lines ?? [];
-      console.log('CartContext: current lines count:', lines.length);
-
       const matchId = variant?.id ?? `${product?.id}-default`;
-      console.log('CartContext: matchId:', matchId);
-
       const existingItem = lines.find((item) => (item?.merchandise?.id ?? item?.id) === matchId);
-      console.log('CartContext: existingItem found:', !!existingItem);
-
-      const updatedItem = createOrUpdateCartItem(
-        existingItem,
-        variant,
-        product
-      );
-      console.log('CartContext: updatedItem quantity:', updatedItem.quantity);
+      const updatedItem = createOrUpdateCartItem(existingItem, variant, product);
 
       const updatedLines = existingItem
         ? lines.map((item) =>
@@ -292,26 +189,40 @@ export function useCart() {
           )
         : [...lines, updatedItem];
 
-      console.log('CartContext: updatedLines count:', updatedLines.length);
-
-      const newCart = {
+      return {
         ...currentCart,
         ...updateCartTotals(updatedLines),
         lines: updatedLines,
         items: updatedLines
       };
-
-      console.log('CartContext: newCart totalQuantity:', newCart.totalQuantity);
-      return newCart;
     });
   }, []);
 
-  return useMemo(
+  const clearCart = useCallback(() => {
+    setCart(createEmptyCart());
+  }, []);
+
+  const contextValue = useMemo(
     () => ({
       cart,
       updateCartItem: updateCartItemCallback,
-      addCartItem
+      addCartItem,
+      clearCart
     }),
-    [cart, updateCartItemCallback, addCartItem]
+    [cart, updateCartItemCallback, addCartItem, clearCart]
   );
+
+  return (
+    <CartContext.Provider value={contextValue}>
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 }

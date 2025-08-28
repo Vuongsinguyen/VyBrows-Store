@@ -9,19 +9,14 @@ export function DeleteItemButton({
   optimisticUpdate
 }: {
   item: CartItem;
-  optimisticUpdate: any;
+  optimisticUpdate: (merchandiseId: string, updateType: 'delete') => void;
 }) {
   // defensive: merchandise may be undefined, fall back to item.id
   const merchandiseId = item?.merchandise?.id ?? item?.id;
 
   const handleClick = () => {
-    if (!merchandiseId) {
-      console.log('DeleteItemButton: No merchandiseId, cannot delete');
-      return;
-    }
-    console.log('DeleteItemButton: Deleting item with merchandiseId:', merchandiseId);
-    optimisticUpdate(merchandiseId, 'delete'); // Xử lý local, cập nhật state giỏ hàng
-    console.log('DeleteItemButton: Item deleted locally');
+    if (!merchandiseId) return;
+    optimisticUpdate(merchandiseId, 'delete');
   };
 
   return (
