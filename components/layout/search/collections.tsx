@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import fs from 'fs';
-import type { Product } from 'lib/shopify/types';
+import type { Product } from 'lib/types';
 import path from 'path';
 import { Suspense } from 'react';
 import FilterList from './filter';

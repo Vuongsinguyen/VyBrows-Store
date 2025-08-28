@@ -1,5 +1,5 @@
 import fs from 'fs';
-import type { Product } from 'lib/shopify/types';
+import type { Product } from 'lib/types';
 import { baseUrl, validateEnvironmentVariables } from 'lib/utils';
 import { MetadataRoute } from 'next';
 import path from 'path';

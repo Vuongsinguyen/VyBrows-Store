@@ -2,7 +2,7 @@ import Grid from 'components/grid';
 import ProductGridItems from 'components/layout/product-grid-items';
 import fs from 'fs';
 import { defaultSort, sorting } from 'lib/constants';
-import type { Product } from 'lib/shopify/types';
+import type { Product } from 'lib/types';
 import path from 'path';
 
 export const metadata = {

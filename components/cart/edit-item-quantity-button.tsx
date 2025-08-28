@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import type { CartItem } from 'lib/shopify/types';
+import type { CartItem } from 'lib/types';
 
 export default function EditItemQuantityButton({ item, type, optimisticUpdate }: {
   item: CartItem;
