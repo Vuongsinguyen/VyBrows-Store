@@ -2,19 +2,16 @@
 
 import { PlusIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { addItem } from 'components/cart/actions';
-import { useProduct } from 'components/product/product-context';
 import { Product, ProductVariant } from 'lib/shopify/types';
-import { startTransition } from 'react';
 import { useCart } from './cart-context';
 
 function SubmitButton({
   availableForSale,
-  selectedVariantId,
+  selectedVariant,
   onClick
 }: {
   availableForSale: boolean;
-  selectedVariantId: string | undefined;
+  selectedVariant?: ProductVariant;
   onClick?: () => void;
 }) {
   const buttonClasses =
@@ -29,30 +26,24 @@ function SubmitButton({
     );
   }
 
-  if (!selectedVariantId) {
+  if (!selectedVariant) {
     return (
-      <button
-        aria-label="Please select an option"
-        disabled
-        className={clsx(buttonClasses, disabledClasses)}
-      >
+      <button disabled className={clsx(buttonClasses, disabledClasses)}>
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
         </div>
-          Add To Cart
-        </button>
+        Add To Cart
+      </button>
     );
   }
 
   return (
-      <button
-  type={onClick ? 'button' : 'submit'}
-        aria-label="Add to cart"
-        onClick={onClick}
-        className={clsx(buttonClasses, {
-          'hover:opacity-90': true
-        })}
-      >
+    <button
+      type="button"
+      aria-label="Add to cart"
+      onClick={onClick}
+      className={clsx(buttonClasses, 'hover:opacity-90')}
+    >
       <div className="absolute left-0 ml-4">
         <PlusIcon className="h-5" />
       </div>
@@ -64,36 +55,23 @@ function SubmitButton({
 export function AddToCart({ product }: { product: Product }) {
   const { variants, availableForSale } = product;
   const { addCartItem } = useCart();
-  const { state } = useProduct();
-  const formAction = addItem;
 
-  const variant = variants.find((variant: ProductVariant) =>
-    variant.selectedOptions.every(
-      (option) => option.value === state[option.name.toLowerCase()]
-    )
-  );
-  const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
-  const selectedVariantId = variant?.id || defaultVariantId;
-  const finalVariant = variants.find(
-    (variant) => variant.id === selectedVariantId
-  )!;
+  // Luôn dùng variant đầu tiên làm mặc định
+  const defaultVariant = variants?.[0];
+  const selectedVariant = defaultVariant;
 
   return (
-    // Provide the server action directly so Next can invoke it on submit.
-    // The optimistic update is triggered via the button's onClick handler.
-    <form action={formAction as any}>
-      {/* send selectedVariantId as form field so server action receives it */}
-      <input type="hidden" name="selectedVariantId" value={selectedVariantId || ''} />
-      <SubmitButton
-        availableForSale={availableForSale}
-        selectedVariantId={selectedVariantId}
-        onClick={() =>
-          startTransition(() => {
-            addCartItem(finalVariant, product);
-          })
+    <SubmitButton
+      availableForSale={availableForSale}
+      selectedVariant={selectedVariant}
+      onClick={() => {
+        if (!selectedVariant) return;
+        try {
+          addCartItem(selectedVariant, product);
+        } catch (error) {
+          console.error('AddToCart: Error adding to cart', error);
         }
-      />
-      {/* message omitted: using direct action binding */}
-    </form>
+      }}
+    />
   );
 }
