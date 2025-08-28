@@ -1,52 +1,189 @@
 [
   {
     "id": "1",
+    "handle": "lipstick-red",
     "title": "Lipstick Red",
     "description": "High quality red lipstick",
+    "descriptionHtml": "<p>High quality red lipstick with long-lasting formula</p>",
     "price": 19.99,
-    "images": ["/images/product001.png", "/images/product001-2.png"],
+    "images": [
+      { "url": "/images/product001.png", "altText": "Lipstick Red", "width": 800, "height": 800 },
+      { "url": "/images/product001-2.png", "altText": "Lipstick Red Alternative", "width": 800, "height": 800 }
+    ],
     "tags": ["lipstick", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
-    "handle": "lipstick-red",
-    "featuredImage": { "url": "/images/product001.png", "altText": "Lipstick Red" },
-    "priceRange": { "maxVariantPrice": { "amount": "19.99", "currencyCode": "USD" } }
+    "featuredImage": { "url": "/images/product001.png", "altText": "Lipstick Red", "width": 800, "height": 800 },
+    "seo": { "title": "Lipstick Red - Premium Quality", "description": "High quality red lipstick with long-lasting formula" },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": { "amount": "19.99", "currencyCode": "USD" },
+      "maxVariantPrice": { "amount": "19.99", "currencyCode": "USD" }
+    },
+    "options": [
+      {
+        "id": "color",
+        "name": "Color",
+        "values": ["Red"]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-1",
+        "title": "Red",
+        "availableForSale": true,
+        "selectedOptions": [
+          { "name": "Color", "value": "Red" }
+        ],
+        "price": { "amount": "19.99", "currencyCode": "USD" }
+      }
+    ]
   },
   {
     "id": "2",
+    "handle": "eyeliner-black",
     "title": "Eyeliner Black",
     "description": "Waterproof black eyeliner",
+    "descriptionHtml": "<p>Waterproof black eyeliner for precise application</p>",
     "price": 9.99,
-    "images": ["/images/product002.jpg"],
+    "images": [
+      { "url": "/images/product002.jpg", "altText": "Eyeliner Black", "width": 800, "height": 800 }
+    ],
     "tags": ["eyeliner", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
-    "handle": "eyeliner-black",
-    "featuredImage": { "url": "/images/product002.jpg", "altText": "Eyeliner Black" },
-    "priceRange": { "maxVariantPrice": { "amount": "9.99", "currencyCode": "USD" } }
+    "featuredImage": { "url": "/images/product002.jpg", "altText": "Eyeliner Black", "width": 800, "height": 800 },
+    "seo": { "title": "Eyeliner Black - Waterproof Formula", "description": "Waterproof black eyeliner for precise application" },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": { "amount": "9.99", "currencyCode": "USD" },
+      "maxVariantPrice": { "amount": "9.99", "currencyCode": "USD" }
+    },
+    "options": [
+      {
+        "id": "color",
+        "name": "Color",
+        "values": ["Black"]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-2",
+        "title": "Black",
+        "availableForSale": true,
+        "selectedOptions": [
+          { "name": "Color", "value": "Black" }
+        ],
+        "price": { "amount": "9.99", "currencyCode": "USD" }
+      }
+    ]
   },
   {
     "id": "3",
+    "handle": "mascara-volume",
     "title": "Mascara Volume",
     "description": "Mascara giúp dày mi",
+    "descriptionHtml": "<p>Mascara giúp dày mi với công thức dưỡng mi</p>",
     "price": 15.99,
-    "images": ["/images/mascara-volume.jpg"],
+    "images": [
+      { "url": "/images/mascara-volume.jpg", "altText": "Mascara Volume", "width": 800, "height": 800 }
+    ],
     "tags": ["mascara", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
-    "handle": "mascara-volume",
-    "featuredImage": { "url": "/images/mascara-volume.jpg", "altText": "Mascara Volume" },
-    "priceRange": { "maxVariantPrice": { "amount": "15.99", "currencyCode": "USD" } }
+    "featuredImage": { "url": "/images/mascara-volume.jpg", "altText": "Mascara Volume", "width": 800, "height": 800 },
+    "seo": { "title": "Mascara Volume - Dày Mi Tự Nhiên", "description": "Mascara giúp dày mi với công thức dưỡng mi" },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": { "amount": "15.99", "currencyCode": "USD" },
+      "maxVariantPrice": { "amount": "15.99", "currencyCode": "USD" }
+    },
+    "options": [
+      {
+        "id": "type",
+        "name": "Type",
+        "values": ["Volume"]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-3",
+        "title": "Volume",
+        "availableForSale": true,
+        "selectedOptions": [
+          { "name": "Type", "value": "Volume" }
+        ],
+        "price": { "amount": "15.99", "currencyCode": "USD" }
+      }
+    ]
   },
   {
     "id": "4",
+    "handle": "foundation-light",
     "title": "Foundation Light",
     "description": "Kem nền sáng da",
+    "descriptionHtml": "<p>Kem nền sáng da cho làn da tự nhiên</p>",
     "price": 25.99,
-    "images": ["/images/foundation-light.jpg"],
-    "tags": ["foundation", "makeup"]
+    "images": [
+      { "url": "/images/foundation-light.jpg", "altText": "Foundation Light", "width": 800, "height": 800 }
+    ],
+    "tags": ["foundation", "makeup"],
+    "featuredImage": { "url": "/images/foundation-light.jpg", "altText": "Foundation Light", "width": 800, "height": 800 },
+    "seo": { "title": "Foundation Light - Kem Nền Sáng Da", "description": "Kem nền sáng da cho làn da tự nhiên" },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": { "amount": "25.99", "currencyCode": "USD" },
+      "maxVariantPrice": { "amount": "25.99", "currencyCode": "USD" }
+    },
+    "options": [
+      {
+        "id": "shade",
+        "name": "Shade",
+        "values": ["Light"]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-4",
+        "title": "Light",
+        "availableForSale": true,
+        "selectedOptions": [
+          { "name": "Shade", "value": "Light" }
+        ],
+        "price": { "amount": "25.99", "currencyCode": "USD" }
+      }
+    ]
   },
   {
     "id": "5",
+    "handle": "blush-pink",
     "title": "Blush Pink",
     "description": "Phấn má hồng tự nhiên",
+    "descriptionHtml": "<p>Phấn má hồng tự nhiên cho má ửng hồng</p>",
     "price": 12.99,
-    "images": ["/images/blush-pink.jpg"],
-    "tags": ["blush", "makeup"]
+    "images": [
+      { "url": "/images/blush-pink.jpg", "altText": "Blush Pink", "width": 800, "height": 800 }
+    ],
+    "tags": ["blush", "makeup"],
+    "featuredImage": { "url": "/images/blush-pink.jpg", "altText": "Blush Pink", "width": 800, "height": 800 },
+    "seo": { "title": "Blush Pink - Phấn Má Hồng Tự Nhiên", "description": "Phấn má hồng tự nhiên cho má ửng hồng" },
+    "availableForSale": true,
+    "priceRange": {
+      "minVariantPrice": { "amount": "12.99", "currencyCode": "USD" },
+      "maxVariantPrice": { "amount": "12.99", "currencyCode": "USD" }
+    },
+    "options": [
+      {
+        "id": "color",
+        "name": "Color",
+        "values": ["Pink"]
+      }
+    ],
+    "variants": [
+      {
+        "id": "variant-5",
+        "title": "Pink",
+        "availableForSale": true,
+        "selectedOptions": [
+          { "name": "Color", "value": "Pink" }
+        ],
+        "price": { "amount": "12.99", "currencyCode": "USD" }
+      }
+    ]
   },
   {
     "id": "6",

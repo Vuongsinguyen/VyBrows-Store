@@ -63,11 +63,22 @@ export type Page = {
 
 export type Product = {
   id: string;
+  handle: string;
   title: string;
   description: string;
+  descriptionHtml?: string;
   price: number;
-  images: string[];
+  images: Image[];
   tags?: string[];
+  featuredImage?: Image;
+  seo?: SEO;
+  availableForSale: boolean;
+  priceRange: {
+    minVariantPrice: Money;
+    maxVariantPrice: Money;
+  };
+  options: ProductOption[];
+  variants: ProductVariant[];
 };
 
 export type ProductOption = {

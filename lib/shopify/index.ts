@@ -80,9 +80,9 @@ export async function getProducts(): Promise<Product[]> {
   return loadProducts()
 }
 
-export async function getProduct(id: string): Promise<Product | undefined> {
+export async function getProduct(handle: string): Promise<Product | undefined> {
   const products = loadProducts()
-  return products.find((p) => p.id === id)
+  return products.find((p) => p.handle === handle)
 }
 
 // ---------- COLLECTIONS (tags) ----------
