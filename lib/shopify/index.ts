@@ -1,24 +1,7 @@
 import fs from 'fs'
 import { cookies } from 'next/headers'
 import path from 'path'
-
-export type Product = {
-  id: string
-  title: string
-  description: string
-  price: number
-  images: string[]
-  tags?: string[]
-}
-
-export type CartItem = {
-  productId: string
-  quantity: number
-}
-
-export type Cart = {
-  items: CartItem[]
-}
+import { Cart, Menu, Product } from './types'
 
 // đọc sản phẩm từ file JSON
 function loadProducts(): Product[] {
@@ -50,14 +33,16 @@ export async function addToCart(
       cart.items.push(item)
     }
   }
-  cookies().set('cart', JSON.stringify(cart))
+  const cookieStore = await cookies()
+  cookieStore.set('cart', JSON.stringify(cart))
   return cart
 }
 
 export async function removeFromCart(productId: string): Promise<Cart> {
   const cart = await getCart()
   cart.items = cart.items.filter((i) => i.productId !== productId)
-  cookies().set('cart', JSON.stringify(cart))
+  const cookieStore = await cookies()
+  cookieStore.set('cart', JSON.stringify(cart))
   return cart
 }
 
@@ -71,7 +56,8 @@ export async function updateCart(
       existing.quantity = item.quantity
     }
   }
-  cookies().set('cart', JSON.stringify(cart))
+  const cookieStore = await cookies()
+  cookieStore.set('cart', JSON.stringify(cart))
   return cart
 }
 
@@ -98,20 +84,41 @@ export async function getCollectionProducts(tag: string): Promise<Product[]> {
   return products.filter((p) => p.tags?.includes(tag))
 }
 
-// dummy
-export async function getPages() {
-  return []
+export async function getPages(): Promise<any[]> {
+  // Return local pages data
+  return [
+    { id: '1', title: 'About', handle: 'about', body: '<p>About our store</p>', bodySummary: 'About our store', seo: { title: 'About', description: 'About our store' }, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() },
+    { id: '2', title: 'Contact', handle: 'contact', body: '<p>Contact us</p>', bodySummary: 'Contact us', seo: { title: 'Contact', description: 'Contact us' }, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }
+  ]
 }
 
-export async function getPage(handle: string) {
-  return null
+export async function getPage(handle: string): Promise<any> {
+  const pages = await getPages()
+  return pages.find(p => p.handle === handle) || null
 }
 
-export async function getMenu() {
-  return []
+export async function getMenu(handle?: string): Promise<Menu[]> {
+  // Return local menu data
+  return [
+    { title: 'Home', path: '/' },
+    { title: 'Products', path: '/search' },
+    { title: 'Collections', path: '/search' }
+  ]
 }
 
-export async function getProductRecommendations(productId: string) {
+export async function getProductRecommendations(productId: string): Promise<Product[]> {
   const products = loadProducts()
-  return products.slice(0, 3) // demo lấy 3 sản phẩm bất kỳ
+  const currentProduct = products.find(p => p.id === productId)
+  
+  if (!currentProduct || !currentProduct.tags) {
+    return products.slice(0, 3) // fallback to first 3 products
+  }
+  
+  // Find products with similar tags
+  const recommendations = products.filter(p => 
+    p.id !== productId && 
+    p.tags?.some(tag => currentProduct.tags?.includes(tag))
+  )
+  
+  return recommendations.length >= 3 ? recommendations.slice(0, 3) : products.slice(0, 3)
 }
