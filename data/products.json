@@ -15,10 +15,10 @@
     "title": "Eyeliner Black",
     "description": "Waterproof black eyeliner",
     "price": 9.99,
-    "images": ["/images/eyeliner-black.jpg"],
+    "images": ["/images/product002.jpg"],
     "tags": ["eyeliner", "makeup", "hidden-homepage-featured-items", "hidden-homepage-carousel"],
     "handle": "eyeliner-black",
-    "featuredImage": { "url": "/images/eyeliner-black.jpg", "altText": "Eyeliner Black" },
+    "featuredImage": { "url": "/images/product002.jpg", "altText": "Eyeliner Black" },
     "priceRange": { "maxVariantPrice": { "amount": "9.99", "currencyCode": "USD" } }
   },
   {
