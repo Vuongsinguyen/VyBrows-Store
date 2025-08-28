@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "title": "Lipstick Red",
+    "description": "High quality red lipstick",
+    "price": 19.99,
+    "images": ["/images/lipstick-red-1.jpg", "/images/lipstick-red-2.jpg"],
+    "tags": ["lipstick", "makeup"]
+  },
+  {
+    "id": "2",
+    "title": "Eyeliner Black",
+    "description": "Waterproof black eyeliner",
+    "price": 9.99,
+    "images": ["/images/eyeliner-black.jpg"],
+    "tags": ["eyeliner", "makeup"]
+  }
+]
