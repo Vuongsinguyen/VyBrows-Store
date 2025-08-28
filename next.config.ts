@@ -1,13 +1,17 @@
 export default {
   experimental: {
-    ppr: true,
+    // ppr: true,
     inlineCss: true,
     useCache: true
   },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
-      // Local images - no remote patterns needed for local development
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        pathname: '/s/files/**'
+      }
     ]
   }
 };

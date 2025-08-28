@@ -1,8 +1,6 @@
-import fs from 'fs';
-import type { Product } from 'lib/types';
+import { getCollections, getPages, getProducts } from 'lib/shopify';
 import { baseUrl, validateEnvironmentVariables } from 'lib/utils';
 import { MetadataRoute } from 'next';
-import path from 'path';
 
 type Route = {
   url: string;
@@ -19,37 +17,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date().toISOString()
   }));
 
-  // Load products from local JSON file
-  const productsPath = path.join(process.cwd(), 'data', 'products.json');
-  const productsData = fs.readFileSync(productsPath, 'utf8');
-  const products: Product[] = JSON.parse(productsData);
+  const collectionsPromise = getCollections().then((collections) =>
+    collections.map((collection) => ({
+      url: `${baseUrl}${collection.path}`,
+      lastModified: collection.updatedAt
+    }))
+  );
 
-  const productsRoutes = products.map((product) => ({
-    url: `${baseUrl}/product/${product.handle}`,
-    lastModified: new Date().toISOString() // Use current date since we don't have updatedAt
-  }));
+  const productsPromise = getProducts({}).then((products) =>
+    products.map((product) => ({
+      url: `${baseUrl}/product/${product.handle}`,
+      lastModified: product.updatedAt
+    }))
+  );
 
-  // Create collection routes from product tags
-  const allTags = new Set<string>();
-  products.forEach(product => {
-    product.tags?.forEach(tag => {
-      if (!tag.startsWith('hidden-')) {
-        allTags.add(tag);
-      }
-    });
-  });
+  const pagesPromise = getPages().then((pages) =>
+    pages.map((page) => ({
+      url: `${baseUrl}/${page.handle}`,
+      lastModified: page.updatedAt
+    }))
+  );
 
-  const collectionsRoutes = Array.from(allTags).map(tag => ({
-    url: `${baseUrl}/search?q=${encodeURIComponent(tag)}`,
-    lastModified: new Date().toISOString()
-  }));
+  let fetchedRoutes: Route[] = [];
 
-  // Static pages
-  const pagesRoutes = [
-    { url: `${baseUrl}/search`, lastModified: new Date().toISOString() },
-    { url: `${baseUrl}/about`, lastModified: new Date().toISOString() },
-    { url: `${baseUrl}/contact`, lastModified: new Date().toISOString() }
-  ];
+  try {
+    fetchedRoutes = (
+      await Promise.all([collectionsPromise, productsPromise, pagesPromise])
+    ).flat();
+  } catch (error) {
+    throw JSON.stringify(error, null, 2);
+  }
 
-  return [...routesMap, ...productsRoutes, ...collectionsRoutes, ...pagesRoutes];
+  return [...routesMap, ...fetchedRoutes];
 }

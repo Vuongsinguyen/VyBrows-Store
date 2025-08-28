@@ -3,11 +3,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import LoadingDots from 'components/loading-dots';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { useFormStatus } from 'react-dom';
+import { createCartAndSetCookie, redirectToCheckout } from './actions';
 import { useCart } from './cart-context';
-import CheckoutForm, { CustomerInfo } from './checkout-form';
 import { DeleteItemButton } from './delete-item-button';
-import EditItemQuantityButton from './edit-item-quantity-button';
+import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
 
 type MerchandiseSearchParams = {
@@ -15,73 +17,37 @@ type MerchandiseSearchParams = {
 };
 
 export default function CartModal() {
-  const { cart, updateCartItem, clearCart } = useCart();
+  const { cart, updateCartItem } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  const [showCheckout, setShowCheckout] = useState(false);
-  const quantityRef = useRef(cart.totalQuantity);
+  // Tính tổng số lượng sản phẩm trong giỏ
+  const totalQuantity = cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  const quantityRef = useRef(totalQuantity);
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
 
-  const openCart = useCallback(() => setIsOpen(true), []);
-  const closeCart = useCallback(() => {
-    setIsOpen(false);
-    setShowCheckout(false);
-  }, []);
-
-  // Auto-open cart when quantity increases
   useEffect(() => {
-    if (cart.totalQuantity > quantityRef.current && cart.totalQuantity > 0) {
-      setIsOpen(true);
-      setShowCheckout(false); // Reset to cart view when new items added
+    if (!cart) {
+      createCartAndSetCookie();
     }
-    quantityRef.current = cart.totalQuantity;
-  }, [cart.totalQuantity]);
+  }, [cart]);
 
-  const handleCheckout = useCallback(() => {
-    if (cart.items.length === 0) {
-      alert('Your cart is empty!');
-      return;
+  useEffect(() => {
+    if (
+      totalQuantity &&
+      totalQuantity !== quantityRef.current &&
+      totalQuantity > 0
+    ) {
+      if (!isOpen) {
+        setIsOpen(true);
+      }
+      quantityRef.current = totalQuantity;
     }
-    setShowCheckout(true);
-  }, [cart.items.length]);
-
-  const handleOrderSubmit = useCallback((customerInfo: CustomerInfo) => {
-    const cartItems = cart.items.map(item =>
-      `${item.merchandise?.title || 'Unknown Item'}: ${item.quantity}x - $${item.cost?.totalAmount?.amount || '0'}`
-    ).join('\n');
-
-    const total = cart.cost?.totalAmount?.amount || '0';
-    const totalQuantity = cart.totalQuantity;
-
-    // Display order summary with customer info
-    console.log('=== ORDER SUMMARY ===');
-    console.log('Customer Information:');
-    console.log(`  Name: ${customerInfo.name}`);
-    console.log(`  Email: ${customerInfo.email}`);
-    console.log(`  Phone: ${customerInfo.phone}`);
-    console.log(`  Address: ${customerInfo.address}`);
-    console.log('');
-    console.log(`Total Items: ${totalQuantity}`);
-    console.log(`Total Price: $${total}`);
-    console.log('Items:');
-    cart.items.forEach(item => {
-      console.log(`  - ${item.merchandise?.title || 'Unknown Item'}: ${item.quantity}x - $${item.cost?.totalAmount?.amount || '0'}`);
-    });
-
-    alert(`Order Confirmed!\n\nCustomer: ${customerInfo.name}\nEmail: ${customerInfo.email}\nPhone: ${customerInfo.phone}\nAddress: ${customerInfo.address}\n\n${cartItems}\n\nTotal: $${total}\n\nThank you for your purchase!`);
-
-    // Clear cart after successful order
-    clearCart();
-    setIsOpen(false);
-    setShowCheckout(false);
-  }, [cart, clearCart]);
-
-  const handleBackToCart = useCallback(() => {
-    setShowCheckout(false);
-  }, []);
+  }, [isOpen, totalQuantity, quantityRef]);
 
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>
-        <OpenCart quantity={cart.totalQuantity} />
+        <OpenCart quantity={totalQuantity} />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeCart} className="relative z-50">
@@ -107,29 +73,19 @@ export default function CartModal() {
           >
             <Dialog.Panel className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl md:w-[390px] dark:border-neutral-700 dark:bg-black/80 dark:text-white">
               <div className="flex items-center justify-between">
-                <p className="text-lg font-semibold">
-                  {showCheckout ? 'Checkout' : 'My Cart'}
-                </p>
+                <p className="text-lg font-semibold">My Cart</p>
                 <button aria-label="Close cart" onClick={closeCart}>
                   <CloseCart />
                 </button>
               </div>
 
-              {!cart || !cart.items || cart.items.length === 0 ? (
+              {!cart || cart.items.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingCartIcon className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">
                     Your cart is empty.
                   </p>
                 </div>
-              ) : showCheckout ? (
-                <CheckoutForm
-                  cartItems={cart.items}
-                  totalQuantity={cart.totalQuantity}
-                  totalPrice={cart.cost?.totalAmount?.amount || '0'}
-                  onSubmit={handleOrderSubmit}
-                  onCancel={handleBackToCart}
-                />
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="grow overflow-auto py-4">
@@ -146,20 +102,14 @@ export default function CartModal() {
                             />
                           </div>
                           <div className="flex flex-row">
-                            {/* Product image placeholder */}
+                            {/* Nếu có thông tin hình ảnh sản phẩm thì render, nếu không thì bỏ qua */}
                             <div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                              {/* Product image would go here */}
+                              {/* ...existing code... */}
                             </div>
-                            <div className="ml-4 flex flex-col justify-center">
-                              <p className="text-sm font-medium">
-                                {item.merchandise?.title || 'Unknown Item'}
-                              </p>
-                              <p className="text-sm text-neutral-500">
-                                ${item.cost?.totalAmount?.amount || '0'}
-                              </p>
-                            </div>
+                            {/* ...existing code... */}
                           </div>
                           <div className="flex h-16 flex-col justify-between">
+                            {/* Nếu có thông tin giá thì render, nếu không thì bỏ qua */}
                             <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
                               <EditItemQuantityButton
                                 item={item}
@@ -182,18 +132,10 @@ export default function CartModal() {
                       </li>
                     ))}
                   </ul>
-                  {/* Checkout button */}
-                  <div className="border-t border-neutral-200 pt-4 dark:border-neutral-700">
-                    <div className="mb-2 text-sm text-neutral-600 dark:text-neutral-400">
-                      Total: ${cart.cost?.totalAmount?.amount || '0'} ({cart.totalQuantity} items)
-                    </div>
-                    <button
-                      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-                      onClick={handleCheckout}
-                    >
-                      Proceed to Checkout
-                    </button>
-                  </div>
+                  {/* Không còn thông tin cost/tax, có thể render tổng quantity hoặc tổng giá nếu có logic riêng */}
+                  <form action={redirectToCheckout}>
+                    <CheckoutButton />
+                  </form>
                 </div>
               )}
             </Dialog.Panel>
@@ -214,5 +156,19 @@ function CloseCart({ className }: { className?: string }) {
         )}
       />
     </div>
+  );
+}
+
+function CheckoutButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+      type="submit"
+      disabled={pending}
+    >
+      {pending ? <LoadingDots className="bg-white" /> : 'Proceed to Checkout'}
+    </button>
   );
 }

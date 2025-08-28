@@ -2,14 +2,14 @@
   {
     "id": "1",
     "handle": "lipstick-red",
-    "title": "Product001",
+    "title": "Lipstick Red",
     "description": "High quality red lipstick",
     "descriptionHtml": "<p>High quality red lipstick with long-lasting formula</p>",
     "price": 19.99,
     "images": [
       {
-        "url": "/images/product-cover-1.avif",
-        "altText": "product001",
+        "url": "/images/product001.png",
+        "altText": "Lipstick Red",
         "width": 800,
         "height": 800
       },
@@ -27,8 +27,8 @@
       "hidden-homepage-carousel"
     ],
     "featuredImage": {
-      "url": "/images/product-cover-1.avif",
-      "altText": "product001",
+      "url": "/images/product001.png",
+      "altText": "Lipstick Red",
       "width": 800,
       "height": 800
     },
@@ -152,13 +152,13 @@
     "price": 15.99,
     "images": [
       {
-        "url": "/images/product003.png",
+        "url": "/images/product003.svg",
         "altText": "Mascara Volume",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product003-2.png",
+        "url": "/images/product003-2.svg",
         "altText": "Mascara Volume Alternative",
         "width": 800,
         "height": 800
@@ -171,7 +171,7 @@
       "hidden-homepage-carousel"
     ],
     "featuredImage": {
-      "url": "/images/product003.png",
+      "url": "/images/product003.svg",
       "altText": "Mascara Volume",
       "width": 800,
       "height": 800
@@ -227,13 +227,13 @@
     "price": 25.99,
     "images": [
       {
-        "url": "/images/product004.png",
+        "url": "/images/product004.svg",
         "altText": "Foundation Light",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product004-2.png",
+        "url": "/images/product004-2.svg",
         "altText": "Foundation Light Alternative",
         "width": 800,
         "height": 800
@@ -244,7 +244,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product004.png",
+      "url": "/images/product004.svg",
       "altText": "Foundation Light",
       "width": 800,
       "height": 800
@@ -300,13 +300,13 @@
     "price": 12.99,
     "images": [
       {
-        "url": "/images/product005.png",
+        "url": "/images/product005.svg",
         "altText": "Blush Pink",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product005-2.png",
+        "url": "/images/product005-2.svg",
         "altText": "Blush Pink Alternative",
         "width": 800,
         "height": 800
@@ -317,7 +317,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product005.png",
+      "url": "/images/product005.svg",
       "altText": "Blush Pink",
       "width": 800,
       "height": 800
@@ -373,13 +373,13 @@
     "price": 14.99,
     "images": [
       {
-        "url": "/images/product006.png",
+        "url": "/images/product006.svg",
         "altText": "Concealer Fair",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product006-2.png",
+        "url": "/images/product006-2.svg",
         "altText": "Concealer Fair Alternative",
         "width": 800,
         "height": 800
@@ -390,7 +390,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product006.png",
+      "url": "/images/product006.svg",
       "altText": "Concealer Fair",
       "width": 800,
       "height": 800
@@ -446,13 +446,13 @@
     "price": 16.99,
     "images": [
       {
-        "url": "/images/product007.png",
+        "url": "/images/product007.svg",
         "altText": "Highlighter Glow",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product007-2.png",
+        "url": "/images/product007-2.svg",
         "altText": "Highlighter Glow Alternative",
         "width": 800,
         "height": 800
@@ -463,7 +463,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product007.png",
+      "url": "/images/product007.svg",
       "altText": "Highlighter Glow",
       "width": 800,
       "height": 800
@@ -519,13 +519,13 @@
     "price": 17.99,
     "images": [
       {
-        "url": "/images/product008.png",
+        "url": "/images/product008.svg",
         "altText": "Bronzer Sun",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product008-2.png",
+        "url": "/images/product008-2.svg",
         "altText": "Bronzer Sun Alternative",
         "width": 800,
         "height": 800
@@ -536,7 +536,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product008.png",
+      "url": "/images/product008.svg",
       "altText": "Bronzer Sun",
       "width": 800,
       "height": 800
@@ -592,13 +592,13 @@
     "price": 11.99,
     "images": [
       {
-        "url": "/images/product009.png",
+        "url": "/images/product009.svg",
         "altText": "Lip Gloss Shine",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product009-2.png",
+        "url": "/images/product009-2.svg",
         "altText": "Lip Gloss Shine Alternative",
         "width": 800,
         "height": 800
@@ -609,7 +609,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product009.png",
+      "url": "/images/product009.svg",
       "altText": "Lip Gloss Shine",
       "width": 800,
       "height": 800
@@ -665,13 +665,13 @@
     "price": 10.99,
     "images": [
       {
-        "url": "/images/product010.png",
+        "url": "/images/product010.svg",
         "altText": "Brow Pencil Brown",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product010-2.png",
+        "url": "/images/product010-2.svg",
         "altText": "Brow Pencil Brown Alternative",
         "width": 800,
         "height": 800
@@ -682,7 +682,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product010.png",
+      "url": "/images/product010.svg",
       "altText": "Brow Pencil Brown",
       "width": 800,
       "height": 800
@@ -736,13 +736,13 @@
     "price": 13.99,
     "images": [
       {
-        "url": "/images/product011.png",
+        "url": "/images/product011.svg",
         "altText": "Setting Spray",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product011-2.png",
+        "url": "/images/product011-2.svg",
         "altText": "Setting Spray Alternative",
         "width": 800,
         "height": 800
@@ -755,7 +755,7 @@
     "handle": "setting-spray",
     "descriptionHtml": "<p>Xịt giữ lớp trang điểm lâu trôi</p>",
     "featuredImage": {
-      "url": "/images/product011.png",
+      "url": "/images/product011.svg",
       "altText": "Setting Spray",
       "width": 800,
       "height": 800
@@ -809,13 +809,13 @@
     "price": 18.99,
     "images": [
       {
-        "url": "/images/product012.png",
+        "url": "/images/product012.svg",
         "altText": "Primer Smooth",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product012-2.png",
+        "url": "/images/product012-2.svg",
         "altText": "Primer Smooth Alternative",
         "width": 800,
         "height": 800
@@ -828,7 +828,7 @@
     "handle": "primer-smooth",
     "descriptionHtml": "<p>Kem lót mịn da</p>",
     "featuredImage": {
-      "url": "/images/product012.png",
+      "url": "/images/product012.svg",
       "altText": "Primer Smooth",
       "width": 800,
       "height": 800
@@ -882,13 +882,13 @@
     "price": 15.49,
     "images": [
       {
-        "url": "/images/product013.png",
+        "url": "/images/product013.svg",
         "altText": "Contour Stick",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product013-2.png",
+        "url": "/images/product013-2.svg",
         "altText": "Contour Stick Alternative",
         "width": 800,
         "height": 800
@@ -901,7 +901,7 @@
     "handle": "contour-stick",
     "descriptionHtml": "<p>Thanh tạo khối dễ dùng</p>",
     "featuredImage": {
-      "url": "/images/product013.png",
+      "url": "/images/product013.svg",
       "altText": "Contour Stick",
       "width": 800,
       "height": 800
@@ -955,13 +955,13 @@
     "price": 8.99,
     "images": [
       {
-        "url": "/images/product014.png",
+        "url": "/images/product014.svg",
         "altText": "Lip Balm",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product014-2.png",
+        "url": "/images/product014-2.svg",
         "altText": "Lip Balm Alternative",
         "width": 800,
         "height": 800
@@ -974,7 +974,7 @@
     "handle": "lip-balm",
     "descriptionHtml": "<p>Son dưỡng môi thiên nhiên</p>",
     "featuredImage": {
-      "url": "/images/product014.png",
+      "url": "/images/product014.svg",
       "altText": "Lip Balm",
       "width": 800,
       "height": 800
@@ -1028,13 +1028,13 @@
     "price": 29.99,
     "images": [
       {
-        "url": "/images/product015.png",
+        "url": "/images/product015.svg",
         "altText": "Eye Shadow Palette",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product015-2.png",
+        "url": "/images/product015-2.svg",
         "altText": "Eye Shadow Palette Alternative",
         "width": 800,
         "height": 800
@@ -1047,7 +1047,7 @@
     "handle": "eye-shadow-palette",
     "descriptionHtml": "<p>Bảng màu mắt đa sắc</p>",
     "featuredImage": {
-      "url": "/images/product015.png",
+      "url": "/images/product015.svg",
       "altText": "Eye Shadow Palette",
       "width": 800,
       "height": 800
@@ -1101,13 +1101,13 @@
     "price": 13.49,
     "images": [
       {
-        "url": "/images/product016.png",
+        "url": "/images/product016.svg",
         "altText": "Makeup Remover",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product016-2.png",
+        "url": "/images/product016-2.svg",
         "altText": "Makeup Remover Alternative",
         "width": 800,
         "height": 800
@@ -1120,7 +1120,7 @@
     "handle": "makeup-remover",
     "descriptionHtml": "<p>Nước tẩy trang dịu nhẹ</p>",
     "featuredImage": {
-      "url": "/images/product016.png",
+      "url": "/images/product016.svg",
       "altText": "Makeup Remover",
       "width": 800,
       "height": 800
@@ -1174,13 +1174,13 @@
     "price": 7.99,
     "images": [
       {
-        "url": "/images/product017.png",
+        "url": "/images/product017.svg",
         "altText": "Eyelash Curler",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product017-2.png",
+        "url": "/images/product017-2.svg",
         "altText": "Eyelash Curler Alternative",
         "width": 800,
         "height": 800
@@ -1193,7 +1193,7 @@
     "handle": "eyelash-curler",
     "descriptionHtml": "<p>Kẹp mi cong tự nhiên</p>",
     "featuredImage": {
-      "url": "/images/product017.png",
+      "url": "/images/product017.svg",
       "altText": "Eyelash Curler",
       "width": 800,
       "height": 800
@@ -1247,13 +1247,13 @@
     "price": 15.99,
     "images": [
       {
-        "url": "/images/product018.png",
+        "url": "/images/product018.svg",
         "altText": "Face Powder",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product018-2.png",
+        "url": "/images/product018-2.svg",
         "altText": "Face Powder Alternative",
         "width": 800,
         "height": 800
@@ -1266,7 +1266,7 @@
     "handle": "face-powder",
     "descriptionHtml": "<p>Phấn phủ kiểm dầu</p>",
     "featuredImage": {
-      "url": "/images/product018.png",
+      "url": "/images/product018.svg",
       "altText": "Face Powder",
       "width": 800,
       "height": 800
@@ -1320,13 +1320,13 @@
     "price": 12.49,
     "images": [
       {
-        "url": "/images/product019.png",
+        "url": "/images/product019.svg",
         "altText": "Lip Tint",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product019-2.png",
+        "url": "/images/product019-2.svg",
         "altText": "Lip Tint Alternative",
         "width": 800,
         "height": 800
@@ -1339,7 +1339,7 @@
     "handle": "lip-tint",
     "descriptionHtml": "<p>Son tint lâu trôi</p>",
     "featuredImage": {
-      "url": "/images/product019.png",
+      "url": "/images/product019.svg",
       "altText": "Lip Tint",
       "width": 800,
       "height": 800
@@ -1393,13 +1393,13 @@
     "price": 21.99,
     "images": [
       {
-        "url": "/images/product020.png",
+        "url": "/images/product020.svg",
         "altText": "BB Cream",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product020-2.png",
+        "url": "/images/product020-2.svg",
         "altText": "BB Cream Alternative",
         "width": 800,
         "height": 800
@@ -1412,7 +1412,7 @@
     "handle": "bb-cream",
     "descriptionHtml": "<p>Kem nền BB đa năng</p>",
     "featuredImage": {
-      "url": "/images/product020.png",
+      "url": "/images/product020.svg",
       "altText": "BB Cream",
       "width": 800,
       "height": 800
@@ -1466,13 +1466,13 @@
     "price": 22.99,
     "images": [
       {
-        "url": "/images/product021.png",
+        "url": "/images/product021.svg",
         "altText": "CC Cream",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product021-2.png",
+        "url": "/images/product021-2.svg",
         "altText": "CC Cream Alternative",
         "width": 800,
         "height": 800
@@ -1485,7 +1485,7 @@
     "handle": "cc-cream",
     "descriptionHtml": "<p>Kem nền CC hiệu chỉnh màu</p>",
     "featuredImage": {
-      "url": "/images/product021.png",
+      "url": "/images/product021.svg",
       "altText": "CC Cream",
       "width": 800,
       "height": 800
@@ -1539,13 +1539,13 @@
     "price": 9.49,
     "images": [
       {
-        "url": "/images/product022.png",
+        "url": "/images/product022.svg",
         "altText": "Lip Liner",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product022-2.png",
+        "url": "/images/product022-2.svg",
         "altText": "Lip Liner Alternative",
         "width": 800,
         "height": 800
@@ -1558,7 +1558,7 @@
     "handle": "lip-liner",
     "descriptionHtml": "<p>Chì viền môi chống lem</p>",
     "featuredImage": {
-      "url": "/images/product022.png",
+      "url": "/images/product022.svg",
       "altText": "Lip Liner",
       "width": 800,
       "height": 800
@@ -1612,13 +1612,13 @@
     "price": 6.99,
     "images": [
       {
-        "url": "/images/product023.png",
+        "url": "/images/product023.svg",
         "altText": "Makeup Sponge",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product023-2.png",
+        "url": "/images/product023-2.svg",
         "altText": "Makeup Sponge Alternative",
         "width": 800,
         "height": 800
@@ -1631,7 +1631,7 @@
     "handle": "makeup-sponge",
     "descriptionHtml": "<p>Mút tán nền mềm mại</p>",
     "featuredImage": {
-      "url": "/images/product023.png",
+      "url": "/images/product023.svg",
       "altText": "Makeup Sponge",
       "width": 800,
       "height": 800
@@ -1685,13 +1685,13 @@
     "price": 24.99,
     "images": [
       {
-        "url": "/images/product024.png",
+        "url": "/images/product024.svg",
         "altText": "Face Serum",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product024-2.png",
+        "url": "/images/product024-2.svg",
         "altText": "Face Serum Alternative",
         "width": 800,
         "height": 800
@@ -1704,7 +1704,7 @@
     "handle": "face-serum",
     "descriptionHtml": "<p>Serum dưỡng da căng bóng</p>",
     "featuredImage": {
-      "url": "/images/product024.png",
+      "url": "/images/product024.svg",
       "altText": "Face Serum",
       "width": 800,
       "height": 800
@@ -1758,13 +1758,13 @@
     "price": 19.49,
     "images": [
       {
-        "url": "/images/product025.png",
+        "url": "/images/product025.svg",
         "altText": "Moisturizer Cream",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product025-2.png",
+        "url": "/images/product025-2.svg",
         "altText": "Moisturizer Cream Alternative",
         "width": 800,
         "height": 800
@@ -1777,7 +1777,7 @@
     "handle": "moisturizer-cream",
     "descriptionHtml": "<p>Kem dưỡng ẩm da mặt</p>",
     "featuredImage": {
-      "url": "/images/product025.png",
+      "url": "/images/product025.svg",
       "altText": "Moisturizer Cream",
       "width": 800,
       "height": 800
@@ -1831,13 +1831,13 @@
     "price": 17.99,
     "images": [
       {
-        "url": "/images/product026.png",
+        "url": "/images/product026.svg",
         "altText": "Sunscreen SPF50",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product026-2.png",
+        "url": "/images/product026-2.svg",
         "altText": "Sunscreen SPF50 Alternative",
         "width": 800,
         "height": 800
@@ -1850,7 +1850,7 @@
     "handle": "sunscreen-spf50",
     "descriptionHtml": "<p>Kem chống nắng SPF50</p>",
     "featuredImage": {
-      "url": "/images/product026.png",
+      "url": "/images/product026.svg",
       "altText": "Sunscreen SPF50",
       "width": 800,
       "height": 800
@@ -1904,13 +1904,13 @@
     "price": 13.99,
     "images": [
       {
-        "url": "/images/product027.png",
+        "url": "/images/product027.svg",
         "altText": "Cleansing Foam",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product027-2.png",
+        "url": "/images/product027-2.svg",
         "altText": "Cleansing Foam Alternative",
         "width": 800,
         "height": 800
@@ -1923,7 +1923,7 @@
     "handle": "cleansing-foam",
     "descriptionHtml": "<p>Sữa rửa mặt tạo bọt dịu nhẹ</p>",
     "featuredImage": {
-      "url": "/images/product027.png",
+      "url": "/images/product027.svg",
       "altText": "Cleansing Foam",
       "width": 800,
       "height": 800
@@ -1977,13 +1977,13 @@
     "price": 14.99,
     "images": [
       {
-        "url": "/images/product028.png",
+        "url": "/images/product028.svg",
         "altText": "Toner Fresh",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product028-2.png",
+        "url": "/images/product028-2.svg",
         "altText": "Toner Fresh Alternative",
         "width": 800,
         "height": 800
@@ -1996,7 +1996,7 @@
     "handle": "toner-fresh",
     "descriptionHtml": "<p>Nước cân bằng da tươi mát</p>",
     "featuredImage": {
-      "url": "/images/product028.png",
+      "url": "/images/product028.svg",
       "altText": "Toner Fresh",
       "width": 800,
       "height": 800
@@ -2050,13 +2050,13 @@
     "price": 4.99,
     "images": [
       {
-        "url": "/images/product029.png",
+        "url": "/images/product029.svg",
         "altText": "Sheet Mask",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product029-2.png",
+        "url": "/images/product029-2.svg",
         "altText": "Sheet Mask Alternative",
         "width": 800,
         "height": 800
@@ -2069,7 +2069,7 @@
     "handle": "sheet-mask",
     "descriptionHtml": "<p>Mặt nạ giấy dưỡng ẩm</p>",
     "featuredImage": {
-      "url": "/images/product029.png",
+      "url": "/images/product029.svg",
       "altText": "Sheet Mask",
       "width": 800,
       "height": 800
@@ -2123,13 +2123,13 @@
     "price": 16.99,
     "images": [
       {
-        "url": "/images/product030.png",
+        "url": "/images/product030.svg",
         "altText": "Body Lotion",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product030-2.png",
+        "url": "/images/product030-2.svg",
         "altText": "Body Lotion Alternative",
         "width": 800,
         "height": 800
@@ -2142,7 +2142,7 @@
     "handle": "body-lotion",
     "descriptionHtml": "<p>Sữa dưỡng thể mềm mịn</p>",
     "featuredImage": {
-      "url": "/images/product030.png",
+      "url": "/images/product030.svg",
       "altText": "Body Lotion",
       "width": 800,
       "height": 800
@@ -2196,13 +2196,13 @@
     "price": 7.99,
     "images": [
       {
-        "url": "/images/product031.png",
+        "url": "/images/product031.svg",
         "altText": "Hand Cream",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product031-2.png",
+        "url": "/images/product031-2.svg",
         "altText": "Hand Cream Alternative",
         "width": 800,
         "height": 800
@@ -2215,7 +2215,7 @@
     "handle": "hand-cream",
     "descriptionHtml": "<p>Kem dưỡng da tay hương thơm nhẹ</p>",
     "featuredImage": {
-      "url": "/images/product031.png",
+      "url": "/images/product031.svg",
       "altText": "Hand Cream",
       "width": 800,
       "height": 800
@@ -2269,13 +2269,13 @@
     "price": 5.99,
     "images": [
       {
-        "url": "/images/product032.png",
+        "url": "/images/product032.svg",
         "altText": "Foot Mask",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product032-2.png",
+        "url": "/images/product032-2.svg",
         "altText": "Foot Mask Alternative",
         "width": 800,
         "height": 800
@@ -2288,7 +2288,7 @@
     "handle": "foot-mask",
     "descriptionHtml": "<p>Mặt nạ dưỡng da chân</p>",
     "featuredImage": {
-      "url": "/images/product032.png",
+      "url": "/images/product032.svg",
       "altText": "Foot Mask",
       "width": 800,
       "height": 800
@@ -2342,13 +2342,13 @@
     "price": 18.99,
     "images": [
       {
-        "url": "/images/product033.png",
+        "url": "/images/product033.svg",
         "altText": "Hair Serum",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product033-2.png",
+        "url": "/images/product033-2.svg",
         "altText": "Hair Serum Alternative",
         "width": 800,
         "height": 800
@@ -2361,7 +2361,7 @@
     "handle": "hair-serum",
     "descriptionHtml": "<p>Serum dưỡng tóc bóng mượt</p>",
     "featuredImage": {
-      "url": "/images/product033.png",
+      "url": "/images/product033.svg",
       "altText": "Hair Serum",
       "width": 800,
       "height": 800
@@ -2415,13 +2415,13 @@
     "price": 15.99,
     "images": [
       {
-        "url": "/images/product034.png",
+        "url": "/images/product034.svg",
         "altText": "Shampoo Fresh",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product034-2.png",
+        "url": "/images/product034-2.svg",
         "altText": "Shampoo Fresh Alternative",
         "width": 800,
         "height": 800
@@ -2434,7 +2434,7 @@
     "handle": "shampoo-fresh",
     "descriptionHtml": "<p>Dầu gội sạch da đầu</p>",
     "featuredImage": {
-      "url": "/images/product034.png",
+      "url": "/images/product034.svg",
       "altText": "Shampoo Fresh",
       "width": 800,
       "height": 800

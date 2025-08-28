@@ -6,39 +6,17 @@ import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
-import fs from 'fs';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { Image, Product } from 'lib/types';
+import { getProductByHandleOrId, getProductRecommendations } from 'lib/shopify';
+import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
-import path from 'path';
 import { Suspense } from 'react';
-
-async function getProductByHandleOrIdLocal(handle: string): Promise<Product | null> {
-  const productsPath = path.join(process.cwd(), 'data', 'products.json');
-  const productsData = fs.readFileSync(productsPath, 'utf8');
-  const products: Product[] = JSON.parse(productsData);
-
-  // Try to find by handle first, then by id
-  return products.find(product => product.handle === handle || product.id === handle) || null;
-}
-
-async function getProductRecommendationsLocal(productId: string): Promise<Product[]> {
-  const productsPath = path.join(process.cwd(), 'data', 'products.json');
-  const productsData = fs.readFileSync(productsPath, 'utf8');
-  const products: Product[] = JSON.parse(productsData);
-
-  // Return random products as recommendations (excluding current product)
-  return products
-    .filter(product => product.id !== productId)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 4);
-}
 
 export async function generateMetadata(props: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const product = await getProductByHandleOrIdLocal(params.handle);
+  const product = await getProductByHandleOrId(params.handle);
 
   if (!product) return notFound();
 
@@ -73,7 +51,7 @@ export async function generateMetadata(props: {
 
 export default async function ProductPage(props: { params: Promise<{ handle: string }> }) {
   const params = await props.params;
-  const product = await getProductByHandleOrIdLocal(params.handle);
+  const product = await getProductByHandleOrId(params.handle);
 
   if (!product) return notFound();
 
@@ -82,7 +60,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
     '@type': 'Product',
     name: product.title,
     description: product.description,
-    image: product.featuredImage?.url || '/images/product001.png',
+    image: product.featuredImage?.url || '',
     offers: {
       '@type': 'AggregateOffer',
       availability: product.availableForSale
@@ -113,7 +91,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
               <Gallery
                 images={product.images.slice(0, 5).map((image: Image) => ({
                   src: image.url,
-                  altText: image.altText || 'Product image'
+                  altText: image.altText
                 }))}
               />
             </Suspense>
@@ -133,7 +111,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
 }
 
 async function RelatedProducts({ id }: { id: string }) {
-  const relatedProducts = await getProductRecommendationsLocal(id);
+  const relatedProducts = await getProductRecommendations(id);
 
   if (!relatedProducts.length) return null;
 
@@ -141,7 +119,7 @@ async function RelatedProducts({ id }: { id: string }) {
     <div className="py-8">
       <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
       <ul className="flex w-full gap-4 overflow-x-auto pt-1">
-        {relatedProducts.map((product: Product) => (
+        {relatedProducts.map((product) => (
           <li
             key={product.handle}
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
@@ -158,7 +136,7 @@ async function RelatedProducts({ id }: { id: string }) {
                   amount: product.priceRange.maxVariantPrice.amount,
                   currencyCode: product.priceRange.maxVariantPrice.currencyCode
                 }}
-                src={product.featuredImage?.url || '/images/product001.png'}
+                src={product.featuredImage?.url || ''}
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
               />

@@ -3,7 +3,7 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { GridTileImage } from 'components/grid/tile';
 import { useProduct, useUpdateURL } from 'components/product/product-context';
-// Use plain picture/img to ensure server-rendered <img src> is present
+import Image from 'next/image';
 
 export function Gallery({ images }: { images: { src: string; altText: string }[] }) {
   const { state, updateImage } = useProduct();
@@ -20,27 +20,14 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
     <form>
       <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
         {images[imageIndex] && (
-          <picture className="h-full w-full block">
-            {/* Prefer AVIF when provided, fall back to png */}
-            {images[imageIndex].src.endsWith('.avif') && (
-              <source srcSet={images[imageIndex].src} type="image/avif" />
-            )}
-            {images[imageIndex].src.endsWith('.webp') && (
-              <source srcSet={images[imageIndex].src} type="image/webp" />
-            )}
-            {/* Fallback to same path (browser will pick correct source) */}
-            {/* If AVIF exists, also offer a PNG fallback by filename replacement */}
-            {images[imageIndex].src.endsWith('.avif') && (
-              <source srcSet={images[imageIndex].src.replace(/\.avif$/, '.png')} type="image/png" />
-            )}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="h-full w-full object-contain"
-              src={images[imageIndex].src}
-              alt={images[imageIndex]?.altText as string}
-              loading={imageIndex === 0 ? 'eager' : 'lazy'}
-            />
-          </picture>
+          <Image
+            className="h-full w-full object-contain"
+            fill
+            sizes="(min-width: 1024px) 66vw, 100vw"
+            alt={images[imageIndex]?.altText as string}
+            src={images[imageIndex]?.src as string}
+            priority={true}
+          />
         )}
 
         {images.length > 1 ? (

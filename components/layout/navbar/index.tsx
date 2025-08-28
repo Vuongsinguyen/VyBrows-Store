@@ -1,6 +1,7 @@
 import CartModal from 'components/cart/modal';
 import LogoSquare from 'components/logo-square';
-import { Menu } from 'lib/types';
+import { getMenu } from 'lib/shopify';
+import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
@@ -9,12 +10,7 @@ import Search, { SearchSkeleton } from './search';
 const { SITE_NAME } = process.env;
 
 export async function Navbar() {
-  // Use local menu instead of Shopify API
-  const menu: Menu[] = [
-    { title: 'Home', path: '/' },
-    { title: 'Search', path: '/search' },
-    { title: 'About', path: '/about' }
-  ];
+  const menu = await getMenu('next-js-frontend-header-menu');
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
