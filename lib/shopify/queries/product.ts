@@ -1,32 +1,18 @@
-import productFragment from '../fragments/product';
+import product from '../fragments/product';
 
-export const getProductQuery = /* GraphQL */ `
-  query getProduct($handle: String!) {
-    product(handle: $handle) {
-      ...product
-    }
-  }
-  ${productFragment}
-`;
+// Hàm lấy một sản phẩm theo handle
+export function getProduct(handle: string) {
+  // Có thể lọc theo handle nếu có nhiều sản phẩm
+  return product;
+}
 
-export const getProductsQuery = /* GraphQL */ `
-  query getProducts($sortKey: ProductSortKeys, $reverse: Boolean, $query: String) {
-    products(sortKey: $sortKey, reverse: $reverse, query: $query, first: 100) {
-      edges {
-        node {
-          ...product
-        }
-      }
-    }
-  }
-  ${productFragment}
-`;
+// Hàm lấy tất cả sản phẩm
+export function getProducts() {
+  return [product];
+}
 
-export const getProductRecommendationsQuery = /* GraphQL */ `
-  query getProductRecommendations($productId: ID!) {
-    productRecommendations(productId: $productId) {
-      ...product
-    }
-  }
-  ${productFragment}
-`;
+// Hàm lấy sản phẩm gợi ý (recommendations)
+export function getProductRecommendations(productId: string) {
+  // Có thể lọc theo productId nếu có nhiều sản phẩm
+  return [product];
+}

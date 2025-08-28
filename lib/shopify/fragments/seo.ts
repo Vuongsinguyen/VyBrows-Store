@@ -1,8 +1,8 @@
-const seoFragment = /* GraphQL */ `
-  fragment seo on SEO {
-    description
-    title
-  }
-`;
+// Mock SEO data thay cho seoFragment
 
-export default seoFragment;
+const seo = {
+  title: 'Sản phẩm 1',
+  description: 'SEO mô tả sản phẩm 1'
+};
+
+export default seo;

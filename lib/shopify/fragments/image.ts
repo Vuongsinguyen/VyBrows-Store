@@ -1,10 +1,10 @@
-const imageFragment = /* GraphQL */ `
-  fragment image on Image {
-    url
-    altText
-    width
-    height
-  }
-`;
+// Mock image data thay cho imageFragment
 
-export default imageFragment;
+const image = {
+  url: '/images/sp1.jpg',
+  altText: 'Sản phẩm 1',
+  width: 600,
+  height: 600
+};
+
+export default image;

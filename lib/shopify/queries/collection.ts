@@ -1,56 +1,29 @@
-import productFragment from '../fragments/product';
-import seoFragment from '../fragments/seo';
+import product from '../fragments/product';
+import seo from '../fragments/seo';
 
-const collectionFragment = /* GraphQL */ `
-  fragment collection on Collection {
-    handle
-    title
-    description
-    seo {
-      ...seo
-    }
-    updatedAt
-  }
-  ${seoFragment}
-`;
+// Mock collection data
+const collection = {
+  handle: 'collection-1',
+  title: 'Bộ sưu tập 1',
+  description: 'Mô tả bộ sưu tập 1',
+  seo,
+  updatedAt: '2025-08-28',
+  products: [product]
+};
 
-export const getCollectionQuery = /* GraphQL */ `
-  query getCollection($handle: String!) {
-    collection(handle: $handle) {
-      ...collection
-    }
-  }
-  ${collectionFragment}
-`;
+// Hàm lấy một collection theo handle
+export function getCollection(handle: string) {
+  // Có thể lọc theo handle nếu có nhiều collection
+  return collection;
+}
 
-export const getCollectionsQuery = /* GraphQL */ `
-  query getCollections {
-    collections(first: 100, sortKey: TITLE) {
-      edges {
-        node {
-          ...collection
-        }
-      }
-    }
-  }
-  ${collectionFragment}
-`;
+// Hàm lấy tất cả collections
+export function getCollections() {
+  return [collection];
+}
 
-export const getCollectionProductsQuery = /* GraphQL */ `
-  query getCollectionProducts(
-    $handle: String!
-    $sortKey: ProductCollectionSortKeys
-    $reverse: Boolean
-  ) {
-    collection(handle: $handle) {
-      products(sortKey: $sortKey, reverse: $reverse, first: 100) {
-        edges {
-          node {
-            ...product
-          }
-        }
-      }
-    }
-  }
-  ${productFragment}
-`;
+// Hàm lấy sản phẩm của một collection
+export function getCollectionProducts(handle: string) {
+  // Có thể lọc theo handle nếu có nhiều collection
+  return [product];
+}

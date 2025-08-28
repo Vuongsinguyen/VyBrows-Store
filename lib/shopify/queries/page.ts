@@ -1,41 +1,24 @@
-import seoFragment from '../fragments/seo';
+import seo from '../fragments/seo';
 
-const pageFragment = /* GraphQL */ `
-  fragment page on Page {
-    ... on Page {
-      id
-      title
-      handle
-      body
-      bodySummary
-      seo {
-        ...seo
-      }
-      createdAt
-      updatedAt
-    }
-  }
-  ${seoFragment}
-`;
+// Mock page data
+const page = {
+  id: 'page-1',
+  title: 'Giới thiệu',
+  handle: 'gioi-thieu',
+  body: 'Nội dung trang giới thiệu',
+  bodySummary: 'Tóm tắt trang giới thiệu',
+  seo,
+  createdAt: '2025-08-01',
+  updatedAt: '2025-08-28'
+};
 
-export const getPageQuery = /* GraphQL */ `
-  query getPage($handle: String!) {
-    pageByHandle(handle: $handle) {
-      ...page
-    }
-  }
-  ${pageFragment}
-`;
+// Hàm lấy một page theo handle
+export function getPage(handle: string) {
+  // Có thể lọc theo handle nếu có nhiều page
+  return page;
+}
 
-export const getPagesQuery = /* GraphQL */ `
-  query getPages {
-    pages(first: 100) {
-      edges {
-        node {
-          ...page
-        }
-      }
-    }
-  }
-  ${pageFragment}
-`;
+// Hàm lấy tất cả pages
+export function getPages() {
+  return [page];
+}
