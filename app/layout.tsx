@@ -6,6 +6,7 @@ import { baseUrl } from 'lib/utils';
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
+import './lora-font.css';
 
 const { SITE_NAME } = process.env;
 
