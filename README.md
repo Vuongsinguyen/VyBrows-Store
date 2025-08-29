@@ -1,22 +1,26 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fcommerce&project-name=commerce&repo-name=commerce&demo-title=Next.js%20Commerce&demo-url=https%3A%2F%2Fdemo.vercel.store&demo-image=https%3A%2F%2Fbigcommerce-demo-asset-ksvtgfvnd.vercel.app%2Fbigcommerce.png&env=COMPANY_NAME,SHOPIFY_REVALIDATION_SECRET,SHOPIFY_STORE_DOMAIN,SHOPIFY_STOREFRONT_ACCESS_TOKEN,SITE_NAME)
+# VyBrows-Store
 
-# Next.js Commerce
+A high-performance, server-rendered Next.js App Router ecommerce application with local data implementation.
 
-A high-performance, server-rendered Next.js App Router ecommerce application.
+This store uses React Server Components, Server Actions, `Suspense`, `useOptimistic`, and more. Currently running with local product data, no external commerce provider integration required.
 
-This template uses React Server Components, Server Actions, `Suspense`, `useOptimistic`, and more.
+## About This Store
 
-<h3 id="v1-note"></h3>
+VyBrows-Store is a customized version of Next.js Commerce template, adapted to run with local data instead of external commerce providers like Shopify. This allows for:
 
-> Note: Looking for Next.js Commerce v1? View the [code](https://github.com/vercel/commerce/tree/v1), [demo](https://commerce-v1.vercel.store), and [release notes](https://github.com/vercel/commerce/releases/tag/v1).
+- Faster development and testing
+- No dependency on external APIs
+- Full control over product data
+- Easy customization and deployment
 
-## Providers
+## Features
 
-Vercel will only be actively maintaining a Shopify version [as outlined in our vision and strategy for Next.js Commerce](https://github.com/vercel/commerce/pull/966).
-
-Vercel is happy to partner and work with any commerce provider to help them get a similar template up and running and listed below. Alternative providers should be able to fork this repository and swap out the `lib/shopify` file with their own implementation while leaving the rest of the template mostly unchanged.
-
-- Shopify (this repository)
+- 🛒 Shopping cart with persistent state
+- 🔍 Product search and filtering
+- 📱 Responsive design
+- ⚡ Server-side rendering
+- 🎨 Modern UI with Tailwind CSS
+- 📦 Local product data management
 - [BigCommerce](https://github.com/bigcommerce/nextjs-commerce) ([Demo](https://next-commerce-v2.vercel.app/))
 - [Ecwid by Lightspeed](https://github.com/Ecwid/ecwid-nextjs-commerce/) ([Demo](https://ecwid-nextjs-commerce.vercel.app/))
 - [Geins](https://github.com/geins-io/vercel-nextjs-commerce) ([Demo](https://geins-nextjs-commerce-starter.vercel.app/))
@@ -45,31 +49,41 @@ Integrations enable upgraded or additional functionality for Next.js Commerce
 
 ## Running locally
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Commerce. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+VyBrows-Store runs with local data, so you only need minimal environment setup:
 
-> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control your Shopify store.
+1. Copy the environment variables from `.env.example`:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
+2. Update the values in `.env.local` as needed (only `SITE_NAME` is required for local development)
 
-```bash
-pnpm install
-pnpm dev
-```
+3. Install dependencies and run:
+   ```bash
+   pnpm install
+   pnpm dev
+   ```
 
-Your app should now be running on [localhost:3000](http://localhost:3000/).
+Your store should now be running on [localhost:3000](http://localhost:3000/).
 
-<details>
-  <summary>Expand if you work at Vercel and want to run locally and / or contribute</summary>
+> **Note:** Since this uses local data, you don't need to set up Vercel CLI or external API connections for basic development.
 
-1. Run `vc link`.
-1. Select the `Vercel Solutions` scope.
-1. Connect to the existing `commerce-shopify` project.
-1. Run `vc env pull` to get environment variables.
-1. Run `pnpm dev` to ensure everything is working correctly.
-</details>
+## Customization & Data Management
 
-## Vercel, Next.js Commerce, and Shopify Integration Guide
+### Local Product Data
+- Product data is stored in `data/products.json`
+- Images are stored in `public/images/`
+- Use the provided scripts to update products:
+  - `analyze-products.js` - Analyze product data
+  - `update-products.js` - Update product information
+  - `create-dummy-images.sh` - Generate placeholder images
 
-You can use this comprehensive [integration guide](https://vercel.com/docs/integrations/ecommerce/shopify) with step-by-step instructions on how to configure Shopify as a headless CMS using Next.js Commerce as your headless Shopify storefront on Vercel.
+### Switching to External Providers
+If you want to connect to an external commerce provider (Shopify, BigCommerce, etc.), you can:
+
+1. Add the provider's implementation in `lib/[provider]/`
+2. Update the data fetching functions to use external APIs
+3. Configure the appropriate environment variables
+4. Update the cart and product components accordingly
+
+The current architecture is designed to be easily adaptable to different commerce backends.

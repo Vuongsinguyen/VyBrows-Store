@@ -1,5 +1,5 @@
-// Local type definitions for the store
-// These types are based on the original Shopify types but simplified for local use
+// Local type definitions for VyBrows-Store
+// These types are designed for local data implementation and can be adapted for external providers
 
 export type Image = {
   url: string;
