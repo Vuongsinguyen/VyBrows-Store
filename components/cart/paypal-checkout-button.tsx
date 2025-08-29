@@ -56,8 +56,9 @@ export default function PayPalCheckoutButton({
   // Get the first item from cart for PayPal order
   const firstItem = cart.items[0];
 
-  // Get PayPal client ID from environment variables
+  // Get PayPal client ID and environment from environment variables
   const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
+  const paypalEnvironment = process.env.NEXT_PUBLIC_PAYPAL_ENVIRONMENT || 'sandbox';
 
   useEffect(() => {
     // Only load PayPal SDK if we have items in cart and client ID is available
@@ -78,7 +79,7 @@ export default function PayPalCheckoutButton({
         paypalRef.current.innerHTML = '';
       }
     };
-  }, [firstItem, disabled, paypalClientId]);
+  }, [firstItem, disabled, paypalClientId, paypalEnvironment]);
 
   /**
    * Load PayPal SDK with proper error handling and race condition prevention
@@ -110,8 +111,11 @@ export default function PayPalCheckoutButton({
     console.log('📦 Loading PayPal SDK...');
 
     // Create and load the PayPal SDK script
+    const paypalEndpoint = paypalEnvironment === 'production' 
+      ? 'https://www.paypal.com/sdk/js'
+      : 'https://www.sandbox.paypal.com/sdk/js';
     const script = document.createElement('script');
-    script.src = `https://www.paypal.com/sdk/js?client-id=${paypalClientId}&currency=USD&components=buttons&enable-funding=venmo`;
+    script.src = `${paypalEndpoint}?client-id=${paypalClientId}&currency=USD&components=buttons&enable-funding=venmo`;
     script.async = true;
     script.crossOrigin = 'anonymous';
 
