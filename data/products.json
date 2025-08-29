@@ -82,15 +82,27 @@
   },
   {
     "id": "2",
-    "handle": "eyeliner-black",
-    "title": "Eyeliner Black",
-    "description": "Waterproof black eyeliner",
-    "descriptionHtml": "<p>Waterproof black eyeliner for precise application</p>",
+    "handle": "DRANMD",
+    "title": "DRANMD",
+    "description": "Target epidermal melasma with the synergistic duo of 3% Mandelic Acid and 10% Glycolic Acid.",
+    "descriptionHtml": "<p>Target epidermal melasma with the synergistic duo of 3% Mandelic Acid and 10% Glycolic Acid.</p>",
     "price": 9.99,
     "images": [
       {
         "url": "/images/product002.avif",
-        "altText": "Eyeliner Black",
+        "altText": "DRANMD",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product002-2.avif",
+        "altText": "DRANMD-2",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product002-3.avif",
+        "altText": "DRANMD-3",
         "width": 800,
         "height": 800
       }
@@ -103,12 +115,12 @@
     ],
     "featuredImage": {
       "url": "/images/product002.avif",
-      "altText": "Eyeliner Black",
+      "altText": "DRANMD",
       "width": 800,
       "height": 800
     },
     "seo": {
-      "title": "Eyeliner Black - Waterproof Formula",
+      "title": "DRANMD - Waterproof Formula",
       "description": "Waterproof black eyeliner for precise application"
     },
     "availableForSale": true,
@@ -127,19 +139,19 @@
         "id": "color",
         "name": "Color",
         "values": [
-          "Black"
+          "DRANMD"
         ]
       }
     ],
     "variants": [
       {
         "id": "variant-2",
-        "title": "Black",
+        "title": "DRANMD",
         "availableForSale": true,
         "selectedOptions": [
           {
             "name": "Color",
-            "value": "Black"
+            "value": "DRANMD"
           }
         ],
         "price": {
