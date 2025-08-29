@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# PayPal Sandbox Account Generator
+# This script helps create PayPal sandbox test accounts
+
+echo "🎯 PayPal Sandbox Account Setup Helper"
+echo "======================================"
+echo ""
+
+echo "📋 Prerequisites:"
+echo "1. PayPal Developer Account: https://developer.paypal.com/"
+echo "2. Sandbox access enabled"
+echo "3. API credentials ready"
+echo ""
+
+echo "🔧 Setup Steps:"
+echo "1. Go to https://developer.paypal.com/"
+echo "2. Login with your PayPal account"
+echo "3. Click 'Sandbox' tab (top right)"
+echo "4. Go to 'Testing Tools' > 'Sandbox Accounts'"
+echo ""
+
+echo "👤 Creating Business Account (Merchant):"
+echo "1. Click 'Create Account'"
+echo "2. Select 'Business' type"
+echo "3. Choose 'Vietnam' as country"
+echo "4. Click 'Create'"
+echo "5. Note the generated email: sb-xxxxx@business.example.com"
+echo ""
+
+echo "🛒 Creating Personal Account (Buyer):"
+echo "1. Click 'Create Account' again"
+echo "2. Select 'Personal' type"
+echo "3. Choose 'Vietnam' as country"
+echo "4. Click 'Create'"
+echo "5. Note the generated email: sb-xxxxx@personal.example.com"
+echo ""
+
+echo "🔑 Getting API Credentials:"
+echo "1. Go to 'Apps & Credentials'"
+echo "2. Select 'Sandbox' tab"
+echo "3. Find your app (or create new)"
+echo "4. Copy Client ID and Secret"
+echo ""
+
+echo "📝 Environment Variables Template:"
+echo "----------------------------------"
+echo "# .env.local"
+echo "NEXT_PUBLIC_PAYPAL_CLIENT_ID=AZDC...your_client_id"
+echo "PAYPAL_CLIENT_SECRET=your_client_secret"
+echo "PAYPAL_ENVIRONMENT=sandbox"
+echo "NEXT_PUBLIC_SITE_URL=http://localhost:3000"
+echo "----------------------------------"
+echo ""
+
+echo "💳 Test Cards:"
+echo "Visa Success: 4111111111111111"
+echo "Visa Decline: 4000000000000002"
+echo "MasterCard: 5555555555554444"
+echo "(Use any future expiration date and CVV: 123)"
+echo ""
+
+echo "🧪 Test Flow:"
+echo "1. Start dev server: npm run dev"
+echo "2. Add product to cart"
+echo "3. Click PayPal checkout"
+echo "4. Login with sandbox buyer account"
+echo "5. Use test card: 4111111111111111"
+echo "6. Complete payment"
+echo ""
+
+echo "✅ Success Indicators:"
+echo "- Console: '✅ PayPal order created'"
+echo "- Console: '✅ Payment captured successfully'"
+echo "- Alert: 'Payment Successful!'"
+echo "- Cart is cleared automatically"
+echo ""
+
+echo "🔍 If you encounter issues:"
+echo "1. Check browser console for errors"
+echo "2. Verify sandbox credentials"
+echo "3. Test with card: 4111111111111111"
+echo "4. Restart dev server"
+echo ""
+
+echo "📞 Need help?"
+echo "Check: PAYPAL_SANDBOX_SETUP.md"
+echo "Or visit: https://developer.paypal.com/dashboard"
+echo ""
+
+echo "🎉 Ready to test PayPal payments!"
