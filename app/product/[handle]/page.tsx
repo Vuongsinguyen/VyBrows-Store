@@ -82,7 +82,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
     '@type': 'Product',
     name: product.title,
     description: product.description,
-    image: product.featuredImage?.url || '/images/product001.png',
+    image: product.featuredImage?.url || '/images/product001.avif',
     offers: {
       '@type': 'AggregateOffer',
       availability: product.availableForSale

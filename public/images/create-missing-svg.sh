@@ -13,7 +13,7 @@ cat > product003-2.svg << 'SVG_EOF'
 SVG_EOF
 
 # Product 004 (Foundation Light)
-cat > product004.svg << 'SVG_EOF'
+cat > product004.avif << 'SVG_EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="800" fill="#45B7D1"/>
@@ -33,7 +33,7 @@ cat > product004-2.svg << 'SVG_EOF'
 SVG_EOF
 
 # Product 005 (Blush Pink)
-cat > product005.svg << 'SVG_EOF'
+cat > product005.avif << 'SVG_EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="800" fill="#FFEAA7"/>
