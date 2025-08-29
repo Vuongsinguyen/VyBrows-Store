@@ -43,35 +43,97 @@ export default function CartModal() {
     setShowCheckout(true);
   }, [cart.items.length]);
 
-  const handleOrderSubmit = useCallback((customerInfo: CustomerInfo) => {
-    const cartItems = cart.items.map(item =>
-      `${item.merchandise?.title || 'Unknown Item'}: ${item.quantity}x - $${item.cost?.totalAmount?.amount || '0'}`
-    ).join('\n');
+  const handleOrderSubmit = useCallback(async (customerInfo: CustomerInfo) => {
+    try {
+      // Prepare order data for Google Sheets (simplified structure)
+      const orderData = {
+        customerInfo: {
+          name: customerInfo.name,
+          email: customerInfo.email
+          // Only include name and email as required by the API
+        },
+        items: cart.items.map(item => ({
+          title: item.merchandise?.title || 'Unknown Item',
+          quantity: item.quantity,
+          price: item.cost?.totalAmount?.amount || '0'
+        })),
+        total: cart.cost?.totalAmount?.amount || '0',
+        timestamp: new Date().toISOString() // Add timestamp for Google Sheets
+      };
 
-    const total = cart.cost?.totalAmount?.amount || '0';
-    const totalQuantity = cart.totalQuantity;
+      console.log('📤 Sending order to Google Sheets...', orderData);
 
-    // Display order summary with customer info
-    console.log('=== ORDER SUMMARY ===');
-    console.log('Customer Information:');
-    console.log(`  Name: ${customerInfo.name}`);
-    console.log(`  Email: ${customerInfo.email}`);
-    console.log(`  Phone: ${customerInfo.phone}`);
-    console.log(`  Address: ${customerInfo.address}`);
-    console.log('');
-    console.log(`Total Items: ${totalQuantity}`);
-    console.log(`Total Price: $${total}`);
-    console.log('Items:');
-    cart.items.forEach(item => {
-      console.log(`  - ${item.merchandise?.title || 'Unknown Item'}: ${item.quantity}x - $${item.cost?.totalAmount?.amount || '0'}`);
-    });
+      // Call Google Sheets API
+      const response = await fetch('/api/save-order-to-sheets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData)
+      });
 
-    alert(`Order Confirmed!\n\nCustomer: ${customerInfo.name}\nEmail: ${customerInfo.email}\nPhone: ${customerInfo.phone}\nAddress: ${customerInfo.address}\n\n${cartItems}\n\nTotal: $${total}\n\nThank you for your purchase!`);
+      const result = await response.json();
 
-    // Clear cart after successful order
-    clearCart();
-    setIsOpen(false);
-    setShowCheckout(false);
+      if (result.success) {
+        // Success: Show confirmation with Google Sheets link
+        const confirmationMessage = `🎉 Order Confirmed!\n\n` +
+          `Customer: ${customerInfo.name}\n` +
+          `Email: ${customerInfo.email}\n\n` +
+          `✅ Order saved to Google Sheets!\n` +
+          `📊 View in spreadsheet: ${result.spreadsheetUrl}\n\n` +
+          `Thank you for your purchase!`;
+
+        alert(confirmationMessage);
+
+        // Clear cart after successful order
+        clearCart();
+        setIsOpen(false);
+        setShowCheckout(false);
+
+        console.log('✅ Order saved to Google Sheets:', result.timestamp);
+        console.log('📊 Spreadsheet URL:', result.spreadsheetUrl);
+
+      } else {
+        // Handle API errors
+        console.error('❌ Google Sheets API Error:', result.message);
+        alert(`❌ Failed to save order: ${result.message}\n\nPlease try again or contact support.`);
+      }
+    } catch (error) {
+      console.error('❌ Network/Processing Error:', error);
+
+      // Fallback: Try to save locally if Google Sheets fails
+      try {
+        console.log('🔄 Attempting fallback to local storage...');
+
+        const fallbackResponse = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerInfo,
+            items: cart.items.map(item => ({
+              title: item.merchandise?.title || 'Unknown Item',
+              quantity: item.quantity,
+              price: item.cost?.totalAmount?.amount || '0'
+            })),
+            total: cart.cost?.totalAmount?.amount || '0'
+          })
+        });
+
+        const fallbackResult = await fallbackResponse.json();
+
+        if (fallbackResult.success) {
+          alert(`⚠️ Google Sheets unavailable, but order saved locally!\n\nOrder ID: ${fallbackResult.orderId}\n\nPlease contact support to sync with Google Sheets.`);
+          clearCart();
+          setIsOpen(false);
+          setShowCheckout(false);
+        } else {
+          throw new Error('Fallback also failed');
+        }
+      } catch (fallbackError) {
+        console.error('❌ Fallback failed:', fallbackError);
+        alert('❌ Unable to process order. Please check your connection and try again.');
+      }
+    }
   }, [cart, clearCart]);
 
   const handleBackToCart = useCallback(() => {
