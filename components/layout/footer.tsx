@@ -47,11 +47,11 @@ export default async function Footer() {
           <a
             className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white"
             aria-label="Deploy on Vercel"
-            href="https://vercel.com/templates/next.js/nextjs-commerce"
+            href="fb://profile/61579860358116"
           >
             <span className="px-3">▲</span>
             <hr className="h-full border-r border-neutral-200 dark:border-neutral-700" />
-            <span className="px-3">Deploy</span>
+            <span className="px-3">Fanpage</span>
           </a>
         </div>
       </div>
@@ -64,11 +64,11 @@ export default async function Footer() {
             </p>
             <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
             <p>
-              <a href="https://github.com/vercel/commerce">View the source</a>
+              <a href="https://vybrows-academy.com/">Visit our Academy</a>
             </p>
             <p className="md:ml-auto">
-              <a href="https://vercel.com" className="text-black dark:text-white">
-                Created by ▲ Vercel
+              <a href="https://www.facebook.com/vuongsinguyen.info/" className="text-black dark:text-white">
+                Created by ▲ VUONG SI NGUYEN
               </a>
             </p>
           </div>
