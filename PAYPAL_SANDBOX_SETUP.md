@@ -39,10 +39,10 @@ Tạo file `.env.local` trong project:
 
 ```bash
 # PayPal Sandbox Configuration
-NEXT_PUBLIC_PAYPAL_CLIENT_ID=AZDC...your_sandbox_client_id
-PAYPAL_CLIENT_SECRET=your_sandbox_client_secret
+NEXT_PUBLIC_PAYPAL_CLIENT_ID=AdF-NeXOrt58Ik-o8hWSxCv3bZqq2WchoFrrM_iKY2XxJoO_2AvvdRtywA1QnExBW17G5BjMGTJaD_-l
+PAYPAL_CLIENT_SECRET=ECqeogQXxMCfohOT1uBhuHutZ1MpAh9EYUzO9MzxKlRHEbkdYSoK1Y1ZZkNAZD95EGaQtaCHodge3PfD
 PAYPAL_ENVIRONMENT=sandbox
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=shop.vybrows-acadmy.com
 ```
 
 ### Bước 5: Test thanh toán
