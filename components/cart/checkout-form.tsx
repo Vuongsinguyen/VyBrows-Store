@@ -92,7 +92,7 @@ export default function CheckoutForm({
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold">Checkout</h2>
+  {/* <h2 className="text-lg font-semibold">Checkout</h2> */}
         <button
           onClick={onCancel}
           className="text-neutral-500 hover:text-neutral-700"
@@ -101,8 +101,9 @@ export default function CheckoutForm({
         </button>
       </div>
 
-      {/* Order Summary */}
-      <div className="mb-6 p-4 bg-neutral-50 rounded-lg dark:bg-neutral-800">
+      {/* Nội dung scrollable bắt đầu từ Order Summary */}
+      <div className="overflow-y-auto max-h-[70vh]">
+        <div className="mb-6 p-4 bg-neutral-50 rounded-lg dark:bg-neutral-800">
         <h3 className="font-medium mb-2">Order Summary</h3>
         <div className="space-y-1 text-sm">
           {cartItems.map((item, index) => (
@@ -259,6 +260,7 @@ export default function CheckoutForm({
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
