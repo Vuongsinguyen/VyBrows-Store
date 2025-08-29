@@ -2,6 +2,7 @@ import fs from 'fs';
 import type { Product } from 'lib/types';
 import Link from 'next/link';
 import path from 'path';
+import '../app/carousel.css';
 import { GridTileImage } from './grid/tile';
 
 export async function Carousel() {
