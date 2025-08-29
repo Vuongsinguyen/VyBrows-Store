@@ -33,6 +33,60 @@ interface PayPalError {
   details?: any;
 }
 
+// Security: Input validation and sanitization
+function validateAndSanitizeCaptureData(data: any): PayPalCaptureRequest {
+  if (!data || typeof data !== 'object') {
+    throw new Error('Invalid request data');
+  }
+
+  const { orderId } = data;
+
+  if (!orderId || typeof orderId !== 'string') {
+    throw new Error('Missing or invalid orderId');
+  }
+
+  // Sanitize orderId - PayPal order IDs are alphanumeric with dashes
+  const sanitizedOrderId = orderId.trim().replace(/[^a-zA-Z0-9\-]/g, '');
+
+  if (sanitizedOrderId.length < 10 || sanitizedOrderId.length > 50) {
+    throw new Error('Invalid orderId format');
+  }
+
+  return { orderId: sanitizedOrderId };
+}
+
+// Security: Safe logging function
+function safeLog(message: string, data?: any): void {
+  if (process.env.NODE_ENV === 'development') {
+    if (data) {
+      console.log(message, data);
+    } else {
+      console.log(message);
+    }
+  } else {
+    // In production, only log essential info without sensitive data
+    console.log(message);
+  }
+}
+
+// Security: Environment validation
+function validateEnvironment(): { clientId: string; clientSecret: string; environment: string } {
+  const clientId = process.env.PAYPAL_CLIENT_ID;
+  const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+  const environment = process.env.PAYPAL_ENVIRONMENT || 'sandbox';
+
+  if (!clientId || !clientSecret) {
+    throw new Error('Missing PayPal credentials');
+  }
+
+  // Validate environment
+  if (!['sandbox', 'production'].includes(environment)) {
+    throw new Error('Invalid PayPal environment');
+  }
+
+  return { clientId, clientSecret, environment };
+}
+
 /**
  * Serverless function to capture a PayPal order
  *
@@ -43,7 +97,7 @@ interface PayPalError {
  *
  * Environment Variables Required:
  * - PAYPAL_CLIENT_ID: Your PayPal app client ID
- * - PAYPAL_CLIENT_SECRET: ECqeogQXxMCfohOT1uBhuHutZ1MpAh9EYUzO9MzxKlRHEbkdYSoK1Y1ZZkNAZD95EGaQtaCHodge3PfD
+ * - PAYPAL_CLIENT_SECRET: Your PayPal app client secret
  * - PAYPAL_ENVIRONMENT: 'sandbox' or 'production' (default: sandbox)
  */
 export default async function handler(
@@ -56,28 +110,13 @@ export default async function handler(
   }
 
   try {
-    // Step 1: Validate and extract request data
-    const { orderId }: PayPalCaptureRequest = req.body;
+    // Step 1: Validate and sanitize request data
+    const captureData = validateAndSanitizeCaptureData(req.body);
 
-    if (!orderId) {
-      return res.status(400).json({
-        error: 'Missing required field: orderId'
-      });
-    }
+    safeLog('💰 Capturing PayPal order:', captureData.orderId);
 
-    console.log('💰 Capturing PayPal order:', orderId);
-
-    // Step 2: Validate environment variables
-    const clientId = process.env.PAYPAL_CLIENT_ID;
-    const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-    const environment = process.env.PAYPAL_ENVIRONMENT || 'sandbox';
-
-    if (!clientId || !clientSecret) {
-      console.error('❌ Missing PayPal credentials');
-      return res.status(500).json({
-        error: 'PayPal configuration error. Please check server environment variables.'
-      });
-    }
+    // Step 2: Validate environment variables (already done at startup)
+    const { clientId, clientSecret, environment } = validateEnvironment();
 
     // Step 3: Get PayPal access token
     const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
@@ -96,7 +135,7 @@ export default async function handler(
     );
 
     if (!tokenResponse.ok) {
-      console.error('❌ Failed to get PayPal access token');
+      safeLog('❌ Failed to get PayPal access token');
       return res.status(500).json({
         error: 'Failed to authenticate with PayPal'
       });
@@ -108,8 +147,8 @@ export default async function handler(
     // Step 4: Capture the PayPal order
     const captureResponse = await fetch(
       environment === 'production'
-        ? `https://api.paypal.com/v2/checkout/orders/${orderId}/capture`
-        : `https://api.sandbox.paypal.com/v2/checkout/orders/${orderId}/capture`,
+        ? `https://api.paypal.com/v2/checkout/orders/${captureData.orderId}/capture`
+        : `https://api.sandbox.paypal.com/v2/checkout/orders/${captureData.orderId}/capture`,
       {
         method: 'POST',
         headers: {
@@ -121,7 +160,10 @@ export default async function handler(
 
     if (!captureResponse.ok) {
       const errorData = await captureResponse.json();
-      console.error('❌ PayPal capture failed:', errorData);
+      safeLog('❌ PayPal capture failed:', {
+        status: captureResponse.status,
+        error: errorData
+      });
 
       // Handle specific PayPal error cases
       if (errorData.details?.[0]?.issue === 'ORDER_ALREADY_CAPTURED') {
@@ -142,23 +184,29 @@ export default async function handler(
       });
     }
 
-    const captureData: PayPalCaptureResponse = await captureResponse.json();
-    console.log('✅ PayPal payment captured successfully:', captureData.id);
+    const captureResult: PayPalCaptureResponse = await captureResponse.json();
+    safeLog('✅ PayPal payment captured successfully:', {
+      id: captureResult.id,
+      status: captureResult.status
+    });
 
     // Step 5: Validate capture response
-    const capture = captureData.purchase_units[0]?.payments?.captures[0];
+    const capture = captureResult.purchase_units[0]?.payments?.captures[0];
     if (!capture) {
-      console.error('❌ Invalid capture response structure');
+      safeLog('❌ Invalid capture response structure');
       return res.status(500).json({
         error: 'Invalid capture response from PayPal'
       });
     }
 
     // Step 6: Return capture details to client
-    return res.status(200).json(captureData);
+    return res.status(200).json(captureResult);
 
   } catch (error) {
-    console.error('❌ Unexpected error capturing PayPal order:', error);
+    safeLog('❌ Unexpected error capturing PayPal order:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    });
     return res.status(500).json({
       error: 'Internal server error',
       details: error instanceof Error ? error.message : 'Unknown error'

@@ -28,6 +28,107 @@ interface PayPalError {
   details?: any;
 }
 
+// Security: Input validation and sanitization
+const validateAndSanitizeOrderData = (data: any): PayPalOrderData => {
+  // Check required fields
+  if (!data.item?.title || !data.total || !data.currency) {
+    throw new Error('Missing required fields: item.title, total, currency');
+  }
+
+  // Validate and sanitize item title (prevent XSS)
+  const sanitizedTitle = data.item.title
+    .toString()
+    .substring(0, 127) // PayPal limit
+    .replace(/[<>\"'&]/g, ''); // Remove potentially dangerous characters
+
+  // Validate quantity
+  const quantity = Math.max(1, parseInt(data.item.quantity) || 1);
+
+  // Validate and format price
+  const price = parseFloat(data.total);
+  if (isNaN(price) || price <= 0 || price > 10000) { // Reasonable limits
+    throw new Error('Invalid price amount');
+  }
+
+  // Validate currency
+  const validCurrencies = ['USD', 'EUR', 'GBP', 'CAD', 'AUD'];
+  const currency = data.currency.toUpperCase();
+  if (!validCurrencies.includes(currency)) {
+    throw new Error('Unsupported currency');
+  }
+
+  return {
+    item: {
+      title: sanitizedTitle,
+      quantity: quantity,
+      price: price.toFixed(2),
+      currency: currency
+    },
+    total: price.toFixed(2),
+    currency: currency
+  };
+};
+
+// Security: Safe logging function
+const safeLog = (message: string, data?: any) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message, data);
+  } else {
+    // Production: only log non-sensitive info
+    console.log(message);
+  }
+};
+
+// Security: Validate environment variables at startup
+const validateEnvironment = () => {
+  const required = ['PAYPAL_CLIENT_ID', 'PAYPAL_CLIENT_SECRET'];
+  const missing = required.filter(key => !process.env[key]);
+
+  if (missing.length > 0) {
+    throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+  }
+
+  // Validate PayPal Client ID format
+  if (!process.env.PAYPAL_CLIENT_ID?.startsWith('A')) {
+    throw new Error('Invalid PayPal Client ID format');
+  }
+
+  // Validate PayPal Client Secret format
+  if (!process.env.PAYPAL_CLIENT_SECRET?.startsWith('E')) {
+    throw new Error('Invalid PayPal Client Secret format');
+  }
+};
+
+// Security: Get site URL dynamically with request context
+const getSiteUrl = (req?: NextApiRequest): string => {
+  // Priority 1: Environment variable
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+
+  // Priority 2: Extract from request headers (for production)
+  if (req?.headers?.host) {
+    const host = req.headers.host;
+    // Remove port if present
+    const domain = host.split(':')[0];
+    // Skip localhost and common development domains
+    if (domain && !domain.includes('localhost') && !domain.includes('127.0.0.1')) {
+      return domain;
+    }
+  }
+
+  // Priority 3: Fallback to localhost for development
+  if (process.env.NODE_ENV === 'development') {
+    return 'localhost:3000';
+  }
+
+  // Priority 4: Default production domain
+  return 'shop.vybrows-academy.com';
+};
+
+// Initialize environment validation
+validateEnvironment();
+
 /**
  * Serverless function to create a PayPal order
  *
@@ -51,33 +152,20 @@ export default async function handler(
   }
 
   try {
-    // Step 1: Validate and extract request data
-    const { item, total, currency }: PayPalOrderData = req.body;
+    // Step 1: Validate and sanitize request data
+    const orderData = validateAndSanitizeOrderData(req.body);
 
-    if (!item || !total || !currency) {
-      return res.status(400).json({
-        error: 'Missing required fields: item, total, currency'
-      });
-    }
+    safeLog('📦 Creating PayPal order for:', {
+      title: orderData.item.title,
+      quantity: orderData.item.quantity,
+      total: orderData.total,
+      currency: orderData.currency
+    });
 
-    console.log('📦 Creating PayPal order for:', { item, total, currency });
-
-    // Step 2: Validate environment variables
-    const clientId = process.env.PAYPAL_CLIENT_ID;
-    const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+    // Step 2: Validate environment variables (already done at startup)
+    const clientId = process.env.PAYPAL_CLIENT_ID!;
+    const clientSecret = process.env.PAYPAL_CLIENT_SECRET!;
     const environment = process.env.PAYPAL_ENVIRONMENT || 'sandbox';
-
-    console.log('🔍 Environment variables check:');
-    console.log('PAYPAL_CLIENT_ID:', clientId ? '✅ Set' : '❌ Missing');
-    console.log('PAYPAL_CLIENT_SECRET:', clientSecret ? '✅ Set (length: ' + clientSecret.length + ')' : '❌ Missing');
-    console.log('PAYPAL_ENVIRONMENT:', environment);
-
-    if (!clientId || !clientSecret) {
-      console.error('❌ Missing PayPal credentials');
-      return res.status(500).json({
-        error: 'PayPal configuration error. Please check server environment variables.'
-      });
-    }
 
     // Step 3: Get PayPal access token
     const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
@@ -96,7 +184,7 @@ export default async function handler(
     );
 
     if (!tokenResponse.ok) {
-      console.error('❌ Failed to get PayPal access token');
+      safeLog('❌ Failed to get PayPal access token');
       return res.status(500).json({
         error: 'Failed to authenticate with PayPal'
       });
@@ -106,41 +194,46 @@ export default async function handler(
     const accessToken = tokenData.access_token;
 
     // Step 4: Create PayPal order
-    const orderData = {
+    const paypalOrderData = {
       intent: 'CAPTURE',
       purchase_units: [
         {
           amount: {
-            currency_code: currency,
-            value: total,
+            currency_code: orderData.currency,
+            value: orderData.total,
             breakdown: {
               item_total: {
-                currency_code: currency,
-                value: total
+                currency_code: orderData.currency,
+                value: orderData.total
               }
             }
           },
           items: [
             {
-              name: item.title.substring(0, 127), // PayPal limit
-              quantity: item.quantity.toString(),
+              name: orderData.item.title.substring(0, 127), // PayPal limit
+              quantity: orderData.item.quantity.toString(),
               unit_amount: {
-                currency_code: currency,
-                value: item.price
+                currency_code: orderData.currency,
+                value: orderData.item.price
               }
             }
           ]
         }
       ],
       application_context: {
-        return_url: `https://${process.env.NEXT_PUBLIC_SITE_URL || 'localhost:3000'}/checkout/success`,
-        cancel_url: `https://${process.env.NEXT_PUBLIC_SITE_URL || 'localhost:3000'}/checkout/cancel`,
+        return_url: `https://${getSiteUrl(req)}/checkout/success`,
+        cancel_url: `https://${getSiteUrl(req)}/checkout/cancel`,
         user_action: 'PAY_NOW',
         brand_name: 'VyBrows Store'
       }
     };
 
-    console.log('📋 PayPal order payload:', JSON.stringify(orderData, null, 2));
+    safeLog('📋 PayPal order payload:', {
+      intent: paypalOrderData.intent,
+      currency: paypalOrderData.purchase_units[0]?.amount.currency_code,
+      total: paypalOrderData.purchase_units[0]?.amount.value,
+      itemCount: paypalOrderData.purchase_units[0]?.items.length
+    });
 
     const orderResponse = await fetch(
       environment === 'production'
@@ -152,27 +245,36 @@ export default async function handler(
           'Authorization': `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify(paypalOrderData),
       }
     );
 
     if (!orderResponse.ok) {
       const errorData = await orderResponse.json();
-      console.error('❌ PayPal order creation failed:', errorData);
+      safeLog('❌ PayPal order creation failed:', {
+        status: orderResponse.status,
+        error: errorData
+      });
       return res.status(500).json({
         error: 'Failed to create PayPal order',
         details: errorData
       });
     }
 
-    const order: PayPalOrderResponse = await orderResponse.json();
-    console.log('✅ PayPal order created successfully:', order.id);
+    const orderResult: PayPalOrderResponse = await orderResponse.json();
+    safeLog('✅ PayPal order created successfully:', {
+      id: orderResult.id,
+      status: orderResult.status
+    });
 
     // Step 5: Return order details to client
-    return res.status(200).json(order);
+    return res.status(200).json(orderResult);
 
   } catch (error) {
-    console.error('❌ Unexpected error creating PayPal order:', error);
+    safeLog('❌ Unexpected error creating PayPal order:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    });
     return res.status(500).json({
       error: 'Internal server error',
       details: error instanceof Error ? error.message : 'Unknown error'
