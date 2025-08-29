@@ -50,32 +50,102 @@ export default function PayPalCheckoutButton({
   const paypalRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sdkLoaded, setSdkLoaded] = useState(false);
   const { cart, clearCart } = useCart();
 
   // Get the first item from cart for PayPal order
   const firstItem = cart.items[0];
 
+  // Get PayPal client ID from environment variables
+  const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
+
   useEffect(() => {
-    // Only load PayPal SDK if we have items in cart
-    if (!firstItem || disabled) return;
-
-    // Load PayPal JavaScript SDK
-    const loadPayPalScript = () => {
-      if (window.paypal) {
-        renderPayPalButton();
-        return;
+    // Only load PayPal SDK if we have items in cart and client ID is available
+    if (!firstItem || disabled || !paypalClientId) {
+      if (!paypalClientId) {
+        setError('PayPal client ID not configured. Please check your environment variables.');
       }
+      return;
+    }
 
-      const script = document.createElement('script');
-      script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || 'test'}&currency=USD&components=buttons`;
-      script.async = true;
-      script.onload = () => renderPayPalButton();
-      script.onerror = () => setError('Failed to load PayPal SDK');
-      document.head.appendChild(script);
+    // Load PayPal JavaScript SDK with proper error handling
+    loadPayPalSDK();
+
+    // Cleanup function
+    return () => {
+      // Clean up any existing PayPal buttons
+      if (paypalRef.current) {
+        paypalRef.current.innerHTML = '';
+      }
+    };
+  }, [firstItem, disabled, paypalClientId]);
+
+  /**
+   * Load PayPal SDK with proper error handling and race condition prevention
+   */
+  const loadPayPalSDK = () => {
+    // Check if SDK is already loaded
+    if (window.paypal) {
+      console.log('✅ PayPal SDK already loaded');
+      setSdkLoaded(true);
+      renderPayPalButton();
+      return;
+    }
+
+    // Check if SDK is already being loaded (prevent duplicate scripts)
+    const existingScript = document.querySelector('script[src*="paypal.com/sdk/js"]');
+    if (existingScript) {
+      console.log('⏳ PayPal SDK script already exists, waiting for load...');
+      // Wait for the existing script to load
+      existingScript.addEventListener('load', () => {
+        setSdkLoaded(true);
+        renderPayPalButton();
+      });
+      existingScript.addEventListener('error', () => {
+        setError('Failed to load PayPal SDK');
+      });
+      return;
+    }
+
+    console.log('📦 Loading PayPal SDK...');
+
+    // Create and load the PayPal SDK script
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${paypalClientId}&currency=USD&components=buttons&enable-funding=venmo`;
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+
+    // Success handler
+    script.onload = () => {
+      console.log('✅ PayPal SDK loaded successfully');
+      setSdkLoaded(true);
+      setError(null);
+      renderPayPalButton();
     };
 
-    const renderPayPalButton = () => {
-      if (!window.paypal || !paypalRef.current) return;
+    // Error handler
+    script.onerror = (event) => {
+      console.error('❌ Failed to load PayPal SDK:', event);
+      setError('Failed to load PayPal SDK. Please check your internet connection and try again.');
+      setSdkLoaded(false);
+    };
+
+    // Add script to document head
+    document.head.appendChild(script);
+  };
+
+  /**
+   * Render PayPal button with proper error handling
+   */
+  const renderPayPalButton = () => {
+    if (!window.paypal || !paypalRef.current) {
+      console.error('❌ PayPal SDK or container not available');
+      setError('PayPal SDK not available');
+      return;
+    }
+
+    try {
+      console.log('🎨 Rendering PayPal button...');
 
       // Clear any existing buttons
       paypalRef.current.innerHTML = '';
@@ -87,19 +157,21 @@ export default function PayPalCheckoutButton({
             setIsLoading(true);
             setError(null);
 
+            console.log('📦 Creating PayPal order...');
+
             // Prepare order data from cart
             const orderData = {
               item: {
-                title: firstItem.merchandise?.title || 'Product',
-                quantity: firstItem.quantity,
-                price: firstItem.cost?.totalAmount?.amount || '0',
-                currency: firstItem.cost?.totalAmount?.currencyCode || 'USD'
+                title: firstItem?.merchandise?.title || 'Product',
+                quantity: firstItem?.quantity || 1,
+                price: firstItem?.cost?.totalAmount?.amount || '0',
+                currency: firstItem?.cost?.totalAmount?.currencyCode || 'USD'
               },
               total: cart.cost?.totalAmount?.amount || '0',
               currency: cart.cost?.totalAmount?.currencyCode || 'USD'
             };
 
-            console.log('📦 Creating PayPal order with data:', orderData);
+            console.log('� Order data:', orderData);
 
             // Call our serverless function to create PayPal order
             const response = await fetch('/api/paypal/create-order', {
@@ -194,38 +266,73 @@ export default function PayPalCheckoutButton({
           const errorMessage = 'Payment failed. Please try again.';
           setError(errorMessage);
           onError?.(errorMessage);
+        },
+
+        // Styling options
+        style: {
+          layout: 'vertical',
+          color: 'blue',
+          shape: 'rect',
+          label: 'paypal'
         }
       }).render(paypalRef.current);
-    };
 
-    loadPayPalScript();
-  }, [firstItem, cart, disabled, clearCart, onSuccess, onError]);
+      console.log('✅ PayPal button rendered successfully');
 
-  // Don't render if cart is empty or disabled
-  if (!firstItem || disabled) {
+    } catch (error) {
+      console.error('❌ Error rendering PayPal button:', error);
+      setError('Failed to render PayPal button');
+    }
+  };
+
+  // Don't render if cart is empty, disabled, or client ID is missing
+  if (!firstItem || disabled || !paypalClientId) {
     return null;
   }
 
   return (
     <div className={`paypal-checkout-container ${className}`}>
-      {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-red-600 text-sm">{error}</p>
-        </div>
-      )}
-
+      {/* Loading state */}
       {isLoading && (
         <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
           <p className="text-blue-600 text-sm">Processing payment...</p>
         </div>
       )}
 
-      <div ref={paypalRef} className="paypal-button-container" />
+      {/* Error state */}
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-red-600 text-sm">{error}</p>
+          <button
+            onClick={() => {
+              setError(null);
+              loadPayPalSDK();
+            }}
+            className="mt-2 text-xs text-red-500 hover:text-red-700 underline"
+          >
+            Try again
+          </button>
+        </div>
+      )}
 
-      <div className="mt-4 text-xs text-gray-500">
+      {/* SDK Loading state */}
+      {!sdkLoaded && !error && (
+        <div className="mb-4 p-3 bg-gray-50 border border-gray-200 rounded-md">
+          <p className="text-gray-600 text-sm">Loading PayPal...</p>
+        </div>
+      )}
+
+      {/* PayPal button container */}
+      <div ref={paypalRef} className="paypal-button-container min-h-[150px]" />
+
+      {/* Information */}
+      <div className="mt-4 text-xs text-gray-500 space-y-1">
         <p>💳 Secure payment powered by PayPal</p>
-        <p>🛒 Processing first item: {firstItem.merchandise?.title}</p>
-        <p>💰 Amount: ${firstItem.cost?.totalAmount?.amount} {firstItem.cost?.totalAmount?.currencyCode}</p>
+        <p>🛒 Processing first item: {firstItem?.merchandise?.title}</p>
+        <p>💰 Amount: ${firstItem?.cost?.totalAmount?.amount} {firstItem?.cost?.totalAmount?.currencyCode}</p>
+        {paypalClientId && (
+          <p className="text-green-600">✅ PayPal Client ID configured</p>
+        )}
       </div>
     </div>
   );
