@@ -25,7 +25,7 @@ Then edit `.env.local` with your actual PayPal credentials:
 NEXT_PUBLIC_PAYPAL_CLIENT_ID=AZDC...your_sandbox_client_id_here
 PAYPAL_CLIENT_SECRET=ECqeogQXxMCfohOT1uBhuHutZ1MpAh9EYUzO9MzxKlRHEbkdYSoK1Y1ZZkNAZD95EGaQtaCHodge3PfD
 PAYPAL_ENVIRONMENT=sandbox
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://shop.vybrows-academy.com
 ```
 
 ### Step 2: Get PayPal Credentials
