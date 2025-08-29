@@ -163,21 +163,27 @@
   },
   {
     "id": "3",
-    "handle": "mascara-volume",
-    "title": "Mascara Volume",
-    "description": "Mascara giúp dày mi",
-    "descriptionHtml": "<p>Mascara giúp dày mi với công thức dưỡng mi</p>",
+    "handle": "DRANME",
+    "title": "DRANME",
+    "description": "The active formula with 12% Lactic Acid + 2% HA gently exfoliates while keeping skin soft and hydrated.",
+    "descriptionHtml": "<p>The active formula with 12% Lactic Acid + 2% HA gently exfoliates while keeping skin soft and hydrated.</p>",
     "price": 15.99,
     "images": [
       {
         "url": "/images/product003.avif",
-        "altText": "Mascara Volume",
+        "altText": "DRANME",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product003-2.png",
-        "altText": "Mascara Volume Alternative",
+        "url": "/images/product003-2.avif",
+        "altText": "DRANME",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product003-3.avif",
+        "altText": "DRANME",
         "width": 800,
         "height": 800
       }
@@ -190,13 +196,13 @@
     ],
     "featuredImage": {
       "url": "/images/product003.avif",
-      "altText": "Mascara Volume",
+      "altText": "DRANME",
       "width": 800,
       "height": 800
     },
     "seo": {
-      "title": "Mascara Volume - Dày Mi Tự Nhiên",
-      "description": "Mascara giúp dày mi với công thức dưỡng mi"
+      "title": "DRANME - The active formula with 12% Lactic Acid + 2% HA gently exfoliates while keeping skin soft and hydrated.",
+      "description": "DRANME - The active formula with 12% Lactic Acid + 2% HA gently exfoliates while keeping skin soft and hydrated."
     },
     "availableForSale": true,
     "priceRange": {
