@@ -9,13 +9,19 @@
     "images": [
       {
         "url": "/images/product-cover-1.avif",
-        "altText": "product001",
+        "altText": "DR.ANMYTAS-IR1-NEW-1",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product001-2.png",
-        "altText": "Lipstick Red Alternative",
+        "url": "/images/product001-2.avif",
+        "altText": "DR.ANMYTAS-IR1-NEW-2",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "url": "/images/product001-3.avif",
+        "altText": "DR.ANMYTAS-IR1-NEW-3",
         "width": 800,
         "height": 800
       }
@@ -28,12 +34,12 @@
     ],
     "featuredImage": {
       "url": "/images/product-cover-1.avif",
-      "altText": "product001",
+      "altText": "DR.ANMYTAS IR1 – NEW",
       "width": 800,
       "height": 800
     },
     "seo": {
-      "title": "Lipstick Red - Premium Quality",
+      "title": "DR.ANMYTAS IR1 – NEW",
       "description": "High quality red lipstick with long-lasting formula"
     },
     "availableForSale": true,
@@ -52,19 +58,19 @@
         "id": "color",
         "name": "Color",
         "values": [
-          "Red"
+          "DR.ANMYTAS IR1 – NEW"
         ]
       }
     ],
     "variants": [
       {
         "id": "variant-1",
-        "title": "Red",
+        "title": "DR.ANMYTAS IR1 – NEW",
         "availableForSale": true,
         "selectedOptions": [
           {
             "name": "Color",
-            "value": "Red"
+            "value": "DR.ANMYTAS IR1 – NEW"
           }
         ],
         "price": {

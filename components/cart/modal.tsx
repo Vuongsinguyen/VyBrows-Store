@@ -210,7 +210,15 @@ export default function CartModal() {
                           <div className="flex flex-row">
                             {/* Product image placeholder */}
                             <div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                              {/* Product image would go here */}
+                              {item.merchandise?.product?.featuredImage?.url ? (
+                                <img
+                                  src={item.merchandise.product.featuredImage.url}
+                                  alt={item.merchandise.title || 'Product'}
+                                  className="h-full w-full object-cover"
+                                />
+                              ) : (
+                                <span className="flex h-full w-full items-center justify-center text-xs text-neutral-500">No image</span>
+                              )}
                             </div>
                             <div className="ml-4 flex flex-col justify-center">
                               <p className="text-sm font-medium">

@@ -1,18 +1,18 @@
 'use client';
 
 import type {
-  Cart,
-  CartItem,
-  Product,
-  ProductVariant
+    Cart,
+    CartItem,
+    Product,
+    ProductVariant
 } from 'lib/types';
 import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState
+    createContext,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useState
 } from 'react';
 
 type UpdateType = 'plus' | 'minus' | 'delete';
@@ -86,7 +86,10 @@ function createOrUpdateCartItem(
         id: product?.id ?? existingItem?.merchandise?.product?.id,
         handle: product?.handle ?? existingItem?.merchandise?.product?.handle,
         title: product?.title ?? existingItem?.merchandise?.product?.title,
-        featuredImage: product?.featuredImage ?? existingItem?.merchandise?.product?.featuredImage
+        featuredImage:
+          (product?.images && product.images.length > 0
+            ? product.images[0]
+            : product?.featuredImage) ?? existingItem?.merchandise?.product?.featuredImage
       }
     }
   } as CartItem;
