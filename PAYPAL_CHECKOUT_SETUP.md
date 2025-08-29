@@ -42,11 +42,11 @@ Add these to your `.env.local` file:
 
 ```bash
 # PayPal Configuration
-PAYPAL_CLIENT_ID=your_paypal_client_id_here
-PAYPAL_CLIENT_SECRET=your_paypal_client_secret_here
+PAYPAL_CLIENT_ID=AVjE6bc3p6wzg0YikVzjky77sPfwCYtGR_5bIsVXMgFDlLuSDwnIBbtVc_d6PmXlCrta7HWAk45302vV
+PAYPAL_CLIENT_SECRET=EOZNJOZ6JD5UGmj3eIYr9RqD41wc7nBlFe5rWtOk0V9uZdEwOmEI5iJbDUL9ol_8M9RF6XknHyzM75TE
 PAYPAL_ENVIRONMENT=sandbox
-NEXT_PUBLIC_PAYPAL_CLIENT_ID=your_paypal_client_id_here
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_PAYPAL_CLIENT_ID=AVjE6bc3p6wzg0YikVzjky77sPfwCYtGR_5bIsVXMgFDlLuSDwnIBbtVc_d6PmXlCrta7HWAk45302vV
+NEXT_PUBLIC_SITE_URL=https://shop.vybrows-academy.com
 ```
 
 **Important Notes:**
