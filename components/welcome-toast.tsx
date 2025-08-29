@@ -19,7 +19,7 @@ export function WelcomeToast() {
             This is VyBrows-Store, a high-performance, SSR ecommerce storefront powered by Next.js and Vercel with local data management.{' '}
             <a
               href="https://vercel.com/templates/next.js/nextjs-commerce"
-              className="text-blue-600 hover:underline"
+              className="text-[#003324] hover:underline"
               target="_blank"
             >
               Deploy your own

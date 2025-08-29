@@ -299,7 +299,7 @@ export default function PayPalCheckoutButton({
       {/* Loading state */}
       {isLoading && (
         <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-          <p className="text-blue-600 text-sm">Processing payment...</p>
+          <p className="text-[#] text-sm">Processing payment...</p>
         </div>
       )}
 
