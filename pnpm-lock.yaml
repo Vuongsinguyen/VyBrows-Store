@@ -14,6 +14,9 @@ importers:
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.0.0)
+      '@paypal/paypal-js':
+        specifier: ^8.3.0
+        version: 8.3.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -267,6 +270,9 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@paypal/paypal-js@8.3.0':
+    resolution: {integrity: sha512-IsfKaqvHIO2qmWM/ay+ZsuaW09sd70rl6wCmV7uJCI5O2qcyUqs3NqoJEKwIGxBTmA88myOkdeRTt6J0+1nf3w==}
 
   '@react-aria/focus@3.20.1':
     resolution: {integrity: sha512-lgYs+sQ1TtBrAXnAdRBQrBo0/7o5H6IrfDxec1j+VRpcXL0xyk0xPq+m3lZp8typzIghqDgpnKkJ5Jf4OrzPIw==}
@@ -798,6 +804,9 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  promise-polyfill@8.3.0:
+    resolution: {integrity: sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==}
+
   qs@6.14.0:
     resolution: {integrity: sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==}
     engines: {node: '>=0.6'}
@@ -1050,6 +1059,10 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@15.3.0-canary.13':
     optional: true
+
+  '@paypal/paypal-js@8.3.0':
+    dependencies:
+      promise-polyfill: 8.3.0
 
   '@react-aria/focus@3.20.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -1525,6 +1538,8 @@ snapshots:
       prettier: 3.5.3
 
   prettier@3.5.3: {}
+
+  promise-polyfill@8.3.0: {}
 
   qs@6.14.0:
     dependencies:
