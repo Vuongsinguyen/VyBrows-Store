@@ -622,7 +622,7 @@
         "height": 800
       },
       {
-        "url": "/images/product009-2.png",
+        "url": "/images/product009-2.avif",
         "altText": "Lip Gloss Shine Alternative",
         "width": 800,
         "height": 800
@@ -682,21 +682,21 @@
   },
   {
     "id": "10",
-    "handle": "brow-pencil-brown",
-    "title": "Brow Pencil Brown",
-    "description": "Chì kẻ mày màu nâu",
-    "descriptionHtml": "<p>Chì kẻ mày màu nâu tự nhiên</p>",
+    "handle": "FW5-BAOLIFT",
+    "title": "FW5-BAOLIFT",
+    "description": "FW5-BAOLIFT",
+    "descriptionHtml": "<p>FW5-BAOLIFT</p>",
     "price": 10.99,
     "images": [
       {
-        "url": "/images/product010.png",
-        "altText": "Brow Pencil Brown",
+        "url": "/images/product010.avif",
+        "altText": "FW5-BAOLIFT",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product010-2.png",
-        "altText": "Brow Pencil Brown Alternative",
+        "url": "/images/product010-2.avif",
+        "altText": "FW5-BAOLIFT",
         "width": 800,
         "height": 800
       }
@@ -706,7 +706,7 @@
       "makeup"
     ],
     "featuredImage": {
-      "url": "/images/product010.png",
+      "url": "/images/product010.avif",
       "altText": "Brow Pencil Brown",
       "width": 800,
       "height": 800
@@ -1125,13 +1125,13 @@
     "price": 13.49,
     "images": [
       {
-        "url": "/images/product016.png",
+        "url": "/images/product016.avif",
         "altText": "Makeup Remover",
         "width": 800,
         "height": 800
       },
       {
-        "url": "/images/product016-2.png",
+        "url": "/images/product016-2.avif",
         "altText": "Makeup Remover Alternative",
         "width": 800,
         "height": 800
@@ -1144,7 +1144,7 @@
     "handle": "makeup-remover",
     "descriptionHtml": "<p>Nước tẩy trang dịu nhẹ</p>",
     "featuredImage": {
-      "url": "/images/product016.png",
+      "url": "/images/product016.avif",
       "altText": "Makeup Remover",
       "width": 800,
       "height": 800
