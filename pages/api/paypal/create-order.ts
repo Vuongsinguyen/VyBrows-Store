@@ -67,6 +67,11 @@ export default async function handler(
     const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
     const environment = process.env.PAYPAL_ENVIRONMENT || 'sandbox';
 
+    console.log('🔍 Environment variables check:');
+    console.log('PAYPAL_CLIENT_ID:', clientId ? '✅ Set' : '❌ Missing');
+    console.log('PAYPAL_CLIENT_SECRET:', clientSecret ? '✅ Set (length: ' + clientSecret.length + ')' : '❌ Missing');
+    console.log('PAYPAL_ENVIRONMENT:', environment);
+
     if (!clientId || !clientSecret) {
       console.error('❌ Missing PayPal credentials');
       return res.status(500).json({
