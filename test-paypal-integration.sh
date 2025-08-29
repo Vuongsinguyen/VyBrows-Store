@@ -36,7 +36,7 @@ echo "🚀 Starting test sequence..."
 
 # Check if server is running
 echo "📡 Checking if dev server is running..."
-if curl -s http://localhost:3000 > /dev/null; then
+if curl -s http://shop.vybrows-academy.com > /dev/null; then
     echo "✅ Dev server is running on port 3000"
 else
     echo "❌ Dev server not running on port 3000"
@@ -53,7 +53,7 @@ echo "✅ API routes should work"
 echo ""
 
 echo "🎯 Manual Test Steps:"
-echo "1. Open browser to http://localhost:3000"
+echo "1. Open browser to http://shop.vybrows-academy.com"
 echo "2. Add any product to cart"
 echo "3. Click 'PayPal Checkout' button"
 echo "4. Login with sandbox account:"

@@ -43,7 +43,7 @@ interface PayPalError {
  *
  * Environment Variables Required:
  * - PAYPAL_CLIENT_ID: Your PayPal app client ID
- * - PAYPAL_CLIENT_SECRET: Your PayPal app client secret
+ * - PAYPAL_CLIENT_SECRET: ECqeogQXxMCfohOT1uBhuHutZ1MpAh9EYUzO9MzxKlRHEbkdYSoK1Y1ZZkNAZD95EGaQtaCHodge3PfD
  * - PAYPAL_ENVIRONMENT: 'sandbox' or 'production' (default: sandbox)
  */
 export default async function handler(

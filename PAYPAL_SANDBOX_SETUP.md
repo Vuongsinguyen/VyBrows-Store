@@ -78,7 +78,7 @@ NEXT_PUBLIC_PAYPAL_CLIENT_ID=AZDC... (phải có)
 #### **"Failed to create PayPal order"**
 ```bash
 # Kiểm tra server-side credentials
-PAYPAL_CLIENT_SECRET=your_secret_here
+PAYPAL_CLIENT_SECRET=ECqeogQXxMCfohOT1uBhuHutZ1MpAh9EYUzO9MzxKlRHEbkdYSoK1Y1ZZkNAZD95EGaQtaCHodge3PfD
 PAYPAL_ENVIRONMENT=sandbox
 ```
 
@@ -109,7 +109,7 @@ PAYPAL_ENVIRONMENT=sandbox
 ```bash
 PAYPAL_ENVIRONMENT=production
 NEXT_PUBLIC_PAYPAL_CLIENT_ID=A...production_client_id
-PAYPAL_CLIENT_SECRET=production_secret
+PAYPAL_CLIENT_SECRET=ECqeogQXxMCfohOT1uBhuHutZ1MpAh9EYUzO9MzxKlRHEbkdYSoK1Y1ZZkNAZD95EGaQtaCHodge3PfD
 ```
 
 ## 📞 Support
