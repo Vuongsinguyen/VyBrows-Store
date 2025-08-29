@@ -1,6 +1,6 @@
 export default {
   experimental: {
-    ppr: true,
+    // ppr: true,  // Disabled - not supported in current Next.js version
     inlineCss: true,
     useCache: true
   },
