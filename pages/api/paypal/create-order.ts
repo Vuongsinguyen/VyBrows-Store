@@ -133,8 +133,8 @@ export default async function handler(
         }
       ],
       application_context: {
-        return_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/checkout/success`,
-        cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/checkout/cancel`,
+        return_url: `https://${process.env.NEXT_PUBLIC_SITE_URL || 'localhost:3000'}/checkout/success`,
+        cancel_url: `https://${process.env.NEXT_PUBLIC_SITE_URL || 'localhost:3000'}/checkout/cancel`,
         user_action: 'PAY_NOW',
         brand_name: 'VyBrows Store'
       }
