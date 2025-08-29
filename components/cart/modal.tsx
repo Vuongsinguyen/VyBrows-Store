@@ -250,7 +250,7 @@ export default function CartModal() {
                       Total: ${cart.cost?.totalAmount?.amount || '0'} ({cart.totalQuantity} items)
                     </div>
                     <button
-                      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                      className="block w-full rounded-full bg-[#003324] p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
                       onClick={handleCheckout}
                     >
                       Proceed to Checkout

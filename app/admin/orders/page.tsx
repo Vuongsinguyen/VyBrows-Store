@@ -125,7 +125,7 @@ export default function AdminOrders() {
                       </button>
                       <button
                         onClick={() => updateOrderStatus(order.id, 'shipped')}
-                        className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
+                        className="px-3 py-1 bg-#003324 text-white rounded text-sm hover:bg-blue-700"
                       >
                         Mark as Shipped
                       </button>

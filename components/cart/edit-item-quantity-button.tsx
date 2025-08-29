@@ -15,7 +15,7 @@ export default function EditItemQuantityButton({ item, type, optimisticUpdate }:
       disabled={!item?.merchandise?.id && !item?.id}
       className={clsx(
         'flex h-9 w-9 items-center justify-center rounded-full',
-        type === 'plus' ? 'bg-blue-600 text-white' : 'bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white',
+        type === 'plus' ? 'bg-[#003324] text-white' : 'bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white',
         'transition-all hover:scale-105',
         { 'opacity-50 cursor-not-allowed': !item?.merchandise?.id && !item?.id }
       )}

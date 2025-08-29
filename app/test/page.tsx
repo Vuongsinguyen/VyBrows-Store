@@ -121,7 +121,7 @@ export default function TestCheckout() {
             <h2 className="text-xl font-semibold mb-4">📊 Test Google Sheets</h2>
             <button
               onClick={testGoogleSheetsOrder}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 mb-4"
+              className="w-full bg-#003324 text-white py-2 px-4 rounded hover:bg-blue-700 mb-4"
             >
               � Save to Google Sheets
             </button>
