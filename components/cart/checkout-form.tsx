@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import PayPalCheckoutButton from './paypal-checkout-button';
 
 export interface CustomerInfo {
   name: string;
@@ -36,6 +37,7 @@ export default function CheckoutForm({
   });
 
   const [errors, setErrors] = useState<Partial<CustomerInfo>>({});
+  const [paymentMethod, setPaymentMethod] = useState<'form' | 'paypal'>('form');
 
   const validateForm = (): boolean => {
     const newErrors: Partial<CustomerInfo> = {};
@@ -76,6 +78,17 @@ export default function CheckoutForm({
     }
   };
 
+  const handlePayPalSuccess = (transactionId: string, amount: string, status: string) => {
+    console.log('✅ PayPal payment successful:', { transactionId, amount, status });
+    // The cart will be cleared automatically by the PayPalCheckoutButton component
+    // You could also trigger additional actions here like sending confirmation emails
+  };
+
+  const handlePayPalError = (error: string) => {
+    console.error('❌ PayPal payment error:', error);
+    // Could show a more sophisticated error UI here
+  };
+
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between mb-6">
@@ -105,93 +118,147 @@ export default function CheckoutForm({
         </div>
       </div>
 
-      {/* Customer Information Form */}
-      <form onSubmit={handleSubmit} className="flex-1 space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1">
-            Full Name *
+      {/* Payment Method Selection */}
+      <div className="mb-6">
+        <h3 className="font-medium mb-3">Payment Method</h3>
+        <div className="space-y-2">
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="form"
+              checked={paymentMethod === 'form'}
+              onChange={(e) => setPaymentMethod(e.target.value as 'form')}
+              className="mr-2"
+            />
+            <span className="text-sm">Manual Checkout (Google Sheets)</span>
           </label>
-          <input
-            type="text"
-            id="name"
-            value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.name ? 'border-red-500' : 'border-neutral-300'
-            }`}
-            placeholder="Enter your full name"
-          />
-          {errors.name && (
-            <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1">
-            Email Address *
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="paypal"
+              checked={paymentMethod === 'paypal'}
+              onChange={(e) => setPaymentMethod(e.target.value as 'paypal')}
+              className="mr-2"
+            />
+            <span className="text-sm">PayPal Checkout</span>
           </label>
-          <input
-            type="email"
-            id="email"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.email ? 'border-red-500' : 'border-neutral-300'
-            }`}
-            placeholder="Enter your email"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-          )}
         </div>
+      </div>
 
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium mb-1">
-            Phone Number *
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            value={formData.phone}
-            onChange={(e) => handleChange('phone', e.target.value)}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.phone ? 'border-red-500' : 'border-neutral-300'
-            }`}
-            placeholder="Enter your phone number"
-          />
-          {errors.phone && (
-            <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
-          )}
-        </div>
+      {/* Payment Method Content */}
+      {paymentMethod === 'form' ? (
+        /* Customer Information Form */
+        <form onSubmit={handleSubmit} className="flex-1 space-y-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={formData.name}
+              onChange={(e) => handleChange('name', e.target.value)}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.name ? 'border-red-500' : 'border-neutral-300'
+              }`}
+              placeholder="Enter your full name"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="address" className="block text-sm font-medium mb-1">
-            Shipping Address *
-          </label>
-          <textarea
-            id="address"
-            value={formData.address}
-            onChange={(e) => handleChange('address', e.target.value)}
-            rows={3}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.address ? 'border-red-500' : 'border-neutral-300'
-            }`}
-            placeholder="Enter your shipping address"
-          />
-          {errors.address && (
-            <p className="text-red-500 text-xs mt-1">{errors.address}</p>
-          )}
-        </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email Address *
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.email ? 'border-red-500' : 'border-neutral-300'
+              }`}
+              placeholder="Enter your email"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
+          </div>
 
-        <div className="pt-4">
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
-          >
-            Complete Order - ${totalPrice}
-          </button>
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium mb-1">
+              Phone Number *
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              value={formData.phone}
+              onChange={(e) => handleChange('phone', e.target.value)}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.phone ? 'border-red-500' : 'border-neutral-300'
+              }`}
+              placeholder="Enter your phone number"
+            />
+            {errors.phone && (
+              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-sm font-medium mb-1">
+              Shipping Address *
+            </label>
+            <textarea
+              id="address"
+              value={formData.address}
+              onChange={(e) => handleChange('address', e.target.value)}
+              rows={3}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.address ? 'border-red-500' : 'border-neutral-300'
+              }`}
+              placeholder="Enter your shipping address"
+            />
+            {errors.address && (
+              <p className="text-red-500 text-xs mt-1">{errors.address}</p>
+            )}
+          </div>
+
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
+            >
+              Complete Order - ${totalPrice}
+            </button>
+          </div>
+        </form>
+      ) : (
+        /* PayPal Checkout */
+        <div className="flex-1">
+          <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+            <p className="text-sm text-yellow-800">
+              💳 <strong>PayPal Checkout:</strong> You'll be redirected to PayPal to complete your payment securely.
+              Only the first item in your cart will be processed through PayPal.
+            </p>
+          </div>
+
+          <PayPalCheckoutButton
+            onSuccess={handlePayPalSuccess}
+            onError={handlePayPalError}
+            className="w-full"
+          />
+
+          <div className="mt-4 text-xs text-gray-500 space-y-1">
+            <p>• PayPal processes only the first item in your cart</p>
+            <p>• Cart will be cleared automatically after successful payment</p>
+            <p>• You'll receive a transaction confirmation</p>
+          </div>
         </div>
-      </form>
+      )}
     </div>
   );
 }
